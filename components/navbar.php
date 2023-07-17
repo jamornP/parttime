@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<nav class="navbar navbar-expand-lg navbar-dark bg-312">
     <div class="container-fluid">
-    <a class="navbar-brand" href="#">Part Time Job</a>
+    <a class="navbar-brand d-flex justify-content-start align-items-center" href="#"><img src="imges/logo.png" alt="Logo" style="display:table; margin: 0 auto; max-width:200px;"></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -23,14 +23,14 @@
             <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
         </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li>
+        
       </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+      <div class="" style="display:table; max-width:300px;">
+          <button onclick="window.location = '<?php echo $login_url;?>'" type="button" class="btn bg-22 d-flex justify-content-between align-items-center ">
+              <div class=""><img src="imges/logo_google.png" alt="Logo" style="display:box; margin: 0 auto; max-width:40px;"> </div>
+              <div class=""><b class="">Login with Google</b></div>
+          </button>
+      </div>
     </div>
   </div>
 </nav>
