@@ -1,0 +1,17 @@
+{
+    "name": "science/parttime",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "jamornP",
+            "email": "100953989+jamornP@users.noreply.github.com"
+        }
+    ],
+    "require": {
+        "google/apiclient": "^2.14"
+    }
+}
