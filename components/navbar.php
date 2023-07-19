@@ -1,3 +1,4 @@
+<?php session_start();?>
 <nav class="navbar navbar-expand-lg navbar-dark bg-312">
     <div class="container-fluid">
     <a class="navbar-brand d-flex justify-content-start align-items-center" href="#"><img src="imges/logo.png" alt="Logo" style="display:table; margin: 0 auto; max-width:200px;"></a>
@@ -25,12 +26,34 @@
         </li>
         
       </ul>
+      <?php
+        if(isset($_SESSION['login_parttime']) == true){
+          ?>
+            <div class="">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <?php echo $_SESSION['fullname'];?>
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="/parttime/pages/logout.php">Log out</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          <?php
+        }else{
+      ?>
       <div class="" style="display:table; max-width:300px;">
           <button onclick="window.location = '<?php echo $login_url;?>'" type="button" class="btn bg-22 d-flex justify-content-between align-items-center ">
               <div class=""><img src="imges/logo_google.png" alt="Logo" style="display:box; margin: 0 auto; max-width:40px;"> </div>
               <div class=""><b class="">Login with Google</b></div>
           </button>
       </div>
+      <?php } ?>
     </div>
   </div>
 </nav>

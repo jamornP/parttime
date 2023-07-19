@@ -20,15 +20,15 @@ if(isset($toke["error"]) != "invalid_grant"){
     // echo $userData['email'];
     $data = $authObj->checkUserGoogle($userData['email']);
     if($data){
-        header('Location: index.php');
+        header('Location: /parttime/backend/pages/index.php');
         exit();
     }else{
         $dataS = $authObj->checkUserGoogleStudent($userData['email']);
         if($dataS){
-            header('Location: index.php');
+            header('Location: /parttime/index.php');
             exit();
         }else{
-            header('Location: index.php');
+            header('Location: /parttime/index.php');
             exit();
         }
     }
