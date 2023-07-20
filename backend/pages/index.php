@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Backend</title>
     <!-- -------- -->
-    <?php require $_SERVER['DOCUMENT_ROOT'] . "/template/backend/components/link.php"; ?>
+    <?php require $_SERVER['DOCUMENT_ROOT'] . "/parttime/backend/components/link.php"; ?>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -15,15 +15,15 @@
             <img class="animation__shake" src="" alt="AdminLTELogo" height="60" width="60">
         </div>
         <!-- ----- -->
-        <?php require $_SERVER['DOCUMENT_ROOT'] . "/template/backend/components/menu_left.php"; ?>
-        <?php require $_SERVER['DOCUMENT_ROOT'] . "/template/backend/components/navbar.php"; ?>
+        <?php require $_SERVER['DOCUMENT_ROOT'] . "/parttime/backend/components/menu_left.php"; ?>
+        <?php require $_SERVER['DOCUMENT_ROOT'] . "/parttime/backend/components/navbar.php"; ?>
        
         <div class="content-wrapper">
             <div class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Dashboard</h1>
+                            <h1 class="m-0"><?php print_r($_SESSION);?></h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">

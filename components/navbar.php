@@ -1,7 +1,10 @@
 <?php session_start();?>
+<?php
+require_once($_SERVER['DOCUMENT_ROOT'] .'/parttime/pages/auth/config.php');
+?>
 <nav class="navbar navbar-expand-lg navbar-dark bg-312">
     <div class="container-fluid">
-    <a class="navbar-brand d-flex justify-content-start align-items-center" href="#"><img src="imges/logo.png" alt="Logo" style="display:table; margin: 0 auto; max-width:200px;"></a>
+    <a class="navbar-brand d-flex justify-content-start align-items-center" href="#"><img src="/parttime/imges/logo.png" alt="Logo" style="display:table; margin: 0 auto; max-width:200px;"></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -39,7 +42,7 @@
                     <li><a class="dropdown-item" href="#">Action</a></li>
                     <li><a class="dropdown-item" href="#">Another action</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="/parttime/pages/logout.php">Log out</a></li>
+                    <li><a class="dropdown-item" href="/parttime/pages/auth/logout.php">Log out</a></li>
                   </ul>
                 </li>
               </ul>
