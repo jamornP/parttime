@@ -4,19 +4,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Backend</title>
+    <title>Part Time Job</title>
     <!-- -------- -->
-    <?php require $_SERVER['DOCUMENT_ROOT'] . "/template/backend/components/link.php"; ?>
+    <?php require $_SERVER['DOCUMENT_ROOT'] . "/parttime/backend/components/link.php"; ?>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@100;200;300&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Kanit', sans-serif;
+        }
+    </style>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
         <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__shake" src="" alt="AdminLTELogo" height="60" width="60">
+            <img class="animation__shake" src="/parttime/imges/logo.png" alt="Science" height="70" width="360">
         </div>
         <!-- ----- -->
-        <?php require $_SERVER['DOCUMENT_ROOT'] . "/template/backend/components/menu_left.php"; ?>
-        <?php require $_SERVER['DOCUMENT_ROOT'] . "/template/backend/components/navbar.php"; ?>
+        <?php require $_SERVER['DOCUMENT_ROOT'] . "/parttime/backend/components/menu_left.php"; ?>
+        <?php require $_SERVER['DOCUMENT_ROOT'] . "/parttime/backend/components/navbar.php"; ?>
        
         <div class="content-wrapper">
             <div class="content-header">
@@ -47,8 +53,8 @@
        
     </div>
     <!-- ---------  -->
-    <?php require $_SERVER['DOCUMENT_ROOT'] . "/template/backend/components/footer.php"; ?>
-    <?php require $_SERVER['DOCUMENT_ROOT'] . "/template/backend/components/script.php"; ?>
+    <?php require $_SERVER['DOCUMENT_ROOT'] . "/parttime/backend/components/footer.php"; ?>
+    <?php require $_SERVER['DOCUMENT_ROOT'] . "/parttime/backend/components/script.php"; ?>
 </body>
 
 </html>
