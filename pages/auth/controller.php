@@ -17,7 +17,7 @@ if(isset($toke["error"]) != "invalid_grant"){
     $oAuth = new Google_Service_Oauth2($gClient);
     $userData = $oAuth->userinfo_v2_me->get();
     
-    // echo $userData['email'];
+    echo $userData['email'];
     // echo $userData['picture'];
     $data = $authObj->checkUserGoogle($userData['email'],$userData['picture']);
     if($data){

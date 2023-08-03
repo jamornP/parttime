@@ -43,57 +43,69 @@
             </section>
             <section class="content">
                 <!-- <div class="container-fluid"> -->
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h3 class="card-title">ข้อมูลงาน</h3>
-                                </div>
-                                <!-- /.card-header -->
-                                <div class="card-body">
-                                    <table id="example1" class="table table-bordered table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>ที่</th>
-                                                <th>ชื่องาน</th>
-                                                <th>วันที่เริ่มงาน</th>
-                                                <th>ค่าตอบแทน</th>
-                                                <th>ผู้รับผิดชอบ</th>
-                                                <th>เบอร์โทร</th>
-                                                <th>line</th>
-                                                <th></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Special title treatment
-                                                </td>
-                                                <td>Win 95+</td>
-                                                <td> 4</td>
-                                                <td>X</td>
-                                                <td>X</td>
-                                                <td>X</td>
-                                                <td><i class="fas fa-edit"></i> <i class="fas fa-trash-alt text-danger"></i></td>
-                                                
-                                            <tr>
-                                                <td>2</td>
-                                                <td>Special title treatment2
-                                                </td>
-                                                <td>Win 95+</td>
-                                                <td> 4</td>
-                                                <td>X</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                <li class="btn d">
+                    <a href="/parttime/backend/pages/table.php" class="nav-link">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>
+                            Table
+                            <span class="right badge badge-danger">New</span>
+                        </p>
+                    </a>
+                </li>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">ข้อมูลงาน</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <table id="example1" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>ที่</th>
+                                            <th>ชื่องาน</th>
+                                            <th>วันที่เริ่มงาน</th>
+                                            <th>ค่าตอบแทน</th>
+                                            <th>ผู้รับผิดชอบ</th>
+                                            <th>เบอร์โทร</th>
+                                            <th>line</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Special title treatment
+                                            </td>
+                                            <td>Win 95+</td>
+                                            <td> 4</td>
+                                            <td>X</td>
+                                            <td>X</td>
+                                            <td>X</td>
+                                            <td><i class="fas fa-eye"></i> <i class="fas fa-edit"></i> <i class="fas fa-trash-alt text-danger"></i></td>
+
+                                        <tr>
+                                            <td>2</td>
+                                            <td>Special title treatment2
+                                            </td>
+                                            <td>Win 95+</td>
+                                            <td> 4</td>
+                                            <td>X</td>
+                                            <td>X</td>
+                                            <td>X</td>
+                                            <td><i class="fas fa-eye"></i> <i class="fas fa-edit"></i> <i class="fas fa-trash-alt text-danger"></i></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
+                </div>
                 <!-- </div> -->
             </section>
             <!-- Main content -->
-            <section class="content">
+            <!-- <section class="content">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card card-outline card-info">
@@ -102,7 +114,7 @@
                                     Summernote
                                 </h3>
                             </div>
-                            <!-- /.card-header -->
+                           
                             <div class="card-body">
                                 <textarea id="summernote">
                 Place <em>some</em> <u>text</u> <strong>here</strong>
@@ -111,8 +123,7 @@
                                     <div class="card-header">
                                         <h3 class="card-title">Quick Example</h3>
                                     </div>
-                                    <!-- /.card-header -->
-                                    <!-- form start -->
+                                    
                                     <form>
                                         <div class="card-body">
                                             <div class="form-group">
@@ -140,7 +151,7 @@
                                                 <label class="form-check-label" for="exampleCheck1">Check me out</label>
                                             </div>
                                         </div>
-                                        <!-- /.card-body -->
+                                       
 
                                         <div class="card-footer">
                                             <button type="submit" class="btn btn-primary">Submit</button>
@@ -150,12 +161,32 @@
                             </div>
                         </div>
                     </div>
-                    <!-- /.col-->
+                   
                 </div>
 
-            </section>
+            </section> -->
             <!-- /.content -->
+            <!-- Button trigger modal -->
+            
 
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            ...
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <aside class="control-sidebar control-sidebar-dark">
 

@@ -28,7 +28,7 @@
 
 
 
-<!-- Page specific script -->
+<!-- Page specific script --> 
 <script>
   $(function () {
     // Summernote
