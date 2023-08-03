@@ -17,10 +17,9 @@
 
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
-        <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__shake" src="/parttime/imges/logo.png" alt="Science" height="70" width="360">
-        </div>
+        
         <!-- ----- -->
+        <?php require $_SERVER['DOCUMENT_ROOT'] . "/parttime/backend/components/load.php"; ?>
         <?php require $_SERVER['DOCUMENT_ROOT'] . "/parttime/backend/components/menu_left.php"; ?>
         <?php require $_SERVER['DOCUMENT_ROOT'] . "/parttime/backend/components/navbar.php"; ?>
 
@@ -43,15 +42,16 @@
             </section>
             <section class="content">
                 <!-- <div class="container-fluid"> -->
-                <li class="btn d">
-                    <a href="/parttime/backend/pages/table.php" class="nav-link">
-                        <i class="nav-icon fas fa-th"></i>
-                        <p>
-                            Table
-                            <span class="right badge badge-danger">New</span>
-                        </p>
-                    </a>
-                </li>
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                    </div>
+                    <div class="col-sm-6 d-flex flex-row-reverse bd-highlight">
+                        <a href="/parttime/backend/pages/staff/register.php" class=" btn btn-primary shadow">
+                            <i class="nav-icon fas fa-plus"></i> เพิ่มงาน
+                        </a>
+                    </div>
+                    
+                </div>
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
