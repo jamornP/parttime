@@ -1,4 +1,3 @@
-<?php session_start();?>
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #1e1e34;">
     <!-- Brand Logo -->
