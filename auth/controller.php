@@ -1,7 +1,7 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'].'/parttime/vendor/autoload.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/parttime/google-api/vendor/autoload.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/parttime/pages/auth/config.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/parttime/auth/config.php');
 use App\Model\Parttime\Auth;
 $authObj = new Auth;
 
@@ -18,7 +18,7 @@ if(isset($toke["error"]) != "invalid_grant"){
     $userData = $oAuth->userinfo_v2_me->get();
     
     echo $userData['email'];
-    // echo $userData['picture'];
+    echo $userData['picture'];
     $data = $authObj->checkUserGoogle($userData['email'],$userData['picture']);
     if($data){
         echo $data;
@@ -27,10 +27,10 @@ if(isset($toke["error"]) != "invalid_grant"){
     }else{
         $dataS = $authObj->checkUserGoogleStudent($userData['email'],$userData['picture']);
         if($dataS){
-            header('Location: /parttime/index.php');
+            header('Location: /parttime/backend/pages/index.php');
             exit();
         }else{
-            header('Location: /parttime/index.php');
+            header('Location: /parttime/auth.php');
             exit();
         }
     }
@@ -38,8 +38,8 @@ if(isset($toke["error"]) != "invalid_grant"){
     // var_dump($userData );
     // echo "</pre>";
 }else{
-    header('Location: index.php');
-    exit();
+    // header('Location: index.php');
+    // exit();
 }
 
 ?>
