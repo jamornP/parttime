@@ -1,6 +1,6 @@
 <?php session_start();?>
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'] .'/parttime/pages/auth/config.php');
+// require_once($_SERVER['DOCUMENT_ROOT'] .'/parttime/pages/auth/config.php');
 ?>
 <nav class="navbar navbar-expand-lg navbar-dark bg-312">
     <div class="container-fluid">

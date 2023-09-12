@@ -30,7 +30,7 @@
 <link rel="stylesheet" href="/parttime/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 
 <!-- daterange picker -->
-<link rel="stylesheet" href="/parttime/plugins/daterangepicker/daterangepicker.css">
+<!-- <link rel="stylesheet" href="/parttime/plugins/daterangepicker/daterangepicker.css"> -->
 <!-- iCheck for checkboxes and radio inputs -->
 <link rel="stylesheet" href="/parttime/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
 <!-- Bootstrap Color Picker -->
@@ -56,7 +56,7 @@
  <!-- Style -->
  <link rel="stylesheet" href="/parttime/backend/components/style.css">
 
-
+ <link rel="stylesheet" href="/parttime/theme/css/datepicker.css">
  <!-- jQuery -->
 <script src="/parttime/plugins/jquery/jquery.min.js"></script>
 <link rel="stylesheet" href="/parttime/plugins/toastr/toastr.min.css">

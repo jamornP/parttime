@@ -31,13 +31,23 @@
               </p>
             </a>
             <ul class="nav nav-treeview" id="myDIV">
-              <li class="nav-item">
-                <a href="/app-certificate/backend/pages/management/bg.php" class="nav-link">
-                  <i class="nav-icon far fa-image"></i>
-                  <p> Background</p>
-                </a>
-              </li>
-              <li class="nav-item">
+              <?php
+                switch($_SESSION['role']){
+                  case "staff" || "superadmin":
+                    echo "
+                      <li class='nav-item'>
+                        <a href='/parttime/backend/pages/staff/index.php' class='nav-link'>
+                          <i class='nav-icon far fa-image'></i>
+                          <p> งาน Parttime</p>
+                        </a>
+                      </li>
+                    ";
+                  break;
+                }
+              ?>
+            </ul>
+          </li>
+              <!-- <li class="nav-item">
                 <a href="/app-certificate/backend/pages/management/ca.php" class="nav-link">
                   <i class="nav-icon fas fa-pen-fancy"></i>
                   <p> CA</p>
@@ -54,40 +64,9 @@
                   <i class="nav-icon fas fa-search"></i>
                   <p> Check ซ้ำ</p>
                 </a>
-              </li>
-              <?php
-                if(isset($_SESSION['role']) && $_SESSION['role']=="superadmin"){
-                  echo "
-                    <li class='nav-item'>
-                      <a href='/app-certificate/backend/pages/management/file-php.php' class='nav-link'>
-                        <i class='nav-icon far fa-file-code'></i> 
-                        <p> File PHP</p>
-                      </a>
-                    </li>
-                    <li class='nav-item'>
-                      <a href='/app-certificate/backend/pages/member' class='nav-link'>
-                        <i class='nav-icon 	fas fa-user-tie'></i> 
-                        <p> Users</p>
-                      </a>
-                    </li>
-                    <li class='nav-item'>
-                      <a href='/app-certificate/backend/pages/admin/batch.php' class='nav-link'>
-                        <i class='nav-icon 	fas fa-scroll'></i> 
-                        <p> Delete Certificate</p>
-                      </a>
-                    </li>
-                    <li class='nav-item'>
-                      <a href='/app-certificate/backend/pages/admin/windows.php' class='nav-link'>
-                        <i class='nav-icon fas fa-tv'></i> 
-                        <p> Windows</p>
-                      </a>
-                    </li>
-                  ";
-                }
-              ?>
-              
-            </ul>
-          </li>
+              </li> -->
+             
+          
       
           <li class="nav-header"></li>
           <li class="nav-header"></li>
@@ -107,7 +86,7 @@
               <p>ออกจากระบบ</p>
             </a>
           </li>
-        </ul>
+        
       </nav>
         <br>
         <br>

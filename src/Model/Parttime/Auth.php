@@ -16,7 +16,7 @@ class Auth extends DbScience {
             session_start();
             $_SESSION['login_parttime'] = true;
             $_SESSION['fullname']=$data[0]['title'].$data[0]['name']." ".$data[0]['surname'];
-            $_SESSION['id']=$data[0]['id'];
+            $_SESSION['s_id']=$data[0]['s_id'];
             $_SESSION['email']=$data[0]['email'];
             $_SESSION['img']=$img;
             $_SESSION['role']=$data[0]['role'];

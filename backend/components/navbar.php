@@ -20,6 +20,9 @@ date_default_timezone_set('Asia/Bangkok');
     <ul class="navbar-nav ml-auto">
         
         <li class="nav-item ">
+            <div class = "nav-link text-warning"><?php echo " (".$_SESSION['role'].")";?></div>
+        </li>
+        <li class="nav-item ">
             <a href="/parttime/backend/auth/logout.php" class="nav-link text-danger">
             <i class="fa fa-power-off"></i> Logout
             </a>
