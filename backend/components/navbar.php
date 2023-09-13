@@ -4,6 +4,8 @@
 
 use App\Model\Parttime\Auth;
 $authObj = new Auth;
+use App\Model\Parttime\FunctionSql;
+$sqlObj = new FunctionSql;
 
 date_default_timezone_set('Asia/Bangkok');
 ?>
@@ -23,7 +25,7 @@ date_default_timezone_set('Asia/Bangkok');
             <div class = "nav-link text-warning"><?php echo " (".$_SESSION['role'].")";?></div>
         </li>
         <li class="nav-item ">
-            <a href="/parttime/backend/auth/logout.php" class="nav-link text-danger">
+            <a href="/parttime/auth/logout.php" class="nav-link text-danger">
             <i class="fa fa-power-off"></i> Logout
             </a>
         </li>

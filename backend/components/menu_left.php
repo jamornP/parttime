@@ -75,13 +75,13 @@
           <li class="nav-header"></li>
           
           <li class="nav-item">
-            <a href="/app-certificate/backend/auth/resetpassword.php" class="nav-link">
+            <a href="/parttime/auth/resetpassword.php" class="nav-link">
               <i class="nav-icon fas fa-key"></i>
               <p>เปลี่ยน Password</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="/app-certificate/backend/auth/logout.php" class="nav-link text-danger">
+            <a href="/parttime/auth/logout.php" class="nav-link text-danger">
               <i class="nav-icon fas fa-power-off"></i>
               <p>ออกจากระบบ</p>
             </a>

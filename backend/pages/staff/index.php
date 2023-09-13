@@ -122,15 +122,14 @@
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
+                                                <label for="summernote">รายละเอียดงาน :<b class="text-danger">*</b></label>
                                                 <textarea id="summernote" name="j_detail" required>
                                                     <b>รายละเอียดงาน เช่น ประเภทงาน รับกี่คน :</b><br>
                                                     1.<br>
                                                     2.<br>
-                                                    <br>
                                                     <b>คุณสมบัติของผู้สมัคร เช่น ภาควิชา สาขา ชั้นปี ใช้คอมพิวเตอร์ ใช้เครื่องมือ :</b><br>
                                                     1.<br>
                                                     2.<br>
-                                                    <br>
                                                 </textarea>
                                             </div>
                                         </div>
@@ -155,7 +154,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="position">สถานที่ทำงาน เช่น อาคาร ชั้น ห้อง :<b class="text-danger">*</b></label>
-                                                <textarea class="form-control" rows="3" placeholder="Enter ..." id="position"  name="j_location"></textarea>
+                                                <textarea class="form-control" rows="3" placeholder="Enter ..." id="position"  name="j_location" required></textarea>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -186,9 +185,14 @@
                                             <div class="form-group">
                                                 <label for="j_pay">รายละเอียดค่าตอบแทน :<b class="text-danger">*</b></label>
                                                 <select class="form-control select2" style="width: 100%;" name="j_pay">
-                                                    <option selected="selected" value="ค่าตอบแทนนักศึกษา 200 บาท / วัน (เวลา 08.30 - 16.30 น.)">ค่าตอบแทนนักศึกษา 200 บาท / วัน (เวลา 08.30 - 16.30 น.)</option>
-                                                    <option value="ชั่วโมงจิตอาสา 6 ชั่วโมงต่อวัน">ชั่วโมงจิตอาสา 6 ชั่วโมงต่อวัน</option>
-                                                    <option value="อาหารกลางวัน">อาหารกลางวัน</option>
+                                                    <?php 
+                                                        $dataPay = $sqlObj->getPayAll();
+                                                        foreach($dataPay as $p){
+                                                            echo "
+                                                                <option value='{$p['pay_id']}'>{$p['pay_name']}</option>
+                                                            ";
+                                                        }
+                                                    ?>
                                                 </select>
                                             </div>
                                         </div>
@@ -200,25 +204,25 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="st_name">ชื่อ - นามสกุล :<b class="text-danger">*</b></label>
-                                                <input type="text" class="form-control" id="st_name" placeholder="ชื่อ - นามสกุล" name="st_name" >
+                                                <input type="text" class="form-control" id="st_name" placeholder="ชื่อ - นามสกุล" name="st_name" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="st_tel">เบอร์โทร :<b class="text-danger">*</b></label>
-                                                <input type="text" class="form-control" id="st_tel" placeholder="เบอร์โทร" name="st_tel" >
+                                                <input type="text" class="form-control" id="st_tel" placeholder="เบอร์โทร" name="st_tel" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="st_email">email :<b class="text-danger">*</b></label>
-                                                <input type="text" class="form-control" id="st_email" placeholder="email" name="st_email" >
+                                                <input type="text" class="form-control" id="st_email" placeholder="email" name="st_email" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="st_line">lind ID :<b class="text-danger">*</b></label>
-                                                <input type="text" class="form-control" id="st_line" placeholder="lind ID" name="st_line" >
+                                                <input type="text" class="form-control" id="st_line" placeholder="lind ID" name="st_line" required>
                                             </div>
                                         </div>
                                     </div>

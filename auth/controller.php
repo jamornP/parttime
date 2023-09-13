@@ -34,12 +34,12 @@ if(isset($toke["error"]) != "invalid_grant"){
             exit();
         }
     }
-    // echo "<pre>";
-    // var_dump($userData );
-    // echo "</pre>";
+    echo "<pre>";
+    var_dump($userData );
+    echo "</pre>";
 }else{
-    // header('Location: index.php');
-    // exit();
+    header('Location: index.php');
+    exit();
 }
 
 ?>
