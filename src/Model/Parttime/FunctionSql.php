@@ -60,14 +60,38 @@ class FunctionSql extends DbScience {
         $stmt->execute($data);
         return $this->pdo->lastInsertId();
     }
+    public function getJobAll(){
+        $sql ="
+            SELECT j.*,p.pay_name as pay, dr.h_email 
+            FROM tb_job as j
+            LEFT JOIN tb_pay as p ON p.pay_id = j.pay_id
+            LEFT JOIN tb_department_route as dr ON dr.ro_num = j.js_id
+            ORDER BY j.date_add
+        ";
+        $stmt = $this->pdo->query($sql);
+        $data = $stmt->fetchAll();
+        return $data;
+    }
     public function getJobByEmail($m_email){
         $sql ="
             SELECT j.*,p.pay_name as pay, dr.h_email 
             FROM tb_job as j
             LEFT JOIN tb_pay as p ON p.pay_id = j.pay_id
             LEFT JOIN tb_department_route as dr ON dr.ro_num = j.js_id
-            WHERE j.m_email = '{$m_email}'
+            WHERE j.m_email = '{$m_email}' AND dr.m_email = '{$m_email}'
             ORDER BY j.date_add
+        ";
+        $stmt = $this->pdo->query($sql);
+        $data = $stmt->fetchAll();
+        return $data;
+    }
+    public function getJobByHEmail($h_email){
+        $sql = "
+            SELECT j.*,p.pay_name as pay, dr.h_email 
+            FROM tb_department_route as dr
+            RIGHT JOIN tb_job as j ON (j.m_email = dr.m_email AND j.js_id = dr.ro_num)
+            LEFT JOIN tb_pay as p ON p.pay_id = j.pay_id
+            WHERE dr.h_email = '{$h_email}'
         ";
         $stmt = $this->pdo->query($sql);
         $data = $stmt->fetchAll();

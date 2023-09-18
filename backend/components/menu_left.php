@@ -33,12 +33,40 @@
             <ul class="nav nav-treeview" id="myDIV">
               <?php
                 switch($_SESSION['role']){
-                  case "staff" || "superadmin":
+                  case "superadmin" :
                     echo "
                       <li class='nav-item'>
                         <a href='/parttime/backend/pages/staff/index.php' class='nav-link'>
-                          <i class='nav-icon far fa-image'></i>
+                          <i class='nav-icon fas fa-user-circle'></i>
                           <p> งาน Parttime</p>
+                        </a>
+                      </li>
+                    ";
+                    echo "
+                      <li class='nav-item'>
+                        <a href='/parttime/backend/pages/head/index.php' class='nav-link'>
+                          <i class='nav-icon fas fa-marker'></i>
+                          <p> พิจารณา </p>
+                        </a>
+                      </li>
+                    ";
+                  break;
+                  case "staff" :
+                    echo "
+                      <li class='nav-item'>
+                        <a href='/parttime/backend/pages/staff/index.php' class='nav-link'>
+                          <i class='nav-icon fas fa-user-circle'></i>
+                          <p> งาน Parttime</p>
+                        </a>
+                      </li>
+                    ";
+                  break;
+                  case "head" :
+                    echo "
+                      <li class='nav-item'>
+                        <a href='/parttime/backend/pages/head/index.php' class='nav-link'>
+                          <i class='nav-icon fas fa-marker'></i>
+                          <p> พิจารณา </p>
                         </a>
                       </li>
                     ";

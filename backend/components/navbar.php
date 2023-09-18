@@ -15,8 +15,17 @@ date_default_timezone_set('Asia/Bangkok');
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="" class="nav-link"><i class="fas fa-home"></i> Parttime Job</a>
+            <a href="/parttime/backend/pages" class="nav-link"><i class="fas fa-home"></i> Parttime Job</a>
         </li>
+        <?php
+            if(isset($_SESSION['role']) AND ($_SESSION['role']=='head' OR $_SESSION['role'] == 'superadmin')){
+                echo "
+                    <li class='nav-item d-none d-sm-inline-block'>
+                        <a href='/parttime/backend/pages/parttime.php' class='nav-link'><i class='fas fa-home'></i> Parttime Job All</a>
+                    </li>
+                ";
+            }
+        ?>
         
     </ul>
     <ul class="navbar-nav ml-auto">

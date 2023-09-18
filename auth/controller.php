@@ -30,7 +30,7 @@ if(isset($toke["error"]) != "invalid_grant"){
             header('Location: /parttime/backend/pages/index.php');
             exit();
         }else{
-            header('Location: /parttime/auth.php');
+            header('Location: /parttime/auth');
             exit();
         }
     }
