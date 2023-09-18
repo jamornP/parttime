@@ -1,4 +1,7 @@
-<?php session_start();?>
+<?php 
+    session_start();
+    date_default_timezone_set('Asia/Bangkok');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -43,9 +46,26 @@
             </section>
             <?php
             if(isset($_POST['add'])){
-                echo "<pre>";
-                print_r($_POST); 
-                echo"</pre>";
+                unset($_POST['add']);
+                $_POST['m_email'] = $_SESSION['m_email'];
+                $_POST['js_id'] = 1;
+                $_POST['date_add']=date("Y-m-d H:i:s");
+                // echo "<pre>";
+                // print_r($_POST); 
+                // echo"</pre>";
+                $job_id = $sqlObj->addJob($_POST);
+                if ($job_id) {
+                    $msg = "บันทึกข้อมูลเรียบร้อย";
+                    echo "<script>";
+                    echo "alertSuccess('{$msg}','index.php')";
+                    echo "</script>";
+                  } else {
+                    $msg = "บันทึกข้อมูลไม่สำเร็จ !";
+                    echo "<script>";
+                    echo "alertError('{$msg}','index.php')";
+                    echo "</script>";
+                  }
+                echo $job_id;
             }
             ?>
             <section class="content">
@@ -71,29 +91,43 @@
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th>ที่</th>
-                                            <th>ชื่องาน</th>
-                                            <th>วันที่เริ่มงาน</th>
-                                            <th>ค่าตอบแทน</th>
-                                            <th>ผู้รับผิดชอบ</th>
-                                            <th>เบอร์โทร</th>
-                                            <th>line</th>
+                                            <th class='text-center'>ที่</th>
+                                            <th class='text-center'>ชื่องาน</th>
+                                            <th class='text-center'>วันที่เริ่มงาน</th>
+                                            <th class='text-center'>ค่าตอบแทน</th>
+                                            <th class='text-center'>รับ(คน)</th>
+                                            <th class='text-center'>ผู้รับผิดชอบ</th>
+                                            <th class='text-center'>เบอร์โทร</th>
+                                            <th class='text-center'>สถานะ</th>
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Special title treatment
-                                            </td>
-                                            <td>Win 95+</td>
-                                            <td> 4</td>
-                                            <td>X</td>
-                                            <td>X</td>
-                                            <td>X</td>
-                                            <td><i class="fas fa-eye"></i> <i class="fas fa-edit"></i> <i class="fas fa-trash-alt text-danger"></i></td>
-
-                                        
+                                        <?PHP 
+                                            $dataJob = $sqlObj->getJobByEmail($_SESSION['m_email']);
+                                            $i = 0;
+                                            foreach($dataJob as $j){
+                                                $i++;
+                                                $dateWork = datethai($j['j_s_date'])." - ".datethai($j['j_e_date']); 
+                                                echo "
+                                                    <tr>
+                                                        <td>{$i}</td>
+                                                        <td>{$j['j_name']}</td>
+                                                        <td class='text-center'>{$dateWork}</td>
+                                                        <td>{$j['pay']}</td>
+                                                        <td class='text-center'>{$j['count_student']}</td>
+                                                        <td class='text-center'>{$j['st_name']}</td>
+                                                        <td class='text-center'>{$j['st_tel']}</td>
+                                                        <td class='text-center'>{$j['h_email']}</td>
+                                                        <td class='text-center'>
+                                                            <i class='fas fa-eye text-primary'></i> 
+                                                            <i class='fas fa-edit text-warning'></i> 
+                                                            <i class='fas fa-trash-alt text-danger'></i>
+                                                        </td>
+                                                    </tr>
+                                                ";
+                                            }
+                                        ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -117,7 +151,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="่j_name">ชื่องาน :<b class="text-danger">*</b></label>
-                                                <input type="text" class="form-control" id="่j_name" placeholder="ชื่องาน" name="่j_name" required>
+                                                <input type="text" class="form-control" id="่j_name" placeholder="ชื่องาน" name="j_name" required>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
@@ -184,7 +218,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="j_pay">รายละเอียดค่าตอบแทน :<b class="text-danger">*</b></label>
-                                                <select class="form-control select2" style="width: 100%;" name="j_pay">
+                                                <select class="form-control select2" style="width: 100%;" name="pay_id">
                                                     <?php 
                                                         $dataPay = $sqlObj->getPayAll();
                                                         foreach($dataPay as $p){
@@ -194,6 +228,12 @@
                                                         }
                                                     ?>
                                                 </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="count_student">จำนวน นักศึกษาที่รับ :<b class="text-danger">*</b></label>
+                                                <input type="number" class="form-control" id="count_student" placeholder="2" name="count_student" required>
                                             </div>
                                         </div>
                                         <div class="col-md-12">

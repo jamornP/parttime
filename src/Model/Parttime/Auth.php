@@ -4,11 +4,11 @@ use App\Database\DbScience;
 class Auth extends DbScience {
     public function checkUserGoogle($email,$img) {
         $sql = "
-            SELECT *,p.p_name as position
+            SELECT st.*,m.*,p.p_name as position
             FROM tb_member as m 
-            LEFT JOIN tb_staff as st ON st.email = m.email
+            LEFT JOIN tb_staff as st ON st.email = m.m_email
             LEFT JOIN tb_position as p ON p.p_id = st.p_id 
-            WHERE m.email ='{$email}'
+            WHERE m.m_email ='{$email}'
         ";
         $stmt = $this->pdo->query($sql);
         $data = $stmt->fetchAll();
@@ -17,8 +17,9 @@ class Auth extends DbScience {
             $_SESSION['login_parttime'] = true;
             $_SESSION['fullname']=$data[0]['title'].$data[0]['name']." ".$data[0]['surname'];
             $_SESSION['s_id']=$data[0]['s_id'];
-            $_SESSION['email']=$data[0]['email'];
+            $_SESSION['m_email']=$data[0]['m_email'];
             $_SESSION['img']=$img;
+            $_SESSION['d_id']=$data[0]['d_id'];
             $_SESSION['role']=$data[0]['role'];
             return true;
         }else{
@@ -37,8 +38,8 @@ class Auth extends DbScience {
             session_start();
             $_SESSION['login_parttime'] = true;
             $_SESSION['fullname']=$data[0]['stu_fullname'];
-            $_SESSION['id']=$data[0]['stu_id'];
-            $_SESSION['email']=$data[0]['stu_email'];
+            $_SESSION['stu_id']=$data[0]['stu_id'];
+            $_SESSION['stu_email']=$data[0]['stu_email'];
             $_SESSION['img']=$img;
             $_SESSION['role']="studen";
             return true;
