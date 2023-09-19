@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once($_SERVER['DOCUMENT_ROOT'].'/parttime/vendor/autoload.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/parttime/google-api/vendor/autoload.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/parttime/auth/config.php');
@@ -22,7 +23,7 @@ if(isset($toke["error"]) != "invalid_grant"){
     $data = $authObj->checkUserGoogle($userData['email'],$userData['picture']);
     if($data){
         echo $data;
-        header('Location: /parttime/backend/pages/index.php');
+        header('Location: /parttime/backend/pages/staff/index.php');
         exit();
     }else{
         $dataS = $authObj->checkUserGoogleStudent($userData['email'],$userData['picture']);

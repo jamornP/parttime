@@ -1,6 +1,11 @@
 <?php session_start(); ?>
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/parttime/vendor/autoload.php"; ?>
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/parttime/function/function.php"; ?>
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'] .'/parttime/auth/config.php');
+use App\Model\Parttime\Auth;
+$authObj = new Auth;
+use App\Model\Parttime\FunctionSql;
+$sqlObj = new FunctionSql;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,26 +21,52 @@ require_once($_SERVER['DOCUMENT_ROOT'] .'/parttime/auth/config.php');
     <?php
     if (isset($_POST['change'])) {
       // print_r($_POST);
-      if ($_POST['u_password'] == $_POST['confirm']) {
-        $data['u_email'] = $_SESSION['u_email'];
-        $data['u_password'] = $_POST['u_password'];
-        $ck = $mangeObj->ChangePass($data);
-        if ($ck) {
-          $msg = "Change password success";
-          echo "<script>";
-          echo "alertSuccess('{$msg}','index.php')";
-          echo "</script>";
+      if($_SESSION['role']=="student"){
+        if ($_POST['u_password'] == $_POST['confirm']) {
+          $data['stu_email'] = $_SESSION['stu_email'];
+          // $data['stu_email'] = "66050015@kmitl.ac.th";
+          $data['password'] = $_POST['u_password'];
+          $ck = $authObj->ChangePassStudent($data);
+          if ($ck) {
+            $msg = "Change password success";
+            echo "<script>";
+            echo "alertSuccess('{$msg}','index.php')";
+            echo "</script>";
+          } else {
+            $msg = "Not success !";
+            echo "<script>";
+            echo "alertError('{$msg}','resetpassword.php')";
+            echo "</script>";
+          }
         } else {
-          $msg = "Not success !";
+          $msg = "รหัสไม่ถูกต้อง";
           echo "<script>";
           echo "alertError('{$msg}','resetpassword.php')";
           echo "</script>";
         }
-      } else {
-        $msg = "รหัสไม่ถูกต้อง";
-        echo "<script>";
-        echo "alertError('{$msg}','resetpassword.php')";
-        echo "</script>";
+
+      }else{
+        if ($_POST['u_password'] == $_POST['confirm']) {
+          $data['m_email'] = $_SESSION['m_email'];
+          $data['password'] = $_POST['u_password'];
+          $ck = $authObj->ChangePass($data);
+          if ($ck) {
+            $msg = "Change password success";
+            echo "<script>";
+            echo "alertSuccess('{$msg}','index.php')";
+            echo "</script>";
+          } else {
+            $msg = "Not success !";
+            echo "<script>";
+            echo "alertError('{$msg}','resetpassword.php')";
+            echo "</script>";
+          }
+        } else {
+          $msg = "รหัสไม่ถูกต้อง";
+          echo "<script>";
+          echo "alertError('{$msg}','resetpassword.php')";
+          echo "</script>";
+        }
       }
     }
     ?>

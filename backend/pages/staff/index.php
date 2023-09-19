@@ -111,7 +111,7 @@
                                                 $i++;
                                                 $dateWork = datethai($j['j_s_date'])." - ".datethai($j['j_e_date']); 
                                                 echo "
-                                                    <tr>
+                                                    <tr class='fs-14'>
                                                         <td>{$i}</td>
                                                         <td>{$j['j_name']}</td>
                                                         <td class='text-center'>{$dateWork}</td>
@@ -159,12 +159,18 @@
                                             <div class="form-group">
                                                 <label for="summernote">รายละเอียดงาน :<b class="text-danger">*</b></label>
                                                 <textarea id="summernote" name="j_detail" required>
-                                                    <b>รายละเอียดงาน เช่น ประเภทงาน รับกี่คน :</b><br>
-                                                    1.<br>
-                                                    2.<br>
-                                                    <b>คุณสมบัติของผู้สมัคร เช่น ภาควิชา สาขา ชั้นปี ใช้คอมพิวเตอร์ ใช้เครื่องมือ :</b><br>
-                                                    1.<br>
-                                                    2.<br>
+                                                <p>
+                                                    <h5 class=""><b style=""><font style="" color="#0000ff">รายละเอียดงาน&nbsp;</font></b></h5>
+                                                    <span style="font-size: 18px;">1.ช่วยงานลงทะเบียน พัสดุไปรษณีย์</span>
+                                                    <br style="font-size: 18px;">
+                                                    <span style="font-size: 18px;">2.สนับสนุนตอบคำถาม เกี่ยวกับหอพักนักศึกษา</span>
+                                                    <br style="font-size: 18px;">
+                                                    <span style="font-size: 18px;">3.สนับสนุนการพิมพ์เอกสาร</span>
+                                                </p>
+                                                <p>
+                                                    <h5 class=""><b><font color="#0000ff">คุณสมบัติของผู้สมัคร&nbsp;</font></b></h5>
+                                                    <span style="font-size: 18px;">- รับนักศึกษา ทุกคณะ/ทุกชั้นปี</span>
+                                                </p>
                                                 </textarea>
                                             </div>
                                         </div>

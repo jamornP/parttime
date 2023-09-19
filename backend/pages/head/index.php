@@ -98,22 +98,22 @@
                                             <th class='text-center'>รับ(คน)</th>
                                             <th class='text-center'>ผู้รับผิดชอบ</th>
                                             <th class='text-center'>เบอร์โทร</th>
-                                            <th class='text-center'>สถานะ</th>
+                                            <th class='text-center'>ถึง</th>
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?PHP 
-                                            $dataJob = $sqlObj->getJobByHEmail($_SESSION['m_email']);
+                                            // $dataJob = $sqlObj->getJobByHEmail($_SESSION['m_email']);
                                             // $dataJob = $sqlObj->getJobByHEmail('sutee.ch@kmitl.ac.th');
-                                            // $dataJob = $sqlObj->getJobByHEmail('prapaichit.yu@kmitl.ac.th');
+                                            $dataJob = $sqlObj->getJobByHEmail('prapaichit.yu@kmitl.ac.th');
                                             // $dataJob = $sqlObj->getJobByHEmail('kong');
                                             $i = 0;
                                             foreach($dataJob as $j){
                                                 $i++;
                                                 $dateWork = datethai($j['j_s_date'])." - ".datethai($j['j_e_date']); 
                                                 echo "
-                                                    <tr>
+                                                    <tr class='fs-14'>
                                                         <td>{$i}</td>
                                                         <td>{$j['j_name']}</td>
                                                         <td class='text-center'>{$dateWork}</td>
@@ -123,9 +123,7 @@
                                                         <td class='text-center'>{$j['st_tel']}</td>
                                                         <td class='text-center'>{$j['h_email']}</td>
                                                         <td class='text-center'>
-                                                            <i class='fas fa-eye text-primary'></i> 
-                                                            <i class='fas fa-edit text-warning'></i> 
-                                                            <i class='fas fa-trash-alt text-danger'></i>
+                                                            <a href='manage.php?id={$j['j_id']}'><i class='fas fa-pen-fancy text-primary'></i> </a>
                                                         </td>
                                                     </tr>
                                                 ";

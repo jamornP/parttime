@@ -75,7 +75,7 @@
                                                 $i++;
                                                 $dateWork = datethai($j['j_s_date'])." - ".datethai($j['j_e_date']); 
                                                 echo "
-                                                    <tr>
+                                                    <tr class='fs-14'>
                                                         <td>{$i}</td>
                                                         <td>{$j['j_name']}</td>
                                                         <td class='text-center'>{$dateWork}</td>

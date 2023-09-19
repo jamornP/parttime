@@ -50,6 +50,14 @@
                         </a>
                       </li>
                     ";
+                    echo "
+                      <li class='nav-item'>
+                        <a href='/parttime/backend/pages/admin/route.php' class='nav-link'>
+                          <i class='nav-icon fas fa-share-alt'></i>
+                          <p> เส้นทาง </p>
+                        </a>
+                      </li>
+                    ";
                   break;
                   case "staff" :
                     echo "
