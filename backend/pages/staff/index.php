@@ -55,6 +55,13 @@
                 // echo"</pre>";
                 $job_id = $sqlObj->addJob($_POST);
                 if ($job_id) {
+                    $dataJ['num']=1;
+                    $dataJ['j_id']=$job_id;
+                    $dataJ['sta_name']="register";
+                    $dataJ['j_sta_date']=$_POST['date_add'];
+                    $dataJ['m_email']=$_POST['m_email'];
+                    $dataJ['remark']="";
+                    $ckS = $sqlObj->addDataJobSta($dataJ);
                     $msg = "บันทึกข้อมูลเรียบร้อย";
                     echo "<script>";
                     echo "alertSuccess('{$msg}','index.php')";
@@ -121,7 +128,7 @@
                                                         <td class='text-center'>{$j['st_tel']}</td>
                                                         <td class='text-center'>{$j['h_email']}</td>
                                                         <td class='text-center'>
-                                                            <i class='fas fa-eye text-primary'></i> 
+                                                            <a href='view.php?id={$j['j_id']}'><i class='fas fa-eye text-primary'></i> </a> 
                                                             <i class='fas fa-edit text-warning'></i> 
                                                             <i class='fas fa-trash-alt text-danger'></i>
                                                         </td>
@@ -151,8 +158,8 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label for="่j_name">ชื่องาน :<b class="text-danger">*</b></label>
-                                                <input type="text" class="form-control" id="่j_name" placeholder="ชื่องาน" name="j_name" required>
+                                                <label for="j_name">ชื่องาน :<b class="text-danger">*</b></label>
+                                                <input type="text" class="form-control" id="j_name" placeholder="ชื่องาน" name="j_name" required>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
@@ -160,7 +167,7 @@
                                                 <label for="summernote">รายละเอียดงาน :<b class="text-danger">*</b></label>
                                                 <textarea id="summernote" name="j_detail" required>
                                                 <p>
-                                                    <h5 class=""><b style=""><font style="" color="#0000ff">รายละเอียดงาน&nbsp;</font></b></h5>
+                                                    <h5 class=""><b><font color="#0000ff">รายละเอียดงาน&nbsp;</font></b></h5>
                                                     <span style="font-size: 18px;">1.ช่วยงานลงทะเบียน พัสดุไปรษณีย์</span>
                                                     <br style="font-size: 18px;">
                                                     <span style="font-size: 18px;">2.สนับสนุนตอบคำถาม เกี่ยวกับหอพักนักศึกษา</span>
@@ -268,8 +275,8 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="st_line">lind ID :<b class="text-danger">*</b></label>
-                                                <input type="text" class="form-control" id="st_line" placeholder="lind ID" name="st_line" required>
+                                                <label for="st_line">line ID :</label>
+                                                <input type="text" class="form-control" id="st_line" placeholder="lind ID" name="st_line">
                                             </div>
                                         </div>
                                     </div>

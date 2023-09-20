@@ -105,9 +105,10 @@
                                     <tbody>
                                         <?PHP 
                                             // $dataJob = $sqlObj->getJobByHEmail($_SESSION['m_email']);
-                                            // $dataJob = $sqlObj->getJobByHEmail('sutee.ch@kmitl.ac.th');
-                                            $dataJob = $sqlObj->getJobByHEmail('prapaichit.yu@kmitl.ac.th');
-                                            // $dataJob = $sqlObj->getJobByHEmail('kong');
+                                            // $dataJob = $sqlObj->getJobByHEmail('prapaichit.yu@kmitl.ac.th');
+                                            // $dataJob = $sqlObj->getJobByHEmail('jatuporn.me@kmitl.ac.th');
+                                            // $dataJob = $sqlObj->getJobByHEmail('apiluck.ei@kmitl.ac.th');
+                                            $dataJob = $sqlObj->getJobByHEmail('sutee.ch@kmitl.ac.th');
                                             $i = 0;
                                             foreach($dataJob as $j){
                                                 $i++;
@@ -115,7 +116,7 @@
                                                 echo "
                                                     <tr class='fs-14'>
                                                         <td>{$i}</td>
-                                                        <td>{$j['j_name']}</td>
+                                                        <td><a href='manage.php?id={$j['j_id']}'>{$j['j_name']}</a></td>
                                                         <td class='text-center'>{$dateWork}</td>
                                                         <td>{$j['pay']}</td>
                                                         <td class='text-center'>{$j['count_student']}</td>

@@ -51,7 +51,7 @@ $sqlObj = new FunctionSql;
               if($ckS){
                 $msg = "Sign In success";
                  echo "<script>";
-                 echo "alertSuccess('{$msg}','/parttime/backend/pages/index.php')";
+                 echo "alertSuccess('{$msg}','/parttime/backend/pages/student/index.php')";
                  echo "</script>";
               }else{
                 $msg = "Email Password ไม่ถูกต้อง";

@@ -14,7 +14,7 @@
                 <img src="<?php echo $_SESSION['img'];?>" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block"><?php echo $_SESSION['fullname'];?></a>
+                <a href="#" class="d-block fs-12"><?php echo $_SESSION['fullname'];?></a>
             </div>
         </div>
 
@@ -24,9 +24,9 @@
           <li class="nav-item menu-open">
             <!-- <a href="#" class="nav-link active"> -->
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <i class="nav-icon fas fa-home"></i>
               <p>
-                Management
+                Parttime Job
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -83,25 +83,7 @@
               ?>
             </ul>
           </li>
-              <!-- <li class="nav-item">
-                <a href="/app-certificate/backend/pages/management/ca.php" class="nav-link">
-                  <i class="nav-icon fas fa-pen-fancy"></i>
-                  <p> CA</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="/app-certificate/backend/pages/management/event.php" class="nav-link">
-                  <i class="nav-icon fas fa-bullhorn"></i>
-                  <p> Event</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="/app-certificate/backend/pages/admin/ma-cer.php" class="nav-link">
-                  <i class="nav-icon fas fa-search"></i>
-                  <p> Check ซ้ำ</p>
-                </a>
-              </li> -->
-             
+              
           
       
           <li class="nav-header"></li>

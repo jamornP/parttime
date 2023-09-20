@@ -21,11 +21,12 @@ $sqlObj = new FunctionSql;
     <?php
     if (isset($_POST['change'])) {
       // print_r($_POST);
-      if($_SESSION['role']=="student"){
+      if($_SESSION['role']="studen"){
         if ($_POST['u_password'] == $_POST['confirm']) {
           $data['stu_email'] = $_SESSION['stu_email'];
           // $data['stu_email'] = "66050015@kmitl.ac.th";
           $data['password'] = $_POST['u_password'];
+          // print_r($data);
           $ck = $authObj->ChangePassStudent($data);
           if ($ck) {
             $msg = "Change password success";

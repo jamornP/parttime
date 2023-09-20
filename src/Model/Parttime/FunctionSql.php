@@ -60,6 +60,16 @@ class FunctionSql extends DbScience {
         $stmt->execute($data);
         return $this->pdo->lastInsertId();
     }
+    public function updateJobStatus($data){
+        $sql = "
+            UPDATE tb_job 
+            SET js_id = :js_id
+            WHERE j_id = :j_id
+        ";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute($data);
+        return true;
+    }
     public function getJobAll(){
         $sql ="
             SELECT j.*,p.pay_name as pay, dr.h_email 
@@ -110,11 +120,23 @@ class FunctionSql extends DbScience {
         $data = $stmt->fetchAll();
         return $data;
     }
+    public function getJobAccept(){
+        $sql = "
+            SELECT j.*,p.pay_name as pay
+            FROM tb_data_job_status as djs
+            LEFT join tb_job as j on j.j_id = djs.j_id 
+            LEFT JOIN tb_pay as p ON p.pay_id = j.pay_id
+            WHERE djs.sta_name = 'accept'
+        ";
+        $stmt = $this->pdo->query($sql);
+        $data = $stmt->fetchAll();
+        return $data;
+    }
 // tb_department_route
     public function getRoute() {
         $sql = "
             SELECT dr.*,wu.wu_name ,s.name_EN 
-            FROM `tb_department_route` as dr
+            FROM tb_department_route as dr
             LEFT JOIN tb_work_unit as wu ON wu.wu_id = dr.wu_id
             LEFT JOIN tb_staff as s ON s.email = dr.h_email
             ORDER BY dr.wu_id,dr.ro_num
@@ -141,6 +163,21 @@ class FunctionSql extends DbScience {
         $stmt->execute($data);
         return $this->pdo->lastInsertId();
     }
+    public function getRoNumByMHemail($m_email,$h_email){
+        $sql="
+            SELECT *
+            FROM tb_department_route
+            WHERE m_email = '{$m_email}' AND h_email = '{$h_email}' 
+        ";
+        $stmt = $this->pdo->query($sql);
+        $data = $stmt->fetchAll();
+        if(count($data)>0){
+            return $data[0]['ro_num'];
+        }else{
+            return 0;
+        }
+        
+    }
 // tb_work_unit
     public function getWorkUnit(){
         $sql = "
@@ -162,6 +199,44 @@ class FunctionSql extends DbScience {
         $stmt = $this->pdo->query($sql);
         $data = $stmt->fetchAll();
         return $data;
+    }
+//  tb_data_job_status
+    public function addDataJobSta($data){
+        $sql ="
+            INSERT INTO tb_data_job_status(
+                num,
+                j_id,
+                sta_name,
+                j_sta_date,
+                m_email,
+                remark
+            ) VALUES (
+                :num,
+                :j_id,
+                :sta_name,
+                :j_sta_date,
+                :m_email,
+                :remark
+            )
+        ";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute($data);
+        return $this->pdo->lastInsertId();
+    }
+    public function getCountDataJobStaById($action,$j_id){
+        $sql ="
+            SELECT *
+            FROM tb_data_job_status
+            WHERE j_id = {$j_id}
+        ";
+        $stmt = $this->pdo->query($sql);
+        $data = $stmt->fetchAll();
+        if($action=="count"){
+            return count($data);
+        }else{
+            return $data;
+        }
+        
     }
 }
 ?>
