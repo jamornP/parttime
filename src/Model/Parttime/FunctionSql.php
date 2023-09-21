@@ -189,6 +189,17 @@ class FunctionSql extends DbScience {
         $data = $stmt->fetchAll();
         return $data;
     }
+    public function getWorkUnitByName($name){
+        $sql = "
+            SELECT *
+            FROM tb_work_unit
+            WHERE wu_name = '{$name}'
+            ORDER BY wu_name
+        ";
+        $stmt = $this->pdo->query($sql);
+        $data = $stmt->fetchAll();
+        return $data;
+    }
 // tb_staff
     public function getStaffAll(){
         $sql = "
@@ -225,8 +236,9 @@ class FunctionSql extends DbScience {
     }
     public function getCountDataJobStaById($action,$j_id){
         $sql ="
-            SELECT *
-            FROM tb_data_job_status
+            SELECT djs.*,s.title,s.name,s.surname
+            FROM tb_data_job_status as djs
+            LEFT JOIN tb_staff as s ON s.email = djs.m_email
             WHERE j_id = {$j_id}
         ";
         $stmt = $this->pdo->query($sql);
@@ -237,6 +249,48 @@ class FunctionSql extends DbScience {
             return $data;
         }
         
+    }
+    // tb_department
+    public function getDepartmentAll(){
+        $sql = "
+            SELECT *
+            FROM tb_department
+        ";
+        $stmt = $this->pdo->query($sql);
+        $data = $stmt->fetchAll();
+        return $data;
+    }
+    // tb_member
+    public function addMember($data){
+        $sql = "
+            INSERT INTO tb_member(
+                m_email,
+                role,
+                d_id,
+                wu_id
+            ) VALUES (
+                :m_email,
+                :role,
+                :d_id,
+                :wu_id
+            )
+        ";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute($data);
+        return $this->pdo->lastInsertId();
+    }
+    public function getMemberByRole($role){
+        $sql = "
+            SELECT m.*,d.d_name,wu.wu_name,s.title,s.name,s.surname
+            FROM tb_member as m
+            LEFT JOIN tb_department as d ON d.d_id = m.d_id
+            LEFT JOIN tb_work_unit as wu ON wu.wu_id = m.wu_id
+            LEFT JOIN tb_staff as s ON s.email = m.m_email
+            WHERE m.role = '{$role}'
+        ";
+        $stmt = $this->pdo->query($sql);
+        $data = $stmt->fetchAll();
+        return $data;
     }
 }
 ?>

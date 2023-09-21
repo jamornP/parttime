@@ -104,11 +104,11 @@
                                     </thead>
                                     <tbody>
                                         <?PHP 
-                                            // $dataJob = $sqlObj->getJobByHEmail($_SESSION['m_email']);
+                                            $dataJob = $sqlObj->getJobByHEmail($_SESSION['m_email']);
                                             // $dataJob = $sqlObj->getJobByHEmail('prapaichit.yu@kmitl.ac.th');
                                             // $dataJob = $sqlObj->getJobByHEmail('jatuporn.me@kmitl.ac.th');
                                             // $dataJob = $sqlObj->getJobByHEmail('apiluck.ei@kmitl.ac.th');
-                                            $dataJob = $sqlObj->getJobByHEmail('sutee.ch@kmitl.ac.th');
+                                            // $dataJob = $sqlObj->getJobByHEmail('sutee.ch@kmitl.ac.th');
                                             $i = 0;
                                             foreach($dataJob as $j){
                                                 $i++;

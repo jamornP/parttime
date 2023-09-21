@@ -58,6 +58,22 @@
                         </a>
                       </li>
                     ";
+                    echo "
+                      <li class='nav-item'>
+                        <a href='/parttime/backend/pages/admin/staff.php' class='nav-link'>
+                          <i class='nav-icon fas fa-user-alt'></i>
+                          <p> เจ้าหน้าที่ </p>
+                        </a>
+                      </li>
+                    ";
+                    echo "
+                      <li class='nav-item'>
+                        <a href='/parttime/backend/pages/admin/head.php' class='nav-link'>
+                          <i class='nav-icon fas fa-diagnoses'></i>
+                          <p> ผู้บริหาร </p>
+                        </a>
+                      </li>
+                    ";
                   break;
                   case "staff" :
                     echo "

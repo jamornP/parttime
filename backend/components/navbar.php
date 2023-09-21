@@ -21,7 +21,7 @@ date_default_timezone_set('Asia/Bangkok');
             if(isset($_SESSION['role']) AND ($_SESSION['role']=='head' OR $_SESSION['role'] == 'superadmin')){
                 echo "
                     <li class='nav-item d-none d-sm-inline-block'>
-                        <a href='/parttime/backend/pages/parttime.php' class='nav-link'><i class='fas fa-home'></i> Parttime Job All</a>
+                        <a href='/parttime/backend/pages/head/parttime.php' class='nav-link'><i class='fas fa-home'></i> Parttime Job All</a>
                     </li>
                 ";
             }
@@ -31,7 +31,7 @@ date_default_timezone_set('Asia/Bangkok');
     <ul class="navbar-nav ml-auto">
         
         <li class="nav-item ">
-            <div class = "nav-link text-warning"><?php echo " (".$_SESSION['role'].")";?></div>
+            <div class = "nav-link text-warning"><?php echo $_SESSION['m_email']." (".$_SESSION['role'].")";?></div>
         </li>
         <li class="nav-item ">
             <a href="/parttime/auth/logout.php" class="nav-link text-danger">

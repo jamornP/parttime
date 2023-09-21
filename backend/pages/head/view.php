@@ -2,6 +2,15 @@
     session_start();
     date_default_timezone_set('Asia/Bangkok');
 ?>
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/parttime/vendor/autoload.php"; ?>
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/parttime/function/function.php"; ?>
+<?php
+
+use App\Model\Parttime\Auth;
+$authObj = new Auth;
+use App\Model\Parttime\FunctionSql;
+$sqlObj = new FunctionSql;
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,11 +33,11 @@
         
         <!-- ----- -->
         <?php require $_SERVER['DOCUMENT_ROOT'] . "/parttime/backend/components/load.php"; ?>
-        <?php require $_SERVER['DOCUMENT_ROOT'] . "/parttime/backend/components/menu_left.php"; ?>
-        <?php require $_SERVER['DOCUMENT_ROOT'] . "/parttime/backend/components/navbar.php"; ?>
+        <?php //require $_SERVER['DOCUMENT_ROOT'] . "/parttime/backend/components/menu_left.php"; ?>
+        <?php //require $_SERVER['DOCUMENT_ROOT'] . "/parttime/backend/components/navbar.php"; ?>
        
-        <div class="content-wrapper">
-            <div class="content-header">
+        <div class="content-wrapper mt-3">
+            <!-- <div class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
@@ -42,55 +51,12 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <section class="content">
                 <div class="container-fluid">
                     <?php
                         $j_id = $_GET['id'];
                         $data = $sqlObj->getJobById($j_id);
-                        $ro_num=$sqlObj->getRoNumByMHemail($data['m_email'],$_SESSION['m_email']);
-                        // $ro_num=$sqlObj->getRoNumByMHemail($data['m_email'],"prapaichit.yu@kmitl.ac.th");
-                        // $ro_num=$sqlObj->getRoNumByMHemail($data['m_email'],"jatuporn.me@kmitl.ac.th");
-                        // $ro_num=$sqlObj->getRoNumByMHemail($data['m_email'],"apiluck.ei@kmitl.ac.th");
-                        // $ro_num=$sqlObj->getRoNumByMHemail($data['m_email'],"sutee.ch@kmitl.ac.th");
-                        // print_r($ro_num);
-                        $num = $data['js_id']+1;
-                        if(isset($_POST['accept'])){
-                            
-                            $dataA['num']=$_POST['num'];
-                            $dataA['m_email']=$_POST['h_email'];
-                            $dataA['sta_name']=$_POST['sta_name'];
-                            $dataA['j_sta_date']=date("Y-m-d H:i:s");
-                            $dataA['remark']=$_POST['sta_name'];
-                            $dataA['j_id']=$_POST['j_id'];
-                            print_r($dataA);
-                            $ckA = $sqlObj->addDataJobSta($dataA);
-                            if($ckA){
-                                $dataU['j_id'] = $dataA['j_id'];
-                                $dataU['js_id'] = $dataA['num'];
-                                print_r($dataU);
-                                $ckU = $sqlObj->updateJobStatus($dataU);
-                                if($ckU){
-                                    $msg = "บันทึกข้อมูลเรียบร้อย";
-                                    echo "<script>";
-                                    echo "alertSuccess('{$msg}','index.php')";
-                                    echo "</script>";
-                                }else{
-                                    $msg = "บันทึกข้อมูลไม่สำเร็จ !";
-                                    echo "<script>";
-                                    echo "alertError('{$msg}','index.php')";
-                                    echo "</script>";
-                                }
-                            } else {
-                                $msg = "บันทึกข้อมูลไม่สำเร็จ !";
-                                echo "<script>";
-                                echo "alertError('{$msg}','index.php')";
-                                echo "</script>";
-                            }
-                        }
-                        if(isset($_POST['reject'])){
-                            print_r($_POST);
-                        }
                         // print_r($data);
                     ?>
                     <div class="col-12" id="accordion">
@@ -156,36 +122,9 @@
                                         ?>
                                     </p>
                                 </div>
-                            </div>
-                            <div class="card-footer">
-                                <?php
-                                    if($data['js_id'] == $ro_num){
-                                        ?>
-                                            <form action="" method="post">
-                                                <p><input type="text" class="form-control" id="remark" placeholder="พิจารณาให้ความเห็น" name="remark" autofocus></p>
-                                                <input type="hidden" name="h_email" id="" value="<?php echo $_SESSION['m_email'];?>">
-                                                <input type="hidden" name="j_id" id="" value="<?php echo $_GET['id'];?>">
-                                                <input type="hidden" name="num" id="" value="<?php echo $num;?>">
-                                                <?php 
-                                                    if($_SESSION['m_email']=="sutee.ch@kmitl.ac.th"){
-                                                        echo "
-                                                            <input type='hidden' name='sta_name' id='' value='accept'>
-                                                            <button type='submit' class='btn btn-primary' name='accept'>อนุมัติ</button>
-                                                        ";
-                                                    }else{
-                                                        echo "
-                                                            <input type='hidden' name='sta_name' id='' value='เห็นชอบ'>
-                                                            <button type='submit' class='btn btn-primary' name='accept'>เห็นชอบ</button>
-                                                        ";
-                                                    }
-                                                ?>
-                                                <button type="submit" class="btn btn-danger" name="reject">ตีกลับ</button>
-                                            </form>
-                                        <?php
-                                    }
-                                ?>
                                 
                             </div>
+                            
                         </div>
                     
                     </div>
@@ -199,7 +138,7 @@
        
     </div>
     <!-- ---------  -->
-    <?php require $_SERVER['DOCUMENT_ROOT'] . "/parttime/backend/components/footer.php"; ?>
+    <?php //require $_SERVER['DOCUMENT_ROOT'] . "/parttime/backend/components/footer.php"; ?>
     <?php require $_SERVER['DOCUMENT_ROOT'] . "/parttime/backend/components/script.php"; ?>
 </body>
 

@@ -54,27 +54,21 @@ date_default_timezone_set('Asia/Bangkok');
                         // echo "</pre>";
                         $data['m_email']=$_POST['m_email'];
                         $data['wu_id']=$_POST['wu_id'];
-                        $ro_num =0;
-                        foreach($_POST['h_email'] as $h_email){
-                            $ro_num++;
-                            if($h_email != ""){
-                                $data['h_email'] = $h_email;
-                                $data['ro_num'] = $ro_num;
-                                echo $h_email."<br>";
-                                $ck = $sqlObj->addRoute($data);
-                            }
-                            if($ck){
-                                $msg = "บันทึกข้อมูลเรียบร้อย";
-                                echo "<script>";
-                                echo "alertSuccess('{$msg}','route.php')";
-                                echo "</script>";
-                            } else {
-                                $msg = "บันทึกข้อมูลไม่สำเร็จ !";
-                                echo "<script>";
-                                echo "alertError('{$msg}','route.php')";
-                                echo "</script>";
-                            }
+                        $data['d_id']=$_POST['d_id'];
+                        $data['role']="staff";
+                        $ck = $sqlObj->addMember($data);
+                        if($ck){
+                            $msg = "บันทึกข้อมูลเรียบร้อย";
+                            echo "<script>";
+                            echo "alertSuccess('{$msg}','staff.php')";
+                            echo "</script>";
+                        } else {
+                            $msg = "บันทึกข้อมูลไม่สำเร็จ !";
+                            echo "<script>";
+                            echo "alertError('{$msg}','staff.php')";
+                            echo "</script>";
                         }
+                        
                     }
                     ?>
                     <div class="row mb-2">
@@ -82,7 +76,7 @@ date_default_timezone_set('Asia/Bangkok');
                         </div>
                         <div class="col-sm-6 d-flex flex-row-reverse bd-highlight">
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-add">
-                                <i class="fas fa-plus"></i> Add เส้นทาง
+                                <i class="fas fa-plus"></i> Add เจ้าหน้าที่
                             </button>
                         </div>
 
@@ -101,27 +95,26 @@ date_default_timezone_set('Asia/Bangkok');
                                                 <th class='text-center'>ที่</th>
                                                 <th class='text-center'>หน่วยงาน</th>
                                                 <th class='text-center'>เจ้าหน้าที่</th>
-                                                <th class='text-center'>ลำดับที่</th>
-                                                <th class='text-center'>เส้นทางการพิจารณา</th>
+                                                <th class='text-center'>email</th>
+                                                <th class='text-center'>สังกัด</th>
                                                 <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?PHP
-                                            $dataRoute = $sqlObj->getRoute();
-                                            // $dataJob = $sqlObj->getJobByEmail('akarit.ta@kmitl.ac.th');
+                                            $dataM = $sqlObj->getMemberByRole("staff");
                                             $i = 0;
-                                            foreach ($dataRoute as $r) {
+                                            foreach ($dataM as $m) {
+                                                $staff = $m['title'].$m['name']." ".$m['surname'];
                                                 $i++;
                                                 echo "
-                                                        <tr class='fs-14'>
+                                                        <tr class='fs-16'>
                                                             <td>{$i}</td>
-                                                            <td>{$r['wu_name']}</td>
-                                                            <td >{$r['m_email']}</td>
-                                                            <td class='text-center'>{$r['ro_num']}</td>
-                                                            <td >{$r['name_EN']}</td>
+                                                            <td>{$m['wu_name']}</td>
+                                                            <td>{$staff}</td>
+                                                            <td >{$m['m_email']}</td>
+                                                            <td class='text-center'>{$m['d_name']}</td>
                                                             <td class='text-center'>
-                                                                <i class='fas fa-eye text-primary'></i> 
                                                                 <i class='fas fa-edit text-warning'></i> 
                                                                 <i class='fas fa-trash-alt text-danger'></i>
                                                             </td>
@@ -150,7 +143,7 @@ date_default_timezone_set('Asia/Bangkok');
                             <form action="" method="post" enctype="multipart/form-data" id="from-post">
                                 <div class="modal-body">
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="wu_id">หน่วยงาน :<b class="text-danger">*</b></label>
                                                 <select class="form-control select2" style="width: 100%;" name="wu_id" id="wu_id">
@@ -165,7 +158,7 @@ date_default_timezone_set('Asia/Bangkok');
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="m_email">เจ้าหน้าที่รับผิดชอบ :<b class="text-danger">*</b></label>
                                                 <select class="form-control select2" style="width: 100%;" name="m_email" id="m_email">
@@ -181,39 +174,19 @@ date_default_timezone_set('Asia/Bangkok');
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <div class="form-group">
-                                                <label for="h_email">ลำดับเส้นทางพิจารณา :<b class="text-danger">*</b></label>
-                                                <ol>
-                                                    
+                                                <label for="d_id">สังกัด :<b class="text-danger">*</b></label>
+                                                <select class="form-control select2" style="width: 100%;" name="d_id" id="d_id">
                                                     <?php
-                                                        for($k=1;$k<=5;$k++){
-                                                            echo "
-                                                                <li>
-                                                                    <select class='form-control select2' style='width: 100%;' name='h_email[{$k}]'>
+                                                    $dataDe = $sqlObj->getDepartmentAll();
+                                                    foreach ($dataDe as $de) {
+                                                        echo "
+                                                                <option value='{$de['d_id']}'>{$de['d_name']}</option>
                                                             ";
-                                                                        $dataSt = $sqlObj->getStaffAll();
-                                                                        $kk = 0;
-                                                                        foreach ($dataSt as $St) {
-                                                                            $kk++;
-                                                                            $st_name = $St['title'] . $St['name'] . " " . $St['surname'];
-                                                                            
-                                                                            echo "
-                                                                                <option value='{$St['email']}'>{$st_name}</option>
-                                                                            ";
-                                                                            if($kk==5){
-                                                                                echo "
-                                                                                    <option value=''>ไม่มี</option>
-                                                                                ";
-                                                                            }
-                                                                        }
-                                                                    echo "
-                                                                    </select>
-                                                                </li>
-                                                            ";
-                                                        }
+                                                    }
                                                     ?>
-                                                </ol>   
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
