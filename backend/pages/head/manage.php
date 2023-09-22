@@ -110,7 +110,7 @@
                             $ckA = $sqlObj->addDataJobSta($dataA);
                             if($ckA){
                                 $dataU['j_id'] = $dataA['j_id'];
-                                $dataU['js_id'] = 0;
+                                $dataU['js_id'] = 99;
                                 // print_r($dataU);
                                 $ckU = $sqlObj->updateJobStatus($dataU);
                                 if($ckU){
