@@ -97,6 +97,23 @@
                                         <span style="font-size: 18px;">Line ID : <?php echo $data['st_line'];?></span>
                                         <br style="font-size: 18px;">
                                     </p>
+                                    <hr>
+                                    <p>
+                                        <h5 class=""><b><font color="#0000ff">พิจารณา&nbsp;&nbsp;&nbsp;&nbsp;สถานะปัจจุบัน :</font><font color="#ED2939">&nbsp;<?php echo $data['status'];?></font></b></h5>
+                                        <?php
+                                            $dataH = $sqlObj->getCountDataJobStaById("data",$j_id);
+                                            // print_r($dataH);
+                                            foreach($dataH as $h){
+                                                if($h['num']<>1){
+                                                    $name = $h['title'].$h['name']." ".$h['surname']." &nbsp;&nbsp;&nbsp;<b><font color='#ED2939'>{$h['sta_name']}</font></b>&nbsp;&nbsp;&nbsp;เหตุผล :&nbsp;&nbsp;&nbsp;<b><font color='#0000ff'>".$h['remark']."</font></b>";
+                                                    echo "
+                                                        <span style='font-size: 18px;'>{$name}</span>
+                                                        <br style='font-size: 18px;'>
+                                                    ";
+                                                }
+                                            }
+                                        ?>
+                                    </p>
                                 </div>
                                 <div class="card-footer">
                                     <a href="index.php" class="btn btn-primary">ย้อนกลับ</a>

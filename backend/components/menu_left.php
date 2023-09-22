@@ -74,6 +74,14 @@
                         </a>
                       </li>
                     ";
+                    echo "
+                      <li class='nav-item'>
+                        <a href='/parttime/backend/pages/admin/resetpassword.php' class='nav-link'>
+                          <i class='nav-icon fas fa-undo-alt'></i>
+                          <p> ResetPassword </p>
+                        </a>
+                      </li>
+                    ";
                   break;
                   case "staff" :
                     echo "

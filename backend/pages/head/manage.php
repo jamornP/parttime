@@ -47,6 +47,7 @@
                 <div class="container-fluid">
                     <?php
                         $j_id = $_GET['id'];
+                        $ckUstatus = $sqlObj->updateStatus($j_id,"กำลังพิจารณา");
                         $data = $sqlObj->getJobById($j_id);
                         $ro_num=$sqlObj->getRoNumByMHemail($data['m_email'],$_SESSION['m_email']);
                         // $ro_num=$sqlObj->getRoNumByMHemail($data['m_email'],"prapaichit.yu@kmitl.ac.th");
@@ -63,14 +64,22 @@
                             $dataA['j_sta_date']=date("Y-m-d H:i:s");
                             $dataA['remark']=$_POST['sta_name'];
                             $dataA['j_id']=$_POST['j_id'];
-                            print_r($dataA);
+                            // print_r($dataA);
                             $ckA = $sqlObj->addDataJobSta($dataA);
                             if($ckA){
                                 $dataU['j_id'] = $dataA['j_id'];
                                 $dataU['js_id'] = $dataA['num'];
-                                print_r($dataU);
+                                // print_r($dataU);
                                 $ckU = $sqlObj->updateJobStatus($dataU);
                                 if($ckU){
+                                    if($_POST['sta_name']=="อนุมัติ"){
+                                        $msgParttime = "คุณ".$data['name']." ".$data['surname']."\nอนุมัติแล้ว \nและระบบดำเนินการ เปิดรับสมัครให้แล้ว";
+                                        $ckLine = SentLineBasic("3BeWp4Y3w1xVjRVuQFu3pJAVrws6nBcxSgMgjfq8E3R",$msgParttime);
+                                    }else{
+                                        $dataName = $sqlObj->getEmailByMEmailRo($data['m_email'],$dataU['js_id']);
+                                        $msgParttime = "คุณ".$dataName['name']." ".$dataName['surname']."\nhttp://app.science.kmitl.ac.th/parttime";
+                                        $ckLine = SentLineBasic("TguOefB2TCfmfcvmBjySvAQHoQw4FHCzgb1NbuSUvpp",$msgParttime);
+                                    }
                                     $msg = "บันทึกข้อมูลเรียบร้อย";
                                     echo "<script>";
                                     echo "alertSuccess('{$msg}','index.php')";
@@ -90,6 +99,41 @@
                         }
                         if(isset($_POST['reject'])){
                             print_r($_POST);
+                            $j_idD = $_POST['j_id'];
+                            $ckD = $sqlObj->delDJSById($j_idD);
+                            $dataA['j_id'] = $_POST['j_id'];
+                            $dataA['remark'] = $_POST['remark'];
+                            $dataA['num'] = 99;
+                            $dataA['sta_name'] = "ตีกลับ";
+                            $dataA['j_sta_date'] = date("Y-m-d H:i:s");
+                            $dataA['m_email'] = $_POST['h_email'];
+                            $ckA = $sqlObj->addDataJobSta($dataA);
+                            if($ckA){
+                                $dataU['j_id'] = $dataA['j_id'];
+                                $dataU['js_id'] = 0;
+                                // print_r($dataU);
+                                $ckU = $sqlObj->updateJobStatus($dataU);
+                                if($ckU){
+                                    $ckUstatus = $sqlObj->updateStatus($j_idD,"ตีกลับ");
+                                    $msgParttime = "คุณ".$data['name']." ".$data['surname']."\nถูกตีกลับ \nเนื่องจาก :".$dataA['remark'];
+                                    $ckLine = SentLineBasic("3BeWp4Y3w1xVjRVuQFu3pJAVrws6nBcxSgMgjfq8E3R",$msgParttime);
+                                    
+                                    $msg = "บันทึกข้อมูลเรียบร้อย";
+                                    echo "<script>";
+                                    echo "alertSuccess('{$msg}','index.php')";
+                                    echo "</script>";
+                                }else{
+                                    $msg = "บันทึกข้อมูลไม่สำเร็จ !";
+                                    echo "<script>";
+                                    echo "alertError('{$msg}','index.php')";
+                                    echo "</script>";
+                                }
+                            } else {
+                                $msg = "บันทึกข้อมูลไม่สำเร็จ !";
+                                echo "<script>";
+                                echo "alertError('{$msg}','index.php')";
+                                echo "</script>";
+                            }
                         }
                         // print_r($data);
                     ?>
@@ -169,7 +213,7 @@
                                                 <?php 
                                                     if($_SESSION['m_email']=="sutee.ch@kmitl.ac.th"){
                                                         echo "
-                                                            <input type='hidden' name='sta_name' id='' value='accept'>
+                                                            <input type='hidden' name='sta_name' id='' value='อนุมัติ'>
                                                             <button type='submit' class='btn btn-primary' name='accept'>อนุมัติ</button>
                                                         ";
                                                     }else{

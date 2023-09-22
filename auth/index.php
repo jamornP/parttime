@@ -41,8 +41,13 @@ $sqlObj = new FunctionSql;
             $ck = $authObj->checkUser($data);
             if($ck){
               $msg = "Sign In success";
+              if($_SESSION['role']=="head"){
+                $link = "/parttime/backend/pages/head/index.php";
+              }else{
+                $link ="/parttime/backend/pages/staff/index.php";
+              }
                echo "<script>";
-               echo "alertSuccess('{$msg}','/parttime/backend/pages/staff/index.php')";
+               echo "alertSuccess('{$msg}','{$link}')";
                echo "</script>";
             }else{
               $dataS['stu_email'] = $_POST['email'];

@@ -95,7 +95,7 @@
                                             <th class='text-center'>ชื่องาน</th>
                                             <th class='text-center'>วันที่เริ่มงาน</th>
                                             <th class='text-center'>ค่าตอบแทน</th>
-                                            <th class='text-center'>รับ(คน)</th>
+                                            <th class='text-center'>รับ/สมัคร</th>
                                             <th class='text-center'>ผู้รับผิดชอบ</th>
                                             <th class='text-center'>เบอร์โทร</th>
                                             <th class='text-center'>ถึง</th>
@@ -111,6 +111,7 @@
                                             // $dataJob = $sqlObj->getJobByHEmail('sutee.ch@kmitl.ac.th');
                                             $i = 0;
                                             foreach($dataJob as $j){
+                                                $stu = $sqlObj->countStuRegisByJId($j['j_id']);
                                                 $i++;
                                                 $dateWork = datethai($j['j_s_date'])." - ".datethai($j['j_e_date']); 
                                                 echo "
@@ -119,10 +120,10 @@
                                                         <td><a href='manage.php?id={$j['j_id']}'>{$j['j_name']}</a></td>
                                                         <td class='text-center'>{$dateWork}</td>
                                                         <td>{$j['pay']}</td>
-                                                        <td class='text-center'>{$j['count_student']}</td>
+                                                        <td class='text-center'>{$j['count_student']}/{$stu}</td>
                                                         <td class='text-center'>{$j['st_name']}</td>
                                                         <td class='text-center'>{$j['st_tel']}</td>
-                                                        <td class='text-center'>{$j['h_email']}</td>
+                                                        <td class='text-center'>{$j['status']}</td>
                                                         <td class='text-center'>
                                                             <a href='manage.php?id={$j['j_id']}'><i class='fas fa-pen-fancy text-primary'></i> </a>
                                                         </td>

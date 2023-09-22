@@ -49,6 +49,38 @@
                         $j_id = $_GET['id'];
                         $data = $sqlObj->getJobById($j_id);
                         // print_r($data);
+                        if(isset($_POST['add'])){
+                            unset($_POST['add']);
+                            $_POST['re_date'] = date("Y-m-d H:i:s");
+                            $_POST['re_status'] = "register";
+                            // echo "<pre>"; 
+                            // print_r($_POST);
+                            // echo"</pre>";
+                            $dataD['j_id'] = $_POST['j_id'];
+                            $dataD['stu_email'] = $_POST['stu_email'];
+                            // print_r($dataD);
+                            $ckD = $sqlObj->countRegisByJidStu($dataD);
+                            if($ckD>0){
+                                $msg = "เคยลงทะเบียนไว้แล้ว";
+                                echo "<script>";
+                                echo "alertSuccess('{$msg}','index.php')";
+                                echo "</script>";
+                            }else{
+                                $ck = $sqlObj->addRegister($_POST);
+                                if($ck){
+                                    $msg = "บันทึกข้อมูลเรียบร้อย";
+                                    echo "<script>";
+                                    echo "alertSuccess('{$msg}','index.php')";
+                                    echo "</script>";
+                                } else {
+                                    $msg = "บันทึกข้อมูลไม่สำเร็จ !";
+                                    echo "<script>";
+                                    echo "alertError('{$msg}','index.php')";
+                                    echo "</script>";
+                                }
+                            }
+                            
+                        }
                     ?>
                     <div class="col-12" id="accordion">
                         <div class="card card-primary card-outline shadow">
@@ -100,8 +132,24 @@
                                     
                                 </div>
                                 <div class="card-footer">
-                                    
-                                    <a href="index.php" class="btn btn-primary">ย้อนกลับ</a>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <a href="index.php" class="btn btn-primary "> <i class = "fas fa-reply"></i> ย้อนกลับ</a>
+                                        </div>
+                                        <?php
+                                            $dateN = date("Y-m-d");
+                                            if($dateN <= $data['regis_e_date']){
+                                                ?>
+                                                    <div class="col-sm-6 d-flex flex-row-reverse bd-highlight">
+                                                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-add">
+                                                            <i class="far fa-id-badge"></i> ลงทะเบียนสมัครงานนี้
+                                                        </button>
+                                                    </div>
+                                                <?php
+                                            }
+                                        ?>
+                                        
+                                    </div> 
                                 </div>
                             </div>
                             
@@ -109,6 +157,89 @@
                     
                     </div>
                 </div>
+                <!-- modal -->
+                <div class="modal fade" id="modal-add">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">กรอกข้อมูลการสมัคร</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <form action="" method="post" enctype="multipart/form-data" id="from-post">
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <input type="hidden" style="width: 100%;" value="<?php echo $j_id;?>" name="j_id">
+                                            <input type="hidden" style="width: 100%;" value="<?php echo $_SESSION['stu_email'];?>" name="stu_email">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="stu_name">ชื่อ นามสกุล :<b class="text-danger">*</b></label>
+                                                <input type="text" class="form-control" id="stu_name" placeholder=""  value="<?php echo $_SESSION['fullname'];?>" name="stu_name" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="stu_id">รหัสนักศึกษา :<b class="text-danger">*</b></label>
+                                                <input type="text" class="form-control" id="stu_id" placeholder="66050501" name="stu_id" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <label for="stu_class">ชั้นปีที่ :<b class="text-danger">*</b></label>
+                                                <input type="text" class="form-control" id="stu_class" placeholder="1" name="stu_class" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="stu_sub_department">สาขาวิชา :<b class="text-danger">*</b></label>
+                                                <input type="text" class="form-control" id="stu_sub_department" placeholder=""  name="stu_sub_department" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="stu_department">ภาควิชา :<b class="text-danger">*</b></label>
+                                                <select class="form-control select2" style="width: 100%;" name="stu_department" id="stu_department">
+                                                    <option value='ภาควิชาสถิติ'>ภาควิชาสถิติ</option>
+                                                    <option value='ภาควิชาวิทยาการคอมพิวเตอร์'>ภาควิชาวิทยาการคอมพิวเตอร์</option>
+                                                    <option value='ภาควิชาคณิตศาสตร์'>ภาควิชาคณิตศาสตร์</option>
+                                                    <option value='ภาควิชาฟิสิกส์'>ภาควิชาฟิสิกส์</option>
+                                                    <option value='ภาควิชาชีววิทยา'>ภาควิชาชีววิทยา</option>
+                                                    <option value='ภาควิชาเคมี'>ภาควิชาเคมี</option>
+                                                    <option value='ศูนย์ K-DAI'>ศูนย์ K-DAI</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="stu_tel">เบอร์โทร :<b class="text-danger">*</b></label>
+                                                <input type="text" class="form-control" id="stu_tel" placeholder="0123456789"  name="stu_tel" required>
+                                            </div>
+                                        </div><div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="stu_line">line :</label>
+                                                <input type="text" class="form-control" id="stu_line" placeholder=""  name="stu_line">
+                                            </div>
+                                        <!-- </div><div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="stu_sub_department">สาขาวิชา :<b class="text-danger">*</b></label>
+                                                <input type="text" class="form-control" id="stu_sub_department" placeholder=""  name="stu_sub_department" required>
+                                            </div>
+                                        </div> -->
+                                    </div>
+                                </div>
+                                <div class="modal-footer justify-content-between">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary" name="add">เพิ่ม</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>                                                    
             </section>
            
         </div>

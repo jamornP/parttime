@@ -49,6 +49,7 @@
                 unset($_POST['add']);
                 $_POST['m_email'] = $_SESSION['m_email'];
                 $_POST['js_id'] = 1;
+                $_POST['status'] = "ส่งเรื่อง";
                 $_POST['date_add']=date("Y-m-d H:i:s");
                 // echo "<pre>";
                 // print_r($_POST); 
@@ -57,11 +58,14 @@
                 if ($job_id) {
                     $dataJ['num']=1;
                     $dataJ['j_id']=$job_id;
-                    $dataJ['sta_name']="register";
+                    $dataJ['sta_name']="ส่งเรื่อง";
                     $dataJ['j_sta_date']=$_POST['date_add'];
                     $dataJ['m_email']=$_POST['m_email'];
                     $dataJ['remark']="";
                     $ckS = $sqlObj->addDataJobSta($dataJ);
+                    $dataHemail = $sqlObj->getEmailByMEmailRo($dataJ['m_email'],$dataJ['num']);
+                    $msgParttime = $dataHemail['name']." ".$dataHemail['surname']."\n http://app.science.kmitl.ac.th/parttime" ;
+                    $ckLine = SentLineBasic("TguOefB2TCfmfcvmBjySvAQHoQw4FHCzgb1NbuSUvpp",$msgParttime);
                     $msg = "บันทึกข้อมูลเรียบร้อย";
                     echo "<script>";
                     echo "alertSuccess('{$msg}','index.php')";
@@ -72,7 +76,7 @@
                     echo "alertError('{$msg}','index.php')";
                     echo "</script>";
                   }
-                echo $job_id;
+                // echo $job_id;
             }
             ?>
             <section class="content">
@@ -102,7 +106,7 @@
                                             <th class='text-center'>ชื่องาน</th>
                                             <th class='text-center'>วันที่เริ่มงาน</th>
                                             <th class='text-center'>ค่าตอบแทน</th>
-                                            <th class='text-center'>รับ(คน)</th>
+                                            <th class='text-center'>รับ/สมัคร</th>
                                             <th class='text-center'>ผู้รับผิดชอบ</th>
                                             <th class='text-center'>เบอร์โทร</th>
                                             <th class='text-center'>สถานะ</th>
@@ -115,21 +119,27 @@
                                             // $dataJob = $sqlObj->getJobByEmail('akarit.ta@kmitl.ac.th');
                                             $i = 0;
                                             foreach($dataJob as $j){
+                                                $stu = $sqlObj->countStuRegisByJId($j['j_id']);
                                                 $i++;
                                                 $dateWork = datethai($j['j_s_date'])." - ".datethai($j['j_e_date']); 
+                                                if($j['js_id']== 0 OR $j['status']== "ส่งเรื่อง"){
+                                                    $edit = "<i class='fas fa-edit text-warning mr-2'></i>";
+                                                }else{
+                                                    $edit = "";
+                                                }
                                                 echo "
                                                     <tr class='fs-14'>
                                                         <td>{$i}</td>
                                                         <td>{$j['j_name']}</td>
                                                         <td class='text-center'>{$dateWork}</td>
                                                         <td>{$j['pay']}</td>
-                                                        <td class='text-center'>{$j['count_student']}</td>
+                                                        <td class='text-center'>{$j['count_student']}/{$stu}</td>
                                                         <td class='text-center'>{$j['st_name']}</td>
                                                         <td class='text-center'>{$j['st_tel']}</td>
-                                                        <td class='text-center'>{$j['h_email']}</td>
-                                                        <td class='text-center'>
-                                                            <a href='view.php?id={$j['j_id']}'><i class='fas fa-eye text-primary'></i> </a> 
-                                                            <i class='fas fa-edit text-warning'></i> 
+                                                        <td class='text-center'>{$j['status']}</td>
+                                                        <td class=''>
+                                                            <a href='view.php?id={$j['j_id']}'><i class='fas fa-eye text-primary mr-2'></i> </a> 
+                                                            {$edit}
                                                             <i class='fas fa-trash-alt text-danger'></i>
                                                         </td>
                                                     </tr>

@@ -53,7 +53,7 @@
                                             <th class='text-center'>วันที่รับสมัคร</th>
                                             <th class='text-center'>วันที่สอบสัมภาษณ์</th>
                                             <th class='text-center'>ค่าตอบแทน</th>
-                                            <th class='text-center'>รับ(คน)</th>
+                                            <th class='text-center'>รับ/สมัคร</th>
                                             <th class='text-center'>ผู้รับผิดชอบ</th>
                                             <th class='text-center'>เบอร์โทร</th>
                                         </tr>
@@ -63,6 +63,7 @@
                                             $dataJob = $sqlObj->getJobAccept();
                                             $i = 0;
                                             foreach($dataJob as $j){
+                                                $stu = $sqlObj->countStuRegisByJId($j['j_id']);
                                                 $i++;
                                                 $dateWork = datethai($j['j_s_date'])." - ".datethai($j['j_e_date']); 
                                                 $dateRegister = datethai($j['regis_s_date'])." - ".datethai($j['regis_e_date']); 
@@ -75,7 +76,7 @@
                                                         <td class='text-center text-success'>{$dateRegister}</td>
                                                         <td class='text-center text-danger'>{$dateAnnouncement}</td>
                                                         <td>{$j['pay']}</td>
-                                                        <td class='text-center'>{$j['count_student']}</td>
+                                                        <td class='text-center'>{$j['count_student']}/{$stu}</td>
                                                         <td class='text-center'>{$j['st_name']}</td>
                                                         <td class='text-center'>{$j['st_tel']}</td>
                                                         

@@ -33,7 +33,8 @@ class FunctionSql extends DbScience {
                 st_line,
                 m_email,
                 js_id,
-                date_add
+                date_add,
+                status
             ) VALUES (
                 :j_name,
                 :j_detail,
@@ -53,7 +54,8 @@ class FunctionSql extends DbScience {
                 :st_line,
                 :m_email,
                 :js_id,
-                :date_add
+                :date_add,
+                :status
             )
         ";
         $stmt = $this->pdo->prepare($sql);
@@ -70,6 +72,20 @@ class FunctionSql extends DbScience {
         $stmt->execute($data);
         return true;
     }
+    public function updateStatus($j_id,$data){
+        $sql = "
+            UPDATE tb_job 
+            SET status = '{$data}'
+            WHERE j_id = {$j_id}
+        ";
+        $stmt = $this->pdo->query($sql);
+        if($stmt){
+            return true;
+        }else{
+            return false;
+        }
+        
+    }
     public function getJobAll(){
         $sql ="
             SELECT j.*,p.pay_name as pay, dr.h_email 
@@ -84,8 +100,9 @@ class FunctionSql extends DbScience {
     }
     public function getJobById($j_id){
         $sql ="
-            SELECT j.*,p.pay_name as pay, dr.h_email 
+            SELECT j.*,p.pay_name as pay, dr.h_email,s.name,s.surname 
             FROM tb_job as j
+            LEFT JOIN  tb_staff as s ON s.email = j.m_email
             LEFT JOIN tb_pay as p ON p.pay_id = j.pay_id
             LEFT JOIN tb_department_route as dr ON (dr.ro_num = j.js_id AND dr.m_email = j.m_email)
             WHERE j.j_id = {$j_id}
@@ -95,13 +112,14 @@ class FunctionSql extends DbScience {
         $data = $stmt->fetchAll();
         return $data[0];
     }
+    //LEFT JOIN tb_department_route as dr ON dr.ro_num = j.js_id
+    // WHERE j.m_email = '{$m_email}' AND dr.m_email = '{$m_email}'
     public function getJobByEmail($m_email){
         $sql ="
-            SELECT j.*,p.pay_name as pay, dr.h_email 
+            SELECT j.*,p.pay_name as pay 
             FROM tb_job as j
             LEFT JOIN tb_pay as p ON p.pay_id = j.pay_id
-            LEFT JOIN tb_department_route as dr ON dr.ro_num = j.js_id
-            WHERE j.m_email = '{$m_email}' AND dr.m_email = '{$m_email}'
+            WHERE j.m_email = '{$m_email}' 
             ORDER BY j.date_add
         ";
         $stmt = $this->pdo->query($sql);
@@ -126,7 +144,7 @@ class FunctionSql extends DbScience {
             FROM tb_data_job_status as djs
             LEFT join tb_job as j on j.j_id = djs.j_id 
             LEFT JOIN tb_pay as p ON p.pay_id = j.pay_id
-            WHERE djs.sta_name = 'accept'
+            WHERE djs.sta_name = 'อนุมัติ'
         ";
         $stmt = $this->pdo->query($sql);
         $data = $stmt->fetchAll();
@@ -177,6 +195,17 @@ class FunctionSql extends DbScience {
             return 0;
         }
         
+    }
+    public function getEmailByMEmailRo($m_email,$ro_num){
+        $sql ="
+            SELECT dr.*,s.name,s.surname 
+            FROM tb_department_route as dr
+            LEFT JOIN tb_staff as s ON s.email = dr.h_email
+            WHERE m_email = '{$m_email}' AND ro_num = {$ro_num}
+        ";
+        $stmt = $this->pdo->query($sql);
+        $data = $stmt->fetchAll();
+        return $data[0];
     }
 // tb_work_unit
     public function getWorkUnit(){
@@ -250,6 +279,19 @@ class FunctionSql extends DbScience {
         }
         
     }
+    public function delDJSById($j_id){
+        $sql = "
+            DELETE 
+            FROM tb_data_job_status 
+            WHERE j_id = {$j_id} 
+        ";
+        $stmt = $this->pdo->query($sql);
+        if($stmt){
+            return true;
+        }else{
+            return false;
+        }
+    }
     // tb_department
     public function getDepartmentAll(){
         $sql = "
@@ -291,6 +333,68 @@ class FunctionSql extends DbScience {
         $stmt = $this->pdo->query($sql);
         $data = $stmt->fetchAll();
         return $data;
+    }
+    // tb_register
+    public function addRegister($data){
+        $sql = "
+            INSERT INTO tb_register(
+                j_id,
+                stu_email,
+                stu_id,
+                stu_fullname,
+                stu_class,
+                stu_sub_department,
+                stu_department,
+                stu_tel,
+                stu_line,
+                re_date,
+                re_status
+            ) VALUES (
+                :j_id,
+                :stu_email,
+                :stu_id,
+                :stu_name,
+                :stu_class,
+                :stu_sub_department,
+                :stu_department,
+                :stu_tel,
+                :stu_line,
+                :re_date,
+                :re_status
+            )
+        ";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute($data);
+        return $this->pdo->lastInsertId();
+    }
+    public function countStuRegisByJId($j_id){
+        $sql = "
+            SELECT * 
+            FROM tb_register
+            WHERE j_id = '{$j_id}'
+        ";
+        $stmt = $this->pdo->query($sql);
+        $data = $stmt->fetchAll();
+        if($data){
+            return count($data);
+        }else{
+            return 0;
+        }
+    }
+    public function countRegisByJidStu($data){
+        $sql = "
+            SELECT *
+            FROM tb_register
+            WHERE j_id = :j_id AND stu_email = :stu_email
+        ";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute($data);
+        $data = $stmt->fetchAll();
+        if($data){
+            return count($data);
+        }else{
+            return 0;
+        }
     }
 }
 ?>
