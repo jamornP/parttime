@@ -32,12 +32,12 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">เอกสาร Parttime Job</h1>
+                            <h1 class="m-0">เอกสาร Part Time Job</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">เอกสาร Parttime Job</li>
+                                <li class="breadcrumb-item active">เอกสาร Part Time Job</li>
                             </ol>
                         </div>
                     </div>
@@ -114,8 +114,18 @@
                                         <span style="font-size: 18px;"><?php echo $data['pay'];?></span>
                                     </p>
                                     <p>
-                                        <h5 class="text-danger"><b><font>วันที่สอบสัมภาษณ์&nbsp;</font></b></h5>
-                                        <span style="font-size: 18px;">วันที่ <?php echo datethai($data['announcement_date']);?></span>
+                                        <h5 class="text-success"><b><font>วันที่รับสมัคร&nbsp;</font><font color="#ED2939">*</font></b></h5>
+                                        <span style="font-size: 18px;"><b>วันที่ 
+                                            <?php
+                                                $dateRegister = datethai($data['regis_s_date'])." - ".datethai($data['regis_e_date']); 
+                                                echo $dateRegister;
+                                            ?>
+                                            </b>
+                                        </span>
+                                    </p>
+                                    <p>
+                                        <h5 class="text-danger"><b><font>วันที่สอบสัมภาษณ์&nbsp;</font><font color="#ED2939">*</font></b></h5>
+                                        <span style="font-size: 18px;"><b>วันที่ <?php echo datethai($data['announcement_date']);?></b></span>
                                     </p>
                                     <hr>
                                     <p>
@@ -138,7 +148,7 @@
                                         </div>
                                         <?php
                                             $dateN = date("Y-m-d");
-                                            if($dateN <= $data['regis_e_date']){
+                                            if($dateN <= $data['regis_e_date'] AND $dateN >= $data['regis_s_date'] ){
                                                 ?>
                                                     <div class="col-sm-6 d-flex flex-row-reverse bd-highlight">
                                                         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-add">
@@ -234,7 +244,7 @@
                                 </div>
                                 <div class="modal-footer justify-content-between">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary" name="add">เพิ่ม</button>
+                                    <button type="submit" class="btn btn-primary" name="add">สมัครลงทะเบียน</button>
                                 </div>
                             </form>
                         </div>

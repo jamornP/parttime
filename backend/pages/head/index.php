@@ -75,7 +75,7 @@
                     </div>
                     <!-- <div class="col-sm-6 d-flex flex-row-reverse bd-highlight">
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-add">
-                            <i class="fas fa-plus"></i> Add Parttime Job
+                            <i class="fas fa-plus"></i> Add Part Time Job
                         </button>
                     </div> -->
                     

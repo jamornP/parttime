@@ -21,6 +21,7 @@ $sqlObj = new FunctionSql;
     <?php
  
         if(isset($_POST['resetpass'])){
+          if($_POST['status']=="member"){
             $data['m_email'] = $_POST['email'];
             $data['password'] = '123456';
             $ck = $authObj->ChangePass($data);
@@ -35,6 +36,24 @@ $sqlObj = new FunctionSql;
               echo "alertError('{$msg}','resetpassword.php')";
               echo "</script>";
             }
+          }elseif($_POST['status']=="student"){
+            
+            $data['stu_email'] = $_POST['email'];
+            $data['password'] = '123456';
+            $ck = $authObj->ChangePassStudent($data);
+            if ($ck) {
+              $msg = "Reset password success";
+              echo "<script>";
+              echo "alertSuccess('{$msg}','staff.php')";
+              echo "</script>";
+            } else {
+              $msg = "Not success !";
+              echo "<script>";
+              echo "alertError('{$msg}','resetpassword.php')";
+              echo "</script>";
+            }
+            
+          }
         }
           
         
@@ -50,12 +69,18 @@ $sqlObj = new FunctionSql;
         <p class="login-box-msg">Reset password</p>
         <form action="" method="post">
           <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="Email" name="email" autofocus>
+            <input type="email" class="form-control" placeholder="Email" name="email" autofocus>
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-envelope"></span>
               </div>
             </div>
+          </div>
+          <div class="input-group mb-3">
+            <select class="form-control" style="width: 100%;" name="status">
+            <option value='member'>เจ้าหน้าที่</option>
+            <option value='student'>นักศึกษา</option>
+          </select>
           </div>
           <div class="row">
             <div class="col-12">

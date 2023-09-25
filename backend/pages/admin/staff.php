@@ -107,19 +107,19 @@ date_default_timezone_set('Asia/Bangkok');
                                             foreach ($dataM as $m) {
                                                 $staff = $m['title'].$m['name']." ".$m['surname'];
                                                 $i++;
+                                                $m_id = sent($m['id']);
                                                 echo "
-                                                        <tr class='fs-16'>
-                                                            <td>{$i}</td>
-                                                            <td>{$m['wu_name']}</td>
-                                                            <td>{$staff}</td>
-                                                            <td >{$m['m_email']}</td>
-                                                            <td class='text-center'>{$m['d_name']}</td>
-                                                            <td class='text-center'>
-                                                                <i class='fas fa-edit text-warning'></i> 
-                                                                <i class='fas fa-trash-alt text-danger'></i>
-                                                            </td>
-                                                        </tr>
-                                                    ";
+                                                    <tr class='fs-16'>
+                                                        <td>{$i}</td>
+                                                        <td>{$m['wu_name']}</td>
+                                                        <td>{$staff}</td>
+                                                        <td >{$m['m_email']}</td>
+                                                        <td class='text-center'>{$m['d_name']}</td>
+                                                        <td class='text-center'>
+                                                            <a href='action.php?action=del&m={$m_id}&page=staff'><i class='fas fa-trash-alt text-danger'></i></a>
+                                                        </td>
+                                                    </tr>
+                                                ";
                                             }
                                             ?>
                                         </tbody>

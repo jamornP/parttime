@@ -107,6 +107,7 @@ date_default_timezone_set('Asia/Bangkok');
                                             foreach ($dataM as $m) {
                                                 $staff = $m['title'].$m['name']." ".$m['surname'];
                                                 $i++;
+                                                $m_id = sent($m['id']);
                                                 echo "
                                                         <tr class='fs-16'>
                                                             <td>{$i}</td>
@@ -115,8 +116,7 @@ date_default_timezone_set('Asia/Bangkok');
                                                             <td >{$m['m_email']}</td>
                                                             <td class='text-center'>{$m['d_name']}</td>
                                                             <td class='text-center'>
-                                                                <i class='fas fa-edit text-warning'></i> 
-                                                                <i class='fas fa-trash-alt text-danger'></i>
+                                                                <a href='action.php?action=del&m={$m_id}&page=head'><i class='fas fa-trash-alt text-danger'></i></a>
                                                             </td>
                                                         </tr>
                                                     ";

@@ -62,6 +62,38 @@ class FunctionSql extends DbScience {
         $stmt->execute($data);
         return $this->pdo->lastInsertId();
     }
+    public function updateJob($data){
+        $sql="
+        UPDATE 
+            tb_job 
+        SET 
+            j_name=:j_name,
+            j_detail=:j_detail,
+            j_s_date=:j_s_date,
+            j_e_date=:j_e_date,
+            j_time_work=:j_time_work,
+            j_location=:j_location,
+            regis_s_date=:regis_s_date,
+            regis_e_date=:regis_e_date,
+            interview_date=:interview_date,
+            announcement_date=:announcement_date,
+            pay_id=:pay_id,
+            count_student=:count_student,
+            st_name=:st_name,
+            st_tel=:st_tel,
+            st_email=:st_email,
+            st_line=:st_line,
+            m_email=:m_email,
+            js_id=:js_id,
+            date_add=:date_add,
+            status=:status 
+        WHERE
+            j_id=:j_id
+        ";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute($data);
+        return true;
+    }
     public function updateJobStatus($data){
         $sql = "
             UPDATE tb_job 
@@ -181,6 +213,18 @@ class FunctionSql extends DbScience {
         $stmt->execute($data);
         return $this->pdo->lastInsertId();
     }
+    public function delDeRouteById($id){
+        $sql = "
+            DELETE FROM tb_department_route
+            WHERE dero_id = {$id}
+        ";
+        $stmt = $this->pdo->query($sql);
+        if($stmt){
+            return true;
+        }else{
+            return false;
+        }
+    }
     public function getRoNumByMHemail($m_email,$h_email){
         $sql="
             SELECT *
@@ -269,6 +313,7 @@ class FunctionSql extends DbScience {
             FROM tb_data_job_status as djs
             LEFT JOIN tb_staff as s ON s.email = djs.m_email
             WHERE j_id = {$j_id}
+            ORDER BY djs.num
         ";
         $stmt = $this->pdo->query($sql);
         $data = $stmt->fetchAll();
@@ -278,6 +323,21 @@ class FunctionSql extends DbScience {
             return $data;
         }
         
+    }
+    public function countDataJobStaByIdNum($data){
+        $sql ="
+            SELECT *
+            FROM tb_data_job_status
+            WHERE j_id = :j_id AND num = :num
+        ";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute($data);
+        $data = $stmt->fetchAll();
+        if(count($data)>0){
+            return true;
+        }else{
+            return false;
+        }
     }
     public function delDJSById($j_id){
         $sql = "
@@ -292,7 +352,7 @@ class FunctionSql extends DbScience {
             return false;
         }
     }
-    // tb_department
+// tb_department
     public function getDepartmentAll(){
         $sql = "
             SELECT *
@@ -302,7 +362,7 @@ class FunctionSql extends DbScience {
         $data = $stmt->fetchAll();
         return $data;
     }
-    // tb_member
+// tb_member
     public function addMember($data){
         $sql = "
             INSERT INTO tb_member(
@@ -334,7 +394,19 @@ class FunctionSql extends DbScience {
         $data = $stmt->fetchAll();
         return $data;
     }
-    // tb_register
+    public function delMemberById($id){
+        $sql ="
+            DELETE FROM tb_member
+            WHERE id = {$id}
+        ";
+        $stmt = $this->pdo->query($sql);
+        if($stmt){
+            return true;
+        }else{
+            return false;
+        }
+    }
+// tb_register
     public function addRegister($data){
         $sql = "
             INSERT INTO tb_register(
@@ -367,6 +439,16 @@ class FunctionSql extends DbScience {
         $stmt->execute($data);
         return $this->pdo->lastInsertId();
     }
+    public function updateStatusRegis($data){
+        $sql = "
+            UPDATE tb_register
+            SET re_status = :re_status
+            WHERE re_id = :re_id
+        ";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute($data);
+        return true;
+    }
     public function countStuRegisByJId($j_id){
         $sql = "
             SELECT * 
@@ -395,6 +477,26 @@ class FunctionSql extends DbScience {
         }else{
             return 0;
         }
+    }
+    public function getRegisByJid($j_id){
+        $sql = "
+            SELECT *
+            FROM tb_register
+            WHERE j_id = {$j_id}
+        ";
+        $stmt = $this->pdo->query($sql);
+        $data = $stmt->fetchAll();
+        return $data;
+    }
+    public function getRegisByJidSt($j_id){
+        $sql = "
+            SELECT *
+            FROM tb_register
+            WHERE j_id = {$j_id} AND re_status = 'accept'
+        ";
+        $stmt = $this->pdo->query($sql);
+        $data = $stmt->fetchAll();
+        return $data;
     }
 }
 ?>

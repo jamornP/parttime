@@ -113,20 +113,19 @@ date_default_timezone_set('Asia/Bangkok');
                                             $i = 0;
                                             foreach ($dataRoute as $r) {
                                                 $i++;
+                                                $dero_id = sent($r['dero_id']);
                                                 echo "
-                                                        <tr class='fs-14'>
-                                                            <td>{$i}</td>
-                                                            <td>{$r['wu_name']}</td>
-                                                            <td >{$r['m_email']}</td>
-                                                            <td class='text-center'>{$r['ro_num']}</td>
-                                                            <td >{$r['name_EN']}</td>
-                                                            <td class='text-center'>
-                                                                <i class='fas fa-eye text-primary'></i> 
-                                                                <i class='fas fa-edit text-warning'></i> 
-                                                                <i class='fas fa-trash-alt text-danger'></i>
-                                                            </td>
-                                                        </tr>
-                                                    ";
+                                                    <tr class='fs-14'>
+                                                        <td>{$i}</td>
+                                                        <td>{$r['wu_name']}</td>
+                                                        <td >{$r['m_email']}</td>
+                                                        <td class='text-center'>{$r['ro_num']}</td>
+                                                        <td >{$r['name_EN']}</td>
+                                                        <td class='text-center'>
+                                                            <a href='action.php?action=del&m={$dero_id}&page=route'><i class='fas fa-trash-alt text-danger'></i></a>
+                                                        </td>
+                                                    </tr>
+                                                ";
                                             }
                                             ?>
                                         </tbody>
@@ -187,7 +186,7 @@ date_default_timezone_set('Asia/Bangkok');
                                                 <ol>
                                                     
                                                     <?php
-                                                        for($k=1;$k<=5;$k++){
+                                                        for($k=1;$k<=4;$k++){
                                                             echo "
                                                                 <li>
                                                                     <select class='form-control select2' style='width: 100%;' name='h_email[{$k}]'>

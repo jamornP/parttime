@@ -41,12 +41,12 @@ $sqlObj = new FunctionSql;
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">เอกสาร Parttime Job</h1>
+                            <h1 class="m-0">เอกสาร Part Time Job</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">เอกสาร Parttime Job</li>
+                                <li class="breadcrumb-item active">เอกสาร Part Time Job</li>
                             </ol>
                         </div>
                     </div>
@@ -113,14 +113,74 @@ $sqlObj = new FunctionSql;
                                             $dataH = $sqlObj->getCountDataJobStaById("data",$j_id);
                                             // print_r($dataH);
                                             foreach($dataH as $h){
-                                                $name = $h['title'].$h['name']." ".$h['surname']." &nbsp;&nbsp;&nbsp;<b><font color='#0000ff'>".$h['remark']."</font></b>";
-                                                echo "
-                                                    <span style='font-size: 18px;'>{$name}</span>
-                                                    <br style='font-size: 18px;'>
-                                                ";
+                                                if($h['num']<>0){
+                                                    $name = $h['title'].$h['name']." ".$h['surname']." &nbsp;&nbsp;&nbsp;<b><font color='#0000ff'>".$h['remark']."</font></b>";
+                                                    echo "
+                                                        <span style='font-size: 18px;'>{$name}</span>
+                                                        <br style='font-size: 18px;'>
+                                                    ";
+
+                                                }else{
+                                                    $name = $h['title'].$h['name']." ".$h['surname']." &nbsp;&nbsp;&nbsp;<b><font color='#ED2939'>{$h['sta_name']}</font></b>&nbsp;&nbsp;&nbsp;<b><font color='#0000ff'>".$h['remark']."</font></b>";
+                                                    echo "
+                                                        <span style='font-size: 18px;'>{$name}</span>
+                                                        <br style='font-size: 18px;'>
+                                                    ";
+                                                }
+
+                                                
                                             }
                                         ?>
                                     </p>
+                                    <hr>
+                                    <p>
+                                        <h5 class=""><b><font color="#0000ff">รายชื่อนักศึกษาที่ได้รับคัดเลือก&nbsp;</font></b></h5>
+                                       
+                                             <div class="row table-responsive">
+                                                
+                                             <table class="table table-hover text-nowrap fs-14">
+                                                 
+                                                 <thead>
+                                                     <tr>
+                                                         <th>ที่</th>
+                                                         <th>รหัสนักศึกษา</th>
+                                                         <th>ชื่อ นามสกุล</th>
+                                                         <th>ปี</th>
+                                                         <th>สาขา</th>
+                                                         <th>ภาควิชา</th>
+                                                         <th>เบอร์โทร</th>
+                                                         <th>Line</th>
+                                                     </tr>
+                                                 </thead>
+                                                 <tbody>
+                                                         <?php
+                                                             $dataRegis = $sqlObj->getRegisByJidSt($j_id);
+                                                             $i = 0;
+                                                             foreach($dataRegis as $re){
+                                                                 $i++;
+                                                                 $checked = ($re['re_status']=="accept" ? "checked" :"" );
+                                                                 echo "
+                                                                     <tr>
+                                                                         <td>{$i}</td>
+                                                                         <td>{$re['stu_id']}</td>
+                                                                         <td>{$re['stu_fullname']}</td>
+                                                                         <td>{$re['stu_class']}</td>
+                                                                         <td>{$re['stu_sub_department']}</td>
+                                                                         <td>{$re['stu_department']}</td>
+                                                                         <td>{$re['stu_tel']}</td>
+                                                                         <td>{$re['stu_line']}</td>
+                                                                         
+                                                                     </tr>
+                                                                 ";
+                                                             }
+                                                         ?>      
+                                                     
+                                                 </tbody>
+                                             </table>
+                                         </div>
+                                         <?php
+                                        ?>
+                                    </P>
                                 </div>
                                 
                             </div>

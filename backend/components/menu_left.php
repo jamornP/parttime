@@ -26,7 +26,7 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-home"></i>
               <p>
-                Parttime Job
+                Part Time Job
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -38,7 +38,7 @@
                       <li class='nav-item'>
                         <a href='/parttime/backend/pages/staff/index.php' class='nav-link'>
                           <i class='nav-icon fas fa-user-circle'></i>
-                          <p> งาน Parttime</p>
+                          <p> งาน Part Time</p>
                         </a>
                       </li>
                     ";
@@ -83,12 +83,54 @@
                       </li>
                     ";
                   break;
+                  case "admin" :
+                    echo "
+                      <li class='nav-item'>
+                        <a href='/parttime/backend/pages/staff/index.php' class='nav-link'>
+                          <i class='nav-icon fas fa-user-circle'></i>
+                          <p> งาน Part Time</p>
+                        </a>
+                      </li>
+                    ";
+                    echo "
+                      <li class='nav-item'>
+                        <a href='/parttime/backend/pages/admin/route.php' class='nav-link'>
+                          <i class='nav-icon fas fa-share-alt'></i>
+                          <p> เส้นทาง </p>
+                        </a>
+                      </li>
+                    ";
+                    echo "
+                      <li class='nav-item'>
+                        <a href='/parttime/backend/pages/admin/staff.php' class='nav-link'>
+                          <i class='nav-icon fas fa-user-alt'></i>
+                          <p> เจ้าหน้าที่ </p>
+                        </a>
+                      </li>
+                    ";
+                    echo "
+                      <li class='nav-item'>
+                        <a href='/parttime/backend/pages/admin/head.php' class='nav-link'>
+                          <i class='nav-icon fas fa-diagnoses'></i>
+                          <p> ผู้บริหาร </p>
+                        </a>
+                      </li>
+                    ";
+                    echo "
+                      <li class='nav-item'>
+                        <a href='/parttime/backend/pages/admin/resetpassword.php' class='nav-link'>
+                          <i class='nav-icon fas fa-undo-alt'></i>
+                          <p> ResetPassword </p>
+                        </a>
+                      </li>
+                    ";
+                  break;
                   case "staff" :
                     echo "
                       <li class='nav-item'>
                         <a href='/parttime/backend/pages/staff/index.php' class='nav-link'>
                           <i class='nav-icon fas fa-user-circle'></i>
-                          <p> งาน Parttime</p>
+                          <p> งาน Part Time</p>
                         </a>
                       </li>
                     ";

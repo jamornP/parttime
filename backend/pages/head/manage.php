@@ -32,12 +32,12 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">เอกสาร Parttime Job</h1>
+                            <h1 class="m-0">เอกสาร Part Time Job</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">เอกสาร Parttime Job</li>
+                                <li class="breadcrumb-item active">เอกสาร Part Time Job</li>
                             </ol>
                         </div>
                     </div>
@@ -74,6 +74,7 @@
                                 if($ckU){
                                     if($_POST['sta_name']=="อนุมัติ"){
                                         $msgParttime = "คุณ".$data['name']." ".$data['surname']."\nอนุมัติแล้ว \nและระบบดำเนินการ เปิดรับสมัครให้แล้ว";
+                                        $ckUstatus = $sqlObj->updateStatus($j_id,"อนุมัติ");
                                         $ckLine = SentLineBasic("3BeWp4Y3w1xVjRVuQFu3pJAVrws6nBcxSgMgjfq8E3R",$msgParttime);
                                     }else{
                                         $dataName = $sqlObj->getEmailByMEmailRo($data['m_email'],$dataU['js_id']);
@@ -103,14 +104,14 @@
                             $ckD = $sqlObj->delDJSById($j_idD);
                             $dataA['j_id'] = $_POST['j_id'];
                             $dataA['remark'] = $_POST['remark'];
-                            $dataA['num'] = 99;
+                            $dataA['num'] = 0;
                             $dataA['sta_name'] = "ตีกลับ";
                             $dataA['j_sta_date'] = date("Y-m-d H:i:s");
                             $dataA['m_email'] = $_POST['h_email'];
                             $ckA = $sqlObj->addDataJobSta($dataA);
                             if($ckA){
                                 $dataU['j_id'] = $dataA['j_id'];
-                                $dataU['js_id'] = 99;
+                                $dataU['js_id'] = 0;
                                 // print_r($dataU);
                                 $ckU = $sqlObj->updateJobStatus($dataU);
                                 if($ckU){
@@ -191,11 +192,13 @@
                                             $dataH = $sqlObj->getCountDataJobStaById("data",$j_id);
                                             // print_r($dataH);
                                             foreach($dataH as $h){
-                                                $name = $h['title'].$h['name']." ".$h['surname']." &nbsp;&nbsp;&nbsp;<b><font color='#0000ff'>".$h['remark']."</font></b>";
-                                                echo "
-                                                    <span style='font-size: 18px;'>{$name}</span>
-                                                    <br style='font-size: 18px;'>
-                                                ";
+                                                if($h['num']<>0){
+                                                    $name = $h['title'].$h['name']." ".$h['surname']." &nbsp;&nbsp;&nbsp;<b><font color='#0000ff'>".$h['remark']."</font></b>";
+                                                    echo "
+                                                        <span style='font-size: 18px;'>{$name}</span>
+                                                        <br style='font-size: 18px;'>
+                                                    ";
+                                                }
                                             }
                                         ?>
                                     </p>

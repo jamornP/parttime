@@ -75,14 +75,14 @@ $sqlObj = new FunctionSql;
       <div class="card-header text-center">
       <a href="" class="h5">
         <img src="/parttime/imges/logo.png" alt="AdminLTE Logo" class="" style="display:table; margin: 0 auto; max-width:200px;">
-        <b>Parttime</b>
+        <b>Part Time</b>
     </a>
       </div>
       <div class="card-body">
         <p class="login-box-msg">Change password</p>
         <form action="" method="post">
           <div class="input-group mb-3">
-            <input type="password" class="form-control" placeholder="Password" name="u_password" autofocus>
+            <input type="password" class="form-control" placeholder="Password New" name="u_password" autofocus>
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-lock"></span>

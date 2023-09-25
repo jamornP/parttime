@@ -16,23 +16,23 @@ date_default_timezone_set('Asia/Bangkok');
         </li>
         
         <?php
-            if(isset($_SESSION['role']) AND ($_SESSION['role']=='head' OR $_SESSION['role'] == 'superadmin')){
+            if(isset($_SESSION['role']) AND ($_SESSION['role']=='head' OR $_SESSION['role'] == 'superadmin' OR $_SESSION['role'] == 'admin')){
                 echo "
                     <li class='nav-item d-none d-sm-inline-block'>
-                        <a href='/parttime/backend/pages/head/parttime.php' class='nav-link'><i class='fas fa-home'></i> Parttime Job All</a>
+                        <a href='/parttime/backend/pages/head/parttime.php' class='nav-link'><i class='fas fa-home'></i> Part Time Job All</a>
                     </li>
                 ";
                 if($_SESSION['role'] == 'superadmin'){
                     echo "
                     <li class='nav-item d-none d-sm-inline-block'>
-                        <a href='/parttime/backend/pages/student' class='nav-link'><i class='fas fa-home'></i> Parttime Job Student</a>
+                        <a href='/parttime/backend/pages/student' class='nav-link'><i class='fas fa-home'></i> Part Time Job Student</a>
                     </li>
                 ";
                 }
             }else{
                 echo "
                     <li class='nav-item d-none d-sm-inline-block'>
-                        <a href='/parttime/backend/pages/student' class='nav-link'><i class='fas fa-home'></i> Parttime Job</a>
+                        <a href='/parttime/backend/pages/student' class='nav-link'><i class='fas fa-home'></i> Part Time Job</a>
                     </li>
                 ";
             }
