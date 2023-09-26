@@ -77,7 +77,7 @@
                                     $dataJ['remark']="แก้ไขแล้ว";
                                     $ckS = $sqlObj->addDataJobSta($dataJ);
                                     $dataHemail = $sqlObj->getEmailByMEmailRo($dataJ['m_email'],$dataJ['num']);
-                                    $msgParttime = $dataHemail['name']." ".$dataHemail['surname']."\n http://app.science.kmitl.ac.th/parttime" ;
+                                    $msgParttime = $dataHemail['name']." ".$dataHemail['surname']."\nเรื่อง{$_POST['j_name']}\n http://app.science.kmitl.ac.th/parttime" ;
                                     $ckLine = SentLineBasic("TguOefB2TCfmfcvmBjySvAQHoQw4FHCzgb1NbuSUvpp",$msgParttime);
                                     $msg = "แก้ไขข้อมูลเรียบร้อย";
                                     echo "<script>";
@@ -218,9 +218,7 @@
                                             <h5 class=""><b><font color="#0000ff">นักศึกษาที่สมัคร&nbsp;</font></b></h5>
                                             <form action="" method="post">
                                                 <div class="row table-responsive">
-                                                
                                                     <table class="table table-hover text-nowrap fs-14">
-                                                        
                                                         <thead>
                                                             <tr>
                                                                 <th>ที่</th>
@@ -235,44 +233,49 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                                <?php
-                                                                    $dataRegis = $sqlObj->getRegisByJid($j_id);
-                                                                    $i = 0;
-                                                                    foreach($dataRegis as $re){
-                                                                        $i++;
-                                                                        $checked = ($re['re_status']=="accept" ? "checked" :"" );
-                                                                        echo "
-                                                                            <tr>
-                                                                                <td>{$i}</td>
-                                                                                <td>{$re['stu_id']}</td>
-                                                                                <td>{$re['stu_fullname']}</td>
-                                                                                <td>{$re['stu_class']}</td>
-                                                                                <td>{$re['stu_sub_department']}</td>
-                                                                                <td>{$re['stu_department']}</td>
-                                                                                <td>{$re['stu_tel']}</td>
-                                                                                <td>{$re['stu_line']}</td>
-                                                                                <td>
-                                                                                    <div class='form-group clearfix'>
-                                                                                        <div class='icheck-success d-inline '>
-                                                                                            <input type='checkbox' id='checkboxSuccess{$i}' name='stu_id[]' value='{$re['re_id']}' {$checked}>
-                                                                                            <label for='checkboxSuccess{$i}' class='fs-14'>
-                                                                                                เลือก
-                                                                                            </label>
-                                                                                        </div>
+                                                            <?php
+                                                                $dataRegis = $sqlObj->getRegisByJid($j_id);
+                                                                $i = 0;
+                                                                foreach($dataRegis as $re){
+                                                                    $i++;
+                                                                    $checked = ($re['re_status']=="accept" ? "checked" :"" );
+                                                                    echo "
+                                                                        <tr>
+                                                                            <td>{$i}</td>
+                                                                            <td>{$re['stu_id']}</td>
+                                                                            <td>{$re['stu_fullname']}</td>
+                                                                            <td>{$re['stu_class']}</td>
+                                                                            <td>{$re['stu_sub_department']}</td>
+                                                                            <td>{$re['stu_department']}</td>
+                                                                            <td>{$re['stu_tel']}</td>
+                                                                            <td>{$re['stu_line']}</td>
+                                                                            <td>
+                                                                                <div class='form-group clearfix'>
+                                                                                    <div class='icheck-success d-inline '>
+                                                                                        <input type='checkbox' id='checkboxSuccess{$i}' name='stu_id[]' value='{$re['re_id']}' {$checked}>
+                                                                                        <label for='checkboxSuccess{$i}' class='fs-14'>
+                                                                                            เลือก
+                                                                                        </label>
                                                                                     </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                        ";
-                                                                    }
-                                                                ?>      
-                                                            
+                                                                                </div>
+                                                                            </td>
+                                                                        </tr>
+                                                                    ";
+                                                                }
+                                                            ?>      
                                                         </tbody>
                                                     </table>
                                                 </div>
                                                 <hr>
-                                                <div class="d-flex justify-content-end">
-                                                    <button type="submit" class="btn btn-success" name="select">Submit</button>
-                                                </div>
+                                                <?php
+                                                    if(count($dataRegis)>0){
+                                                    ?>
+                                                        <div class="d-flex justify-content-end">
+                                                            <button type="submit" class="btn btn-success" name="select">Submit</button>
+                                                        </div>
+                                                    <?php  
+                                                    }
+                                                ?>
                                             </form>
                                         </p>
                                     <?php

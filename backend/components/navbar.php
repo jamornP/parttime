@@ -1,14 +1,4 @@
-<?php require $_SERVER['DOCUMENT_ROOT'] . "/parttime/vendor/autoload.php"; ?>
-<?php require $_SERVER['DOCUMENT_ROOT'] . "/parttime/function/function.php"; ?>
-<?php
 
-use App\Model\Parttime\Auth;
-$authObj = new Auth;
-use App\Model\Parttime\FunctionSql;
-$sqlObj = new FunctionSql;
-
-date_default_timezone_set('Asia/Bangkok');
-?>
 <nav class="main-header navbar navbar-expand navbar-dark">
     <ul class="navbar-nav">
         <li class="nav-item">
@@ -19,7 +9,7 @@ date_default_timezone_set('Asia/Bangkok');
             if(isset($_SESSION['role']) AND ($_SESSION['role']=='head' OR $_SESSION['role'] == 'superadmin' OR $_SESSION['role'] == 'admin')){
                 echo "
                     <li class='nav-item d-none d-sm-inline-block'>
-                        <a href='/parttime/backend/pages/head/parttime.php' class='nav-link'><i class='fas fa-home'></i> Part Time Job All</a>
+                        <a href='/parttime/backend/pages/head/parttime.php' class='nav-link'><i class='fas fa-home'></i> Part Time Job ผู้บริหาร</a>
                     </li>
                 ";
                 if($_SESSION['role'] == 'superadmin'){
@@ -29,7 +19,7 @@ date_default_timezone_set('Asia/Bangkok');
                     </li>
                 ";
                 }
-            }else{
+            }elseif(isset($_SESSION['role']) AND $_SESSION['role']=='student'){
                 echo "
                     <li class='nav-item d-none d-sm-inline-block'>
                         <a href='/parttime/backend/pages/student' class='nav-link'><i class='fas fa-home'></i> Part Time Job</a>
@@ -60,8 +50,7 @@ date_default_timezone_set('Asia/Bangkok');
         </li>
         <!-- <li class="nav-item">
             <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-                <i class="fas fa-expand-arrows-alt"></i>
-            </a>
+                <i class="fas fa-expand-arrows-alt"></i>            </a>
         </li> -->
     </ul>
 </nav>
