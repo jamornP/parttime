@@ -145,6 +145,7 @@ $sqlObj = new FunctionSql;
                                                          <th>ที่</th>
                                                          <th>รหัสนักศึกษา</th>
                                                          <th>ชื่อ นามสกุล</th>
+                                                         <th>Email</th>
                                                          <th>ปี</th>
                                                          <th>สาขา</th>
                                                          <th>ภาควิชา</th>
@@ -164,6 +165,7 @@ $sqlObj = new FunctionSql;
                                                                          <td>{$i}</td>
                                                                          <td>{$re['stu_id']}</td>
                                                                          <td>{$re['stu_fullname']}</td>
+                                                                         <td>{$re['stu_email']}</td>
                                                                          <td>{$re['stu_class']}</td>
                                                                          <td>{$re['stu_sub_department']}</td>
                                                                          <td>{$re['stu_department']}</td>

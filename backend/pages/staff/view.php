@@ -8,7 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Part Time Job</title>
+    <title>JobJobSci@KMITL</title>
     <!-- -------- -->
     <?php require $_SERVER['DOCUMENT_ROOT'] . "/parttime/backend/components/link.php"; ?>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@100;200;300&display=swap" rel="stylesheet">
@@ -32,12 +32,12 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">เอกสาร Part Time Job</h1>
+                            <h1 class="m-0">เอกสาร JobJobSci@KMITL</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">เอกสาร Part Time Job</li>
+                                <li class="breadcrumb-item active">เอกสาร JobJobSci@KMITL</li>
                             </ol>
                         </div>
                     </div>
@@ -224,6 +224,7 @@
                                                                 <th>ที่</th>
                                                                 <th>รหัสนักศึกษา</th>
                                                                 <th>ชื่อ นามสกุล</th>
+                                                                <th>Email</th>
                                                                 <th>ปี</th>
                                                                 <th>สาขา</th>
                                                                 <th>ภาควิชา</th>
@@ -244,6 +245,7 @@
                                                                             <td>{$i}</td>
                                                                             <td>{$re['stu_id']}</td>
                                                                             <td>{$re['stu_fullname']}</td>
+                                                                            <td>{$re['stu_email']}</td>
                                                                             <td>{$re['stu_class']}</td>
                                                                             <td>{$re['stu_sub_department']}</td>
                                                                             <td>{$re['stu_department']}</td>
@@ -308,7 +310,7 @@
                                             <div class="form-group">
                                                 <label for="j_name">ชื่องาน :<b class="text-danger">*</b></label>
                                                 <input type="text" class="form-control" id="j_name" placeholder="ชื่องาน" name="j_name" required value="<?php echo $data['j_name'];?>">
-                                                <input type="text" class="form-control" id="j_id"  name="j_id" required value="<?php echo $data['j_id'];?>">
+                                                <input type="hidden" class="form-control" id="j_id"  name="j_id" required value="<?php echo $data['j_id'];?>">
                                             </div>
                                         </div>
                                         <div class="col-md-12">

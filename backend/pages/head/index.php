@@ -8,7 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Part Time Job</title>
+    <title>JobJobSci@KMITL</title>
     <!-- -------- -->
     <?php require $_SERVER['DOCUMENT_ROOT'] . "/parttime/backend/components/link.php"; ?>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@100;200;300&display=swap" rel="stylesheet">
@@ -33,12 +33,12 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>พิจารณา Part Time Job</h1>
+                            <h1>พิจารณา JobJobSci@KMITL</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">พิจารณา Part Time Job</li>
+                                <li class="breadcrumb-item active">พิจารณา JobJobSci@KMITL</li>
                             </ol>
                         </div>
                     </div>
@@ -75,7 +75,7 @@
                     </div>
                     <!-- <div class="col-sm-6 d-flex flex-row-reverse bd-highlight">
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-add">
-                            <i class="fas fa-plus"></i> Add Part Time Job
+                            <i class="fas fa-plus"></i> Add JobJobSci@KMITL
                         </button>
                     </div> -->
                     

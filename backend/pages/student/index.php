@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Part Time Job</title>
+    <title>JobJobSci@KMITL</title>
     <!-- -------- -->
     <?php require $_SERVER['DOCUMENT_ROOT'] . "/parttime/backend/components/link.php"; ?>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@100;200;300&display=swap" rel="stylesheet">
@@ -31,12 +31,12 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Part Time Job สำหรับนักศึกษา</h1>
+                            <h1 class="m-0">JobJobSci@KMITL สำหรับนักศึกษา</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Part Time Job สำหรับนักศึกษา</li>
+                                <li class="breadcrumb-item active">JobJobSci@KMITL สำหรับนักศึกษา</li>
                             </ol>
                         </div>
                     </div>

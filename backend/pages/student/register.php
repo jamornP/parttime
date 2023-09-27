@@ -8,7 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Part Time Job</title>
+    <title>JobJobSci@KMITL</title>
     <!-- -------- -->
     <?php require $_SERVER['DOCUMENT_ROOT'] . "/parttime/backend/components/link.php"; ?>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@100;200;300&display=swap" rel="stylesheet">
@@ -32,12 +32,12 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">เอกสาร Part Time Job</h1>
+                            <h1 class="m-0">เอกสาร JobJobSci@KMITL</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">เอกสาร Part Time Job</li>
+                                <li class="breadcrumb-item active">เอกสาร JobJobSci@KMITL</li>
                             </ol>
                         </div>
                     </div>
@@ -195,13 +195,13 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="stu_id">รหัสนักศึกษา :<b class="text-danger">*</b></label>
-                                                <input type="text" class="form-control" id="stu_id" placeholder="66050501" name="stu_id" required>
+                                                <input type="text" class="form-control" id="stu_id" placeholder="66050501" value="<?php echo $_SESSION['stu_id'];?>" name="stu_id" required>
                                             </div>
                                         </div>
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="stu_class">ชั้นปีที่ :<b class="text-danger">*</b></label>
-                                                <input type="text" class="form-control" id="stu_class" placeholder="1" name="stu_class" required>
+                                                <input type="text" class="form-control" id="stu_class" placeholder="" name="stu_class" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -229,11 +229,19 @@
                                                 <label for="stu_tel">เบอร์โทร :<b class="text-danger">*</b></label>
                                                 <input type="text" class="form-control" id="stu_tel" placeholder="0123456789"  name="stu_tel" required>
                                             </div>
-                                        </div><div class="col-md-6">
+                                        </div>
+                                        <!-- <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="stu_email">Email :</label>
+                                                <input type="text" class="form-control" id="stu_email" placeholder="" value="" name="stu_email">
+                                            </div>
+                                        </div> -->
+                                        <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="stu_line">line :</label>
                                                 <input type="text" class="form-control" id="stu_line" placeholder=""  name="stu_line">
                                             </div>
+                                        </div>
                                         <!-- </div><div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="stu_sub_department">สาขาวิชา :<b class="text-danger">*</b></label>
@@ -244,7 +252,7 @@
                                 </div>
                                 <div class="modal-footer justify-content-between">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary" name="add">สมัครลงทะเบียน</button>
+                                    <button type="submit" class="btn btn-primary" name="add">ยืนยันสมัครงานนี้</button>
                                 </div>
                             </form>
                         </div>

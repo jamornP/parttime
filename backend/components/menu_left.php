@@ -23,7 +23,7 @@ if(isset($_SESSION['m_email'])){
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #1e1e34;">
     <!-- Brand Logo -->
-    <a href="index.html" class="brand-link">
+    <a href="" class="brand-link">
         <img src="/parttime/imges/logo-white.png" alt="Logo" class="" style="display:table; margin: 0 auto; max-width:200px;">
         <span class="brand-text font-weight-light"></span>
     </a>
@@ -48,7 +48,7 @@ if(isset($_SESSION['m_email'])){
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-home"></i>
                 <p>
-                  Part Time Job
+                  JobJobSci@KMITL
                   <i class="right fas fa-angle-left"></i>
                 </p>
               </a>

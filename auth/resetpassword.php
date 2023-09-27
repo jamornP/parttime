@@ -12,7 +12,7 @@ $sqlObj = new FunctionSql;
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Parttime | Sci@kmitl</title>
+  <title>JobJobSci@KMITL</title>
   <?php require $_SERVER['DOCUMENT_ROOT'] . "/parttime/backend/components/link.php"; ?>
   
 </head>
@@ -75,7 +75,7 @@ $sqlObj = new FunctionSql;
       <div class="card-header text-center">
       <a href="" class="h5">
         <img src="/parttime/imges/logo.png" alt="AdminLTE Logo" class="" style="display:table; margin: 0 auto; max-width:200px;">
-        <b>Part Time</b>
+        <b>JobJobSci@KMITL</b>
     </a>
       </div>
       <div class="card-body">

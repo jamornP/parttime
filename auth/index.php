@@ -15,9 +15,16 @@ $sqlObj = new FunctionSql;
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Parttime | Sci@kmitl</title>
+  <title>JobJobSci@KMITL</title>
   <?php require $_SERVER['DOCUMENT_ROOT'] . "/parttime/backend/components/link.php"; ?>
-  
+  <style>
+    body {
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.24) 100%), url('/parttime/imges/bg.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+  </style>
 </head>
 <body class="hold-transition login-page">
   
@@ -28,7 +35,7 @@ $sqlObj = new FunctionSql;
       
         <a href="" class="h5">
           <img src="/parttime/imges/logo.png" alt="AdminLTE Logo" class="" style="display:table; margin: 0 auto; max-width:200px;">
-          <b>Parttime</b>
+          <b>JobJobSci@KMITL</b>
       </a>
       </div>
       <div class="card-body">
@@ -102,7 +109,7 @@ $sqlObj = new FunctionSql;
         <!-- /.social-auth-links -->
 
         <p class="mb-1">
-          <a href="">I forgot my password</a>
+          <!-- <a href="">I forgot my password</a> -->
         </p>
         
       </div>

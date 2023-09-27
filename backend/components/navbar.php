@@ -9,20 +9,20 @@
             if(isset($_SESSION['role']) AND ($_SESSION['role']=='head' OR $_SESSION['role'] == 'superadmin' OR $_SESSION['role'] == 'admin')){
                 echo "
                     <li class='nav-item d-none d-sm-inline-block'>
-                        <a href='/parttime/backend/pages/head/parttime.php' class='nav-link'><i class='fas fa-home'></i> Part Time Job ผู้บริหาร</a>
+                        <a href='/parttime/backend/pages/head/parttime.php' class='nav-link'><i class='fas fa-home'></i> JobJobSci@KMITL ผู้บริหาร</a>
                     </li>
                 ";
                 if($_SESSION['role'] == 'superadmin'){
                     echo "
                     <li class='nav-item d-none d-sm-inline-block'>
-                        <a href='/parttime/backend/pages/student' class='nav-link'><i class='fas fa-home'></i> Part Time Job Student</a>
+                        <a href='/parttime/backend/pages/student' class='nav-link'><i class='fas fa-home'></i> JobJobSci@KMITL Student</a>
                     </li>
                 ";
                 }
             }elseif(isset($_SESSION['role']) AND $_SESSION['role']=='student'){
                 echo "
                     <li class='nav-item d-none d-sm-inline-block'>
-                        <a href='/parttime/backend/pages/student' class='nav-link'><i class='fas fa-home'></i> Part Time Job</a>
+                        <a href='/parttime/backend/pages/student' class='nav-link'><i class='fas fa-home'></i> JobJobSci@KMITL</a>
                     </li>
                 ";
             }
