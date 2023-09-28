@@ -19,7 +19,7 @@ $sqlObj = new FunctionSql;
   <?php require $_SERVER['DOCUMENT_ROOT'] . "/parttime/backend/components/link.php"; ?>
   <style>
     body {
-    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.24) 100%), url('/parttime/imges/bg.png');
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, .2) 0%, rgba(255, 255, 255, 0.2) 100%), url('/parttime/imges/bg-2.png');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -34,8 +34,9 @@ $sqlObj = new FunctionSql;
       <div class="card-header text-center">
       
         <a href="" class="h5">
-          <img src="/parttime/imges/logo.png" alt="AdminLTE Logo" class="" style="display:table; margin: 0 auto; max-width:200px;">
-          <b>JobJobSci@KMITL</b>
+          <img src="/parttime/imges/logo.png" alt="job Logo" class="" style="display:table; margin: 0 auto; max-width:200px;">
+          <img src="/parttime/imges/logo-jobjob.png" alt="job Logo" class="" style="display:table; margin: 0 auto; max-width:200px;">
+          <!-- <b>JobJobSci@KMITL</b> -->
       </a>
       </div>
       <div class="card-body">
@@ -103,7 +104,7 @@ $sqlObj = new FunctionSql;
 
         <div class="social-auth-links text-center mt-2 mb-3">
           <a href="<?php echo $login_url;?>" class="btn btn-block btn-danger">
-            <i class="fab fa-google mr-2"></i> Sign in using Google+
+            <i class="fab fa-google mr-2"></i> Sign in Google
           </a>
         </div>
         <!-- /.social-auth-links -->

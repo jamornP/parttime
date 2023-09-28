@@ -1,6 +1,8 @@
 <?php
 namespace App\Model\Parttime;
 use App\Database\DbScience;
+use PDOException;
+
 class FunctionSql extends DbScience {
 // tb_pay
     public function getPayAll(){
@@ -13,6 +15,7 @@ class FunctionSql extends DbScience {
     }
 //  tb_job
     public function addJob($data){
+        try {
         $sql = "
             INSERT INTO tb_job (
                 j_name,
@@ -61,8 +64,12 @@ class FunctionSql extends DbScience {
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute($data);
         return $this->pdo->lastInsertId();
+        } catch(PDOException $e) {
+            return $e->getMessage();
+        }
     }
     public function updateJob($data){
+        try{
         $sql="
         UPDATE 
             tb_job 
@@ -93,6 +100,9 @@ class FunctionSql extends DbScience {
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute($data);
         return true;
+        }catch(PDOException $e) {
+            return $e->getMessage();
+        }
     }
     public function updateJobStatus($data){
         $sql = "

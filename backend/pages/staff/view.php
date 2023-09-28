@@ -316,7 +316,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="summernote">รายละเอียดงาน :<b class="text-danger">*</b></label>
-                                                <textarea id="summernote" name="j_detail" required>
+                                                <textarea class="summernote" name="j_detail" required>
                                                 <?php echo $data['j_detail'];?>
                                                 </textarea>
                                             </div>

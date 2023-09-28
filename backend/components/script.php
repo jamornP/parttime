@@ -61,7 +61,9 @@
 
 
     // Summernote
-    $('#summernote').summernote()
+    $('.summernote').summernote({
+      height: 250
+    });
 
     // DataTable
     $("#example1").DataTable({

@@ -51,9 +51,9 @@
                 $_POST['js_id'] = 1;
                 $_POST['status'] = "ส่งเรื่อง";
                 $_POST['date_add']=date("Y-m-d H:i:s");
-                // echo "<pre>";
-                // print_r($_POST); 
-                // echo"</pre>";
+                echo "<pre>";
+                print_r($_POST); 
+                echo"</pre>";
                 $job_id = $sqlObj->addJob($_POST);
                 if ($job_id) {
                     $dataJ['num']=1;
@@ -177,7 +177,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="summernote">รายละเอียดงาน :<b class="text-danger">*</b></label>
-                                                <textarea id="summernote" name="j_detail" required>
+                                                <textarea id="summernote" class="summernote" name="j_detail" required>
                                                 <p>
                                                     <h5 class=""><b><font color="#0000ff">รายละเอียดงาน&nbsp;</font></b></h5>
                                                     <span style="font-size: 18px;">1.ช่วยงานลงทะเบียน พัสดุไปรษณีย์</span>
