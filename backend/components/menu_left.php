@@ -166,6 +166,18 @@ if(isset($_SESSION['m_email'])){
                           </li>
                       ";
                       echo "
+                          <li class='nav-header fs-16'>ผู้บริหาร</li>
+                          <li class='nav-item'>
+                            <a href='/parttime/backend/pages/head/index.php' class='nav-link'>
+                              <i class='nav-icon fas fa-marker'></i>
+                              <p> 
+                                พิจารณา
+                                {$text} 
+                              </p>
+                            </a>
+                          </li>
+                      ";
+                      echo "
                       <li class='nav-item'>
                         <a href='#' class='nav-link'>
                           <i class='nav-icon fas fa-cogs'></i>
@@ -217,7 +229,7 @@ if(isset($_SESSION['m_email'])){
                     case "staff" :
                       echo "
                           <li class='nav-item'>
-                            <a href='/parttime/backend/pages/staff/index.php' class='nav-link'>
+                            <a href='/parttime/backend/pages/staff/index.php' class='nav-link active'>
                               <i class='nav-icon fas fa-user-circle'></i>
                               <p> งาน Part Time</p>
                             </a>
@@ -227,7 +239,7 @@ if(isset($_SESSION['m_email'])){
                     case "head" :
                       echo "
                           <li class='nav-item'>
-                            <a href='/parttime/backend/pages/head/index.php' class='nav-link'>
+                            <a href='/parttime/backend/pages/head/index.php' class='nav-link' active>
                               <i class='nav-icon fas fa-marker'></i>
                               <p> 
                                 พิจารณา

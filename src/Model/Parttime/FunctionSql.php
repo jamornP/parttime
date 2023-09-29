@@ -508,5 +508,70 @@ class FunctionSql extends DbScience {
         $data = $stmt->fetchAll();
         return $data;
     }
+    public function getJobByStu($stu_id){
+        $sql = "
+            SELECT re.*,j.j_s_date,j.j_e_date,j.j_name
+            FROM tb_register as re
+            LEFT JOIN tb_job as j ON j.j_id = re.j_id
+            WHERE re.stu_id = '{$stu_id}' 
+            ORDER BY j.j_s_date
+        ";
+        $stmt = $this->pdo->query($sql);
+        $data = $stmt->fetchAll();
+        return $data;
+    }
+    public function countStuRe($stu_id){
+        $sql = "
+            SELECT *
+            FROM tb_register
+            WHERE stu_id = '{$stu_id}'
+        ";
+        $stmt = $this->pdo->query($sql);
+        $data = $stmt->fetchAll();
+        return count($data);
+    }
+    public function countStuReAccept($stu_id){
+        $sql = "
+            SELECT *
+            FROM tb_register
+            WHERE stu_id = '{$stu_id}' AND re_status = 'accept'
+        ";
+        $stmt = $this->pdo->query($sql);
+        $data = $stmt->fetchAll();
+        return count($data);
+    }
+    public function countStuReDate($stu_id){
+        $date = date("Y-m-d");
+        $sql = "
+            SELECT *
+            FROM tb_register as re
+            LEFT JOIN tb_job as j ON j.j_id = re.j_id
+            WHERE re.stu_id = '{$stu_id}' AND j.announcement_date > '{$date}' AND re.re_status = 'register'
+        ";
+        $stmt = $this->pdo->query($sql);
+        $data = $stmt->fetchAll();
+        return count($data);
+    }
+// tb_student
+    public function getSudentAll(){
+        $sql = "
+            SELECT *
+            FROM tb_students
+            ORDER BY stu_fullname
+        ";
+        $stmt = $this->pdo->query($sql);
+        $data = $stmt->fetchAll();
+        return $data;
+    }
+    public function getStuByEmail($email){
+        $sql = "
+            SELECT *
+            FROM tb_students
+            WHERE stu_email = '{$email}'
+        ";
+        $stmt = $this->pdo->query($sql);
+        $data = $stmt->fetchAll();
+        return $data[0];
+    }
 }
 ?>
