@@ -21,15 +21,15 @@ $sqlObj = new FunctionSql;
     <?php
     if (isset($_POST['change'])) {
       // print_r($_POST);
-      if($_SESSION['role']="studen"){
+      if($_SESSION['role']=="studen"){
         if ($_POST['u_password'] == $_POST['confirm']) {
-          $data['stu_email'] = $_SESSION['stu_email'];
+          $dataS['stu_email'] = $_SESSION['stu_email'];
           // $data['stu_email'] = "66050015@kmitl.ac.th";
-          $data['password'] = $_POST['u_password'];
+          $dataS['password'] = $_POST['u_password'];
           // print_r($data);
-          $ck = $authObj->ChangePassStudent($data);
+          $ck = $authObj->ChangePassStudent($dataS);
           if ($ck) {
-            $msg = "Change password success";
+            $msg = "Change password success student";
             echo "<script>";
             echo "alertSuccess('{$msg}','index.php')";
             echo "</script>";
@@ -48,11 +48,11 @@ $sqlObj = new FunctionSql;
 
       }else{
         if ($_POST['u_password'] == $_POST['confirm']) {
-          $data['m_email'] = $_SESSION['m_email'];
-          $data['password'] = $_POST['u_password'];
-          $ck = $authObj->ChangePass($data);
+          $dataM['m_email'] = $_SESSION['m_email'];
+          $dataM['password'] = $_POST['u_password'];
+          $ck = $authObj->ChangePass($dataM);
           if ($ck) {
-            $msg = "Change password success";
+            $msg = "Change password success member";
             echo "<script>";
             echo "alertSuccess('{$msg}','index.php')";
             echo "</script>";
@@ -80,6 +80,16 @@ $sqlObj = new FunctionSql;
       </div>
       <div class="card-body">
         <p class="login-box-msg">Change password</p>
+        <p class="login-box-msg">
+          <?php
+            if(isset($_SESSION['m_email'])){
+              echo $_SESSION['m_email'];
+            }
+            if(isset($_SESSION['stu_email'])){
+              echo $_SESSION['stu_email'];
+            }
+          ?>
+        </p>
         <form action="" method="post">
           <div class="input-group mb-3">
             <input type="password" class="form-control" placeholder="Password New" name="u_password" autofocus>
