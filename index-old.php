@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Part Time Job</title>
+    <title>JobJobSci@kmitl.ac.th</title>
     <?php require $_SERVER['DOCUMENT_ROOT'] . '/parttime/components/link.php'; ?>
 
 <body class="font-kanit">

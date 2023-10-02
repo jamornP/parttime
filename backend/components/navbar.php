@@ -9,20 +9,20 @@
             if(isset($_SESSION['role']) AND ($_SESSION['role']=='head' OR $_SESSION['role'] == 'superadmin' OR $_SESSION['role'] == 'admin')){
                 echo "
                     <li class='nav-item d-none d-sm-inline-block'>
-                        <a href='/parttime/backend/pages/head/parttime.php' class='nav-link'><i class='fas fa-home'></i> JobJobSci@KMITL ผู้บริหาร</a>
+                        <a href='/parttime/backend/pages/head/parttime.php' class='nav-link'><i class='fas fa-home'></i> งานทั้งหมด</a>
                     </li>
                 ";
                 if($_SESSION['role'] == 'superadmin'){
                     echo "
                     <li class='nav-item d-none d-sm-inline-block'>
-                        <a href='/parttime/backend/pages/student' class='nav-link'><i class='fas fa-home'></i> JobJobSci@KMITL Student</a>
+                        <a href='/parttime/backend/pages/student' class='nav-link'><i class='fas fa-home'></i> งานทั้งหมด st</a>
                     </li>
                 ";
                 }
             }elseif(isset($_SESSION['role']) AND $_SESSION['role']=='student'){
                 echo "
                     <li class='nav-item d-none d-sm-inline-block'>
-                        <a href='/parttime/backend/pages/student' class='nav-link'><i class='fas fa-home'></i> JobJobSci@KMITL</a>
+                        <a href='/parttime/backend/pages/student' class='nav-link'><i class='fas fa-home'></i> งานทังหมด</a>
                     </li>
                 ";
             }
@@ -34,11 +34,11 @@
         <li class="nav-item ">
             <div class = "nav-link text-warning">
                 <?php 
-                    if(isset($_SESSION['m_email'])){
-                        echo $_SESSION['m_email']." (".$_SESSION['role'].")";
-                    }else{
-                        echo $_SESSION['stu_email']." (".$_SESSION['role'].")";
-                    }
+                    // if(isset($_SESSION['m_email'])){
+                    //     echo $_SESSION['m_email']." (".$_SESSION['role'].")";
+                    // }else{
+                    //     echo $_SESSION['stu_email']." (".$_SESSION['role'].")";
+                    // }
                     
                 ?>
             </div>

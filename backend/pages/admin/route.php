@@ -8,7 +8,7 @@ date_default_timezone_set('Asia/Bangkok');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Part Time Job</title>
+    <title>JobJobSci@kmitl.ac.th</title>
     <!-- -------- -->
     <?php require $_SERVER['DOCUMENT_ROOT'] . "/parttime/backend/components/link.php"; ?>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@100;200;300&display=swap" rel="stylesheet">
@@ -52,29 +52,62 @@ date_default_timezone_set('Asia/Bangkok');
                         // echo "<pre>"; 
                         // print_r($_POST);
                         // echo "</pre>";
-                        $data['m_email']=$_POST['m_email'];
-                        $data['wu_id']=$_POST['wu_id'];
-                        $ro_num =0;
-                        foreach($_POST['h_email'] as $h_email){
-                            $ro_num++;
-                            if($h_email != ""){
-                                $data['h_email'] = $h_email;
-                                $data['ro_num'] = $ro_num;
-                                echo $h_email."<br>";
-                                $ck = $sqlObj->addRoute($data);
-                            }
-                            if($ck){
-                                $msg = "บันทึกข้อมูลเรียบร้อย";
-                                echo "<script>";
-                                echo "alertSuccess('{$msg}','route.php')";
-                                echo "</script>";
-                            } else {
-                                $msg = "บันทึกข้อมูลไม่สำเร็จ !";
-                                echo "<script>";
-                                echo "alertError('{$msg}','route.php')";
-                                echo "</script>";
+                        $dataMember = $sqlObj->getMemberByWu($_POST['wu_id']);
+                        if(count($dataMember) > 0 ){
+                            if(count($dataMember) < 2){
+                                $data['m_email']=$dataMember[0]['m_email'];
+                                $data['wu_id']=$_POST['wu_id'];
+                                $ro_num =0;
+                                foreach($_POST['h_email'] as $h_email){
+                                    $ro_num++;
+                                    if($h_email != ""){
+                                        $data['h_email'] = $h_email;
+                                        $data['ro_num'] = $ro_num;
+                                        // echo $h_email."<br>";
+                                        $ck = $sqlObj->addRoute($data);
+                                    }
+                                    if($ck){
+                                        $msg = "บันทึกข้อมูลเรียบร้อย";
+                                        echo "<script>";
+                                        echo "alertSuccess('{$msg}','route.php')";
+                                        echo "</script>";
+                                    } else {
+                                        $msg = "บันทึกข้อมูลไม่สำเร็จ !";
+                                        echo "<script>";
+                                        echo "alertError('{$msg}','route.php')";
+                                        echo "</script>";
+                                    }
+                                }
+                            }else{
+                                foreach($dataMember as $member){
+                                    $data['m_email']=$member['m_email'];
+                                    $data['wu_id']=$_POST['wu_id'];
+                                    $ro_num =0;
+                                    foreach($_POST['h_email'] as $h_email){
+                                        $ro_num++;
+                                        if($h_email != ""){
+                                            $data['h_email'] = $h_email;
+                                            $data['ro_num'] = $ro_num;
+                                            // echo $h_email."<br>";
+                                            $ck = $sqlObj->addRoute($data);
+                                        }
+                                        if($ck){
+                                            $msg = "บันทึกข้อมูลเรียบร้อย";
+                                            echo "<script>";
+                                            echo "alertSuccess('{$msg}','route.php')";
+                                            echo "</script>";
+                                        } else {
+                                            $msg = "บันทึกข้อมูลไม่สำเร็จ !";
+                                            echo "<script>";
+                                            echo "alertError('{$msg}','route.php')";
+                                            echo "</script>";
+                                        }
+                                    }
+                                }
+                                
                             }
                         }
+                        
                     }
                     ?>
                     <div class="row mb-2">
@@ -164,48 +197,52 @@ date_default_timezone_set('Asia/Bangkok');
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <!-- <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="m_email">เจ้าหน้าที่รับผิดชอบ :<b class="text-danger">*</b></label>
                                                 <select class="form-control select2" style="width: 100%;" name="m_email" id="m_email">
                                                     <?php
-                                                    $dataSt = $sqlObj->getStaffAll();
-                                                    foreach ($dataSt as $St) {
-                                                        $st_name = $St['title'] . $St['name'] . " " . $St['surname'];
-                                                        echo "
-                                                                <option value='{$St['email']}'>{$st_name}</option>
-                                                            ";
-                                                    }
+                                                    // $dataSt = $sqlObj->getStaffAll();
+                                                    // foreach ($dataSt as $St) {
+                                                    //     $st_name = $St['title'] . $St['name'] . " " . $St['surname'];
+                                                    //     echo "
+                                                    //             <option value='{$St['email']}'>{$st_name}</option>
+                                                    //         ";
+                                                    // }
                                                     ?>
                                                 </select>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="h_email">ลำดับเส้นทางพิจารณา :<b class="text-danger">*</b></label>
                                                 <ol>
                                                     
                                                     <?php
+                                                        $hname[1] = "prapaichit.yu@kmitl.ac.th";
+                                                        $hname[2] = "";
+                                                        $hname[3] = "apiluck.ei@kmitl.ac.th";
+                                                        $hname[4] = "sutee.ch@kmitl.ac.th";
                                                         for($k=1;$k<=4;$k++){
                                                             echo "
                                                                 <li>
                                                                     <select class='form-control select2' style='width: 100%;' name='h_email[{$k}]'>
                                                             ";
-                                                                        $dataSt = $sqlObj->getStaffAll();
-                                                                        $kk = 0;
-                                                                        foreach ($dataSt as $St) {
-                                                                            $kk++;
-                                                                            $st_name = $St['title'] . $St['name'] . " " . $St['surname'];
-                                                                            
-                                                                            echo "
-                                                                                <option value='{$St['email']}'>{$st_name}</option>
-                                                                            ";
-                                                                            if($kk==5){
-                                                                                echo "
-                                                                                    <option value=''>ไม่มี</option>
-                                                                                ";
-                                                                            }
-                                                                        }
+                                                                    $dataSt = $sqlObj->getStaffAll();
+                                                                    $kk = 0;
+                                                                    echo "
+                                                                            <option value=''>ไม่มี</option>
+                                                                        ";
+                                                                    foreach ($dataSt as $St) {
+                                                                        
+                                                                        $kk++;
+                                                                        $st_name = $St['title'] . $St['name'] . " " . $St['surname'];
+                                                                        $select = ($St['email'] == $hname[$k] ? "selected":"");
+                                                                        echo "
+                                                                            <option value='{$St['email']}' {$select}>{$st_name}</option>
+                                                                        ";
+                                                                        
+                                                                    }
                                                                     echo "
                                                                     </select>
                                                                 </li>

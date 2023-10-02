@@ -404,6 +404,19 @@ class FunctionSql extends DbScience {
         $data = $stmt->fetchAll();
         return $data;
     }
+    public function getMemberByWu($wu_id){
+        $sql = "
+            SELECT m.*,d.d_name,wu.wu_name,s.title,s.name,s.surname
+            FROM tb_member as m
+            LEFT JOIN tb_department as d ON d.d_id = m.d_id
+            LEFT JOIN tb_work_unit as wu ON wu.wu_id = m.wu_id
+            LEFT JOIN tb_staff as s ON s.email = m.m_email
+            WHERE m.wu_id = '{$wu_id}'
+        ";
+        $stmt = $this->pdo->query($sql);
+        $data = $stmt->fetchAll();
+        return $data;
+    }
     public function delMemberById($id){
         $sql ="
             DELETE FROM tb_member
