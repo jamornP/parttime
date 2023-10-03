@@ -2,6 +2,7 @@
     session_start();
     date_default_timezone_set('Asia/Bangkok');
 ?>
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/parttime/auth/auth.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 

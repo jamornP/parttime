@@ -1,4 +1,5 @@
 <?php session_start();?>
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/parttime/auth/auth.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 
