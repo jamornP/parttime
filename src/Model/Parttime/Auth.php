@@ -42,7 +42,7 @@ class Auth extends DbScience {
             $_SESSION['stu_id']=$data[0]['stu_id'];
             $_SESSION['stu_email']=$data[0]['stu_email'];
             $_SESSION['img']=$img;
-            $_SESSION['role']="studen";
+            $_SESSION['role']="student";
             return true;
         }else{
             return false;
@@ -126,7 +126,7 @@ class Auth extends DbScience {
                 $_SESSION['stu_id']=$userDB['stu_id'];
                 $_SESSION['stu_email']=$userDB['stu_email'];
                 $_SESSION['img']="/parttime/backend/images/logo/user.png";
-                $_SESSION['role']="studen";
+                $_SESSION['role']="student";
                 return true;
             } else {
                 return false;

@@ -22,7 +22,7 @@
             }elseif(isset($_SESSION['role']) AND $_SESSION['role']=='student'){
                 echo "
                     <li class='nav-item d-none d-sm-inline-block'>
-                        <a href='/parttime/backend/pages/student' class='nav-link'><i class='fas fa-home'></i> งานทังหมด</a>
+                        <a href='/parttime/backend/pages/student' class='nav-link'><i class='far fa-clipboard'></i> งานทั้งหมด</a>
                     </li>
                 ";
             }

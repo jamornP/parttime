@@ -521,6 +521,17 @@ class FunctionSql extends DbScience {
         $data = $stmt->fetchAll();
         return $data;
     }
+    public function getRegisByJidStu($j_id,$stu_email){
+        $sql = "
+            SELECT *
+            FROM tb_register as re
+            LEFT JOIN tb_job as j ON j.j_id = re.j_id
+            WHERE re.stu_email = '{$stu_email}' AND j.j_id = {$j_id}
+        ";
+        $stmt = $this->pdo->query($sql);
+        $data = $stmt->fetchAll();
+        return $data;
+    }
     public function getJobByStu($stu_id){
         $sql = "
             SELECT re.*,j.j_s_date,j.j_e_date,j.j_name

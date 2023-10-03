@@ -178,53 +178,53 @@ if(isset($_SESSION['m_email'])){
                           </li>
                       ";
                       echo "
-                      <li class='nav-item'>
-                        <a href='#' class='nav-link'>
-                          <i class='nav-icon fas fa-cogs'></i>
-                          <p>
-                            Setup ระบบ
-                            <i class='right fas fa-angle-left'></i>
-                          </p>
-                        </a>
-                        <ul class='nav nav-treeview' id='myDIV'>
-                  ";
-                  
-                  echo "
-                          <li class='nav-item'>
-                            <a href='/parttime/backend/pages/admin/route.php' class='nav-link'>
-                              <i class='nav-icon fas fa-share-alt'></i>
-                              <p> เส้นทาง </p>
-                            </a>
+                        <li class='nav-item'>
+                          <a href='#' class='nav-link'>
+                            <i class='nav-icon fas fa-cogs'></i>
+                            <p>
+                              Setup ระบบ
+                              <i class='right fas fa-angle-left'></i>
+                            </p>
+                          </a>
+                          <ul class='nav nav-treeview' id='myDIV'>
+                      ";
+                      
+                      echo "
+                              <li class='nav-item'>
+                                <a href='/parttime/backend/pages/admin/route.php' class='nav-link'>
+                                  <i class='nav-icon fas fa-share-alt'></i>
+                                  <p> เส้นทาง </p>
+                                </a>
+                              </li>
+                      ";
+                      echo "
+                              <li class='nav-item'>
+                                <a href='/parttime/backend/pages/admin/staff.php' class='nav-link'>
+                                  <i class='nav-icon fas fa-user-alt'></i>
+                                  <p> เจ้าหน้าที่ </p>
+                                </a>
+                              </li>
+                      ";
+                      echo "
+                              <li class='nav-item'>
+                                <a href='/parttime/backend/pages/admin/head.php' class='nav-link'>
+                                  <i class='nav-icon fas fa-diagnoses'></i>
+                                  <p> ผู้บริหาร </p>
+                                </a>
+                              </li>
+                      ";
+                      echo "
+                              <li class='nav-item'>
+                                <a href='/parttime/backend/pages/admin/resetpassword.php' class='nav-link'>
+                                  <i class='nav-icon fas fa-undo-alt'></i>
+                                  <p> ResetPassword </p>
+                                </a>
+                              </li>
+                      ";
+                      echo "
+                            </ul>
                           </li>
-                  ";
-                  echo "
-                          <li class='nav-item'>
-                            <a href='/parttime/backend/pages/admin/staff.php' class='nav-link'>
-                              <i class='nav-icon fas fa-user-alt'></i>
-                              <p> เจ้าหน้าที่ </p>
-                            </a>
-                          </li>
-                  ";
-                  echo "
-                          <li class='nav-item'>
-                            <a href='/parttime/backend/pages/admin/head.php' class='nav-link'>
-                              <i class='nav-icon fas fa-diagnoses'></i>
-                              <p> ผู้บริหาร </p>
-                            </a>
-                          </li>
-                  ";
-                  echo "
-                          <li class='nav-item'>
-                            <a href='/parttime/backend/pages/admin/resetpassword.php' class='nav-link'>
-                              <i class='nav-icon fas fa-undo-alt'></i>
-                              <p> ResetPassword </p>
-                            </a>
-                          </li>
-                  ";
-                  echo "
-                        </ul>
-                      </li>
-                  ";
+                      ";
                     break;
                     case "staff" :
                       echo "
@@ -247,6 +247,24 @@ if(isset($_SESSION['m_email'])){
                               </p>
                             </a>
                           </li>
+                      ";
+                    break;
+                    case "student" :
+                      echo "
+                        <li class='nav-item'>
+                          <a href='/parttime/backend/pages/student' class='nav-link'>
+                            <i class='nav-icon far fa-clipboard'></i>
+                            <p> งานทั้งหมด </p>
+                          </a>
+                        </li>
+                      ";
+                      echo "
+                        <li class='nav-item'>
+                          <a href='/parttime/backend/pages/student/work.php' class='nav-link'>
+                            <i class='nav-icon fas fa-edit'></i>
+                            <p> งานที่สมัครแล้ว </p>
+                          </a>
+                        </li>
                       ";
                     break;
                   }

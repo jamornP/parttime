@@ -227,10 +227,16 @@
                                                 if($h['num']<> 1 AND $h['num'] <> 0){
                                                     if($h['sta_name']=="เห็นชอบ" OR $h['sta_name']=="อนุมัติ"){
                                                         $remark = "";
+                                                        if($h['sta_name']=="อนุมัติ"){
+                                                            $color = "#008000";
+                                                        }else{
+                                                            $color = "#0000ff";
+                                                        }
                                                     }else{
+                                                        $color = "#ED2939";
                                                         $remark = "&nbsp;&nbsp;&nbsp;เหตุผล :&nbsp;&nbsp;&nbsp;<b><font color='#0000ff'>".$h['remark']."</font></b>";
                                                     }
-                                                    $name = $h['title'].$h['name']." ".$h['surname']." &nbsp;&nbsp;&nbsp;<b><font color='#ED2939'>{$h['sta_name']}</font></b>{$remark}";
+                                                    $name = $h['title'].$h['name']." ".$h['surname']." &nbsp;&nbsp;&nbsp;<b><font color='{$color}'>{$h['sta_name']}</font></b>{$remark}";
                                                     echo "
                                                         <span style='font-size: 18px;'>{$name}</span>
                                                         <br style='font-size: 18px;'>
