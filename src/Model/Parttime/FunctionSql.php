@@ -68,6 +68,62 @@ class FunctionSql extends DbScience {
             return $e->getMessage();
         }
     }
+    public function addJobTwo($data){
+        try {
+        $sql = "
+            INSERT INTO tb_job (
+                j_name,
+                j_detail,
+                j_detail_two,
+                j_s_date,
+                j_e_date,
+                j_time_work,
+                j_location,
+                regis_s_date,
+                regis_e_date,
+                interview_date,
+                announcement_date,
+                pay_id,
+                count_student,
+                st_name,
+                st_tel,
+                st_email,
+                st_line,
+                m_email,
+                js_id,
+                date_add,
+                status
+            ) VALUES (
+                :j_name,
+                :j_detail,
+                :j_detail_two,
+                :j_s_date,
+                :j_e_date,
+                :j_time_work,
+                :j_location,
+                :regis_s_date,
+                :regis_e_date,
+                :interview_date,
+                :announcement_date,
+                :pay_id,
+                :count_student,
+                :st_name,
+                :st_tel,
+                :st_email,
+                :st_line,
+                :m_email,
+                :js_id,
+                :date_add,
+                :status
+            )
+        ";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute($data);
+        return $this->pdo->lastInsertId();
+        } catch(PDOException $e) {
+            return $e->getMessage();
+        }
+    }
     public function updateJob($data){
         try{
         $sql="

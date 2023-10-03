@@ -65,7 +65,7 @@
                     $dataJ['remark']="";
                     $ckS = $sqlObj->addDataJobSta($dataJ);
                     $dataHemail = $sqlObj->getEmailByMEmailRo($dataJ['m_email'],$dataJ['num']);
-                    $msgParttime = $dataHemail['name']." ".$dataHemail['surname']."\nเรื่อง{$_POST['j_name']}\n http://app.science.kmitl.ac.th/parttime" ;
+                    $msgParttime = $dataHemail['name']." ".$dataHemail['surname']."\nเรื่อง{$_POST['j_name']}\n " ;
                     $ckLine = SentLineBasic("TguOefB2TCfmfcvmBjySvAQHoQw4FHCzgb1NbuSUvpp",$msgParttime);
                     $msg = "บันทึกข้อมูลเรียบร้อย";
                     echo "<script>";

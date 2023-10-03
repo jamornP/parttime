@@ -113,7 +113,7 @@
                                     $dataJ['remark']="แก้ไขแล้ว";
                                     $ckS = $sqlObj->addDataJobSta($dataJ);
                                     $dataHemail = $sqlObj->getEmailByMEmailRo($dataJ['m_email'],$dataJ['num']);
-                                    $msgParttime = $dataHemail['name']." ".$dataHemail['surname']."\nเรื่อง{$_POST['j_name']}\n http://app.science.kmitl.ac.th/parttime" ;
+                                    $msgParttime = $dataHemail['name']." ".$dataHemail['surname']."\nเรื่อง{$_POST['j_name']}\n " ;
                                     $ckLine = SentLineBasic("TguOefB2TCfmfcvmBjySvAQHoQw4FHCzgb1NbuSUvpp",$msgParttime);
                                     $msg = "แก้ไขข้อมูลเรียบร้อย";
                                     echo "<script>";
@@ -176,7 +176,19 @@
                                         <span style="font-size: 18px;"><?php echo $data['j_name'];?></span>
                                         <br style="font-size: 18px;">
                                     </p>
-                                    <?php echo $data['j_detail'];?>
+                                    <!-- <p>
+                                        <h5 class=""><b><font color="#0000ff">รายละเอียดงาน&nbsp;</font></b></h5>
+                                        <span style="font-size: 18px;"><?php echo $data['j_detail'];?></span>
+                                        <br style="font-size: 18px;">
+                                    </p>
+                                    <p>
+                                        <h5 class=""><b><font color="#0000ff">คุณสมบัติของผู้สมัคร&nbsp;</font></b></h5>
+                                        <span style="font-size: 18px;"><?php echo $data['j_detail_two'];?></span>
+                                        <br style="font-size: 18px;">
+                                    </p> -->
+                                    <p>
+                                        <?php echo $data['j_detail'];?>
+                                    </p>
                                     <p>
                                         <h5 class=""><b><font color="#0000ff">วันทำงาน&nbsp;</font></b></h5>
                                         <span style="font-size: 18px;">วันที่ <?php echo datethai($data['j_s_date'])." ถึง ".datethai($data['j_e_date']);?></span>

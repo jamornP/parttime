@@ -33,7 +33,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">เพิ่มข้อมูล JobJobSci@KMITL</h1>
+                            <h1 class="m-0">เพิ่มข้อมูล งาน</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
@@ -51,10 +51,14 @@
                 $_POST['js_id'] = 1;
                 $_POST['status'] = "ส่งเรื่อง";
                 $_POST['date_add']=date("Y-m-d H:i:s");
-                echo "<pre>";
-                print_r($_POST); 
-                echo"</pre>";
-                $job_id = $sqlObj->addJob($_POST);
+                // echo strlen($_POST['j_detail']);
+                // echo "<br>";
+                // echo strlen($_POST['j_detail_two']);
+                // echo "<pre>";
+                // print_r($_POST); 
+                // echo"</pre>";
+
+                $job_id = $sqlObj->addJobTwo($_POST);
                 if ($job_id) {
                     $dataJ['num']=1;
                     $dataJ['j_id']=$job_id;
@@ -64,7 +68,7 @@
                     $dataJ['remark']="";
                     $ckS = $sqlObj->addDataJobSta($dataJ);
                     $dataHemail = $sqlObj->getEmailByMEmailRo($dataJ['m_email'],$dataJ['num']);
-                    $msgParttime = $dataHemail['name']." ".$dataHemail['surname']."\nเรื่อง{$_POST['j_name']}\n http://app.science.kmitl.ac.th/parttime" ;
+                    $msgParttime = $dataHemail['name']." ".$dataHemail['surname']."\nเรื่อง{$_POST['j_name']}\n " ;
                     $ckLine = SentLineBasic("TguOefB2TCfmfcvmBjySvAQHoQw4FHCzgb1NbuSUvpp",$msgParttime);
                     $msg = "บันทึกข้อมูลเรียบร้อย";
                     echo "<script>";
@@ -80,17 +84,17 @@
             }
             ?>
             <section class="content">
-                <div class="container-fluid">
+                <div class="container">
                 <form action="" method="post" enctype="multipart/form-data" id="from-post">
                                 <div class="modal-body">
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="j_name">ชื่องาน :<b class="text-danger">*</b></label>
-                                                <input type="text" class="form-control" id="j_name" placeholder="ชื่องาน" name="j_name" required>
+                                                <input type="text" class="form-control" id="j_name" placeholder="ชื่องาน" name="j_name" required autofocus>
                                             </div>
                                         </div>
-                                        <div class="col-md-12">
+                                        <div class="col-md-12 col-lg-6">
                                             <div class="form-group">
                                                 <label for="summernote">รายละเอียดงาน :<b class="text-danger">*</b></label>
                                                 <textarea class="summernote" name="j_detail" required>
@@ -98,12 +102,37 @@
                                                 </textarea>
                                             </div>
                                         </div>
-                                        <div class="col-md-12">
+                                        <div class="col-md-12 col-lg-6">
                                             <div class="form-group">
                                                 <label for="summernote">คุณสมบัติของผู้สมัคร :<b class="text-danger">*</b></label>
-                                                <textarea class="summernote" name="j_detail" required>
+                                                <textarea class="summernote" name="j_detail_two" required>
                                                 
                                                 </textarea>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="datepicker3">วันที่เปิดรับสมัคร :<b class="text-danger">*</b></label>
+                                                <input type="text" id="datepicker3" class="form-control" name="regis_s_date" required autocomplete="off" value="" min="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="datepicker4">วันที่ปิดรับสมัคร :<b class="text-danger">*</b></label>
+                                                <input type="text" id="datepicker4" class="form-control" name="regis_e_date" required autocomplete="off" value="" min="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="datepicker5">วันที่สอบสัมภาษณ์(ใช้เวลา 1 วัน) :<b class="text-danger">*</b></label>
+                                                <input type="text" id="datepicker5" class="form-control" name="interview_date" required autocomplete="off" value="" min="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="datepicker6">วันที่ประกาศผล(หลังวันสัมภาษณ์ 2 วัน) :<b class="text-danger">*</b></label>
+                                                <input type="text" id="datepicker6" class="form-control" name="announcement_date" required autocomplete="off" value="" min="">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
@@ -127,31 +156,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="position">สถานที่ทำงาน เช่น อาคาร ชั้น ห้อง :<b class="text-danger">*</b></label>
-                                                <textarea class="form-control" rows="3" placeholder="Enter ..." id="position"  name="j_location" required></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="datepicker3">วันที่เปิดรับสมัคร :<b class="text-danger">*</b></label>
-                                                <input type="text" id="datepicker3" class="form-control" name="regis_s_date" required autocomplete="off" value="" min="">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="datepicker4">วันที่ปิดรับสมัคร :<b class="text-danger">*</b></label>
-                                                <input type="text" id="datepicker4" class="form-control" name="regis_e_date" required autocomplete="off" value="" min="">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="datepicker5">วันที่สอบสัมภาษณ์(ใช้เวลา 1 วัน) :<b class="text-danger">*</b></label>
-                                                <input type="text" id="datepicker5" class="form-control" name="interview_date" required autocomplete="off" value="" min="">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="datepicker6">วันที่ประกาศผล(หลังวันสัมภาษณ์ 2 วัน) :<b class="text-danger">*</b></label>
-                                                <input type="text" id="datepicker6" class="form-control" name="announcement_date" required autocomplete="off" value="" min="">
+                                                <textarea class="form-control" rows="2" placeholder="" id="position"  name="j_location" required></textarea>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
