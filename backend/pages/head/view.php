@@ -93,7 +93,15 @@ $sqlObj = new FunctionSql;
                                     </p>
                                     <p>
                                         <h5 class="text-danger"><b><font>วันที่สอบสัมภาษณ์&nbsp;</font></b></h5>
-                                        <span style="font-size: 18px;">วันที่ <?php echo datethai($data['announcement_date']);?></span>
+                                        <span style="font-size: 18px;">วันที่ <?php echo datethai($data['interview_date']);?></span>
+                                    </p>
+                                    <p>
+                                        <h5 class="text-danger"><b><font>สถานที่สอบสัมภาษณ์&nbsp;</font></b></h5>
+                                        <span style="font-size: 18px;"><?php echo$data['in_location'];?></span>
+                                    </p>
+                                    <p>
+                                        <h5 class="text-danger"><b><font>เวลาสอบสัมภาษณ์&nbsp;</font></b></h5>
+                                        <span style="font-size: 18px;"><?php echo$data['in_time'];?></span>
                                     </p>
                                     <hr>
                                     <p>
@@ -105,6 +113,8 @@ $sqlObj = new FunctionSql;
                                         <span style="font-size: 18px;">Tel : <?php echo $data['st_tel'];?></span>
                                         <br style="font-size: 18px;">
                                         <span style="font-size: 18px;">Line ID : <?php echo $data['st_line'];?></span>
+                                        <br style="font-size: 18px;">
+                                        <span style="font-size: 18px;">สถานที่ติดต่อ : <?php echo $data['st_location'];?></span>
                                         <br style="font-size: 18px;">
                                     </p>
                                     <hr>

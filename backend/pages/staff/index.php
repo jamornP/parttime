@@ -238,7 +238,19 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="datepicker6">วันที่ประกาศผล(หลังวันสัมภาษณ์ 2 วัน) :<b class="text-danger">*</b></label>
+                                                <label for="in_location">สถานที่สัมภาษณ์ :<b class="text-danger">*</b></label>
+                                                <input type="text" id="in_location" class="form-control" name="in_location" required >
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="in_time">เวลาสัมภาษณ์ :<b class="text-danger">*</b></label>
+                                                <input type="text" id="in_time" class="form-control" name="in_time" required >
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="datepicker6">วันที่ประกาศผล(หลังวันสัมภาษณ์ 1 วัน) :<b class="text-danger">*</b></label>
                                                 <input type="text" id="datepicker6" class="form-control" name="announcement_date" required autocomplete="off" value="" min="">
                                             </div>
                                         </div>
@@ -260,7 +272,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="count_student">จำนวน นักศึกษาที่รับ :<b class="text-danger">*</b></label>
-                                                <input type="number" class="form-control" id="count_student" placeholder="2" name="count_student" required>
+                                                <input type="number" class="form-control" id="count_student" placeholder="0" name="count_student" required>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
@@ -290,6 +302,12 @@
                                             <div class="form-group">
                                                 <label for="st_line">line ID :</label>
                                                 <input type="text" class="form-control" id="st_line" placeholder="lind ID" name="st_line">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="st_locatiom">สถานที่ :</label>
+                                                <input type="text" class="form-control" id="st_locatiom" placeholder="สถานที่" name="st_locatiom">
                                             </div>
                                         </div>
                                     </div>

@@ -215,7 +215,11 @@
                                     </p>
                                     <p>
                                         <h5 class="text-danger"><b><font>วันที่สอบสัมภาษณ์&nbsp;</font></b></h5>
-                                        <span style="font-size: 18px;"><b>วันที่ <?php echo datethai($data['announcement_date']);?></b></span>
+                                        <span style="font-size: 18px;"><b>วันที่ <?php echo datethai($data['interview_date']);?></b></span>
+                                        <br style="font-size: 18px;">
+                                        <span style="font-size: 18px;"><b>สถานที่ <?php echo $data['in_location'];?></b></span>
+                                        <br style="font-size: 18px;">
+                                        <span style="font-size: 18px;"><b>เวลา <?php echo $data['in_time'];?></b></span>
                                     </p>
                                     <hr>
                                     <p>
@@ -227,6 +231,8 @@
                                         <span style="font-size: 18px;">Tel : <?php echo $data['st_tel'];?></span>
                                         <br style="font-size: 18px;">
                                         <span style="font-size: 18px;">Line ID : <?php echo $data['st_line'];?></span>
+                                        <br style="font-size: 18px;">
+                                        <span style="font-size: 18px;">สถานที่ : <?php echo $data['st_location'];?></span>
                                         <br style="font-size: 18px;">
                                     </p>
                                     <hr>
@@ -426,6 +432,18 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
+                                                <label for="in_location">สถานที่สัมภาษณ์ :<b class="text-danger">*</b></label>
+                                                <input type="text" id="in_location" class="form-control" name="in_location" required  value="<?php echo $data['in_location'];?>" >
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="in_time">เวลาสัมภาษณ์ :<b class="text-danger">*</b></label>
+                                                <input type="text" id="in_time" class="form-control" name="in_time" required  value="<?php echo $data['in_time'];?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
                                                 <label for="datepicker6">วันที่ประกาศผล(หลังวันสัมภาษณ์ 2 วัน) :<b class="text-danger">*</b></label>
                                                 <input type="text" id="datepicker6" class="form-control" name="announcement_date" required autocomplete="off" value="<?php echo $data['announcement_date'];?>" min="">
                                             </div>
@@ -479,6 +497,12 @@
                                             <div class="form-group">
                                                 <label for="st_line">line ID :</label>
                                                 <input type="text" class="form-control" id="st_line" placeholder="lind ID" name="st_line" value="<?php echo $data['st_line'];?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="st_location">สถานที่ติดต่อ :</label>
+                                                <input type="text" class="form-control" id="st_location" placeholder="" name="st_location" value="<?php echo $data['st_location'];?>">
                                             </div>
                                         </div>
                                     </div>

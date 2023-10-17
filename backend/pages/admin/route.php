@@ -58,6 +58,7 @@ date_default_timezone_set('Asia/Bangkok');
                             if(count($dataMember) < 2){
                                 $data['m_email']=$dataMember[0]['m_email'];
                                 $data['wu_id']=$_POST['wu_id'];
+                                $ck = $sqlObj->delRouteByEmail($data['m_email']);
                                 $ro_num =0;
                                 foreach($_POST['h_email'] as $h_email){
                                     $ro_num++;
@@ -83,6 +84,7 @@ date_default_timezone_set('Asia/Bangkok');
                                 foreach($dataMember as $member){
                                     $data['m_email']=$member['m_email'];
                                     $data['wu_id']=$_POST['wu_id'];
+                                    $ck = $sqlObj->delRouteByEmail($data['m_email']);
                                     $ro_num =0;
                                     foreach($_POST['h_email'] as $h_email){
                                         $ro_num++;

@@ -126,7 +126,15 @@
                                     </p>
                                     <p>
                                         <h5 class="text-danger"><b><font>วันที่สอบสัมภาษณ์&nbsp;</font><font color="#ED2939">*</font></b></h5>
-                                        <span style="font-size: 18px;"><b>วันที่ <?php echo datethai($data['announcement_date']);?></b></span>
+                                        <span style="font-size: 18px;"><b>วันที่ <?php echo datethai($data['interview_date']);?></b></span>
+                                    </p>
+                                    <p>
+                                        <h5 class="text-danger"><b><font>สถานที่สอบสัมภาษณ์&nbsp;</font><font color="#ED2939"></font></b></h5>
+                                        <span style="font-size: 18px;"><b><?php $data['in_location'];?></b></span>
+                                    </p>
+                                    <p>
+                                        <h5 class="text-danger"><b><font>เวลาสอบสัมภาษณ์&nbsp;</font><font color="#ED2939"></font></b></h5>
+                                        <span style="font-size: 18px;"><b><?php $data['in_time'];?></b></span>
                                     </p>
                                     <hr>
                                     <p>
@@ -138,6 +146,8 @@
                                         <span style="font-size: 18px;">Tel : <?php echo $data['st_tel'];?></span>
                                         <br style="font-size: 18px;">
                                         <span style="font-size: 18px;">Line ID : <?php echo $data['st_line'];?></span>
+                                        <br style="font-size: 18px;">
+                                        <span style="font-size: 18px;">สถานที่ติดต่อ : <?php echo $data['st_location'];?></span>
                                         <br style="font-size: 18px;">
                                     </p>
                                     
@@ -190,13 +200,13 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="stu_name">ชื่อ นามสกุล :<b class="text-danger">*</b></label>
-                                                <input type="text" class="form-control" id="stu_name" placeholder=""  value="<?php echo $_SESSION['fullname'];?>" name="stu_name" required>
+                                                <input type="text" class="form-control" id="stu_name" placeholder=""  value="<?php echo $_SESSION['fullname'];?>" name="stu_name" required readonly>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="stu_id">รหัสนักศึกษา :<b class="text-danger">*</b></label>
-                                                <input type="text" class="form-control" id="stu_id" placeholder="66050501" value="<?php echo $_SESSION['stu_id'];?>" name="stu_id" required>
+                                                <input type="text" class="form-control" id="stu_id" placeholder="66050501" value="<?php echo $_SESSION['stu_id'];?>" name="stu_id" required readonly>
                                             </div>
                                         </div>
                                         <div class="col-md-2">

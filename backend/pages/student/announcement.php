@@ -44,6 +44,7 @@
                     </div>
                 </div>
             </div>
+           
             <section class="content">
                 <div class="container">
                     <div class="row">
@@ -58,31 +59,45 @@
                             <img class="img-circle" src="/parttime/backend/images/logo/user.png" alt="User Avatar">
                         </div>
                         <?php 
-                            $ckAcc = $sqlObj->getRegisByJidStu($_GET['id'],$_SESSION['stu_email'])[0];
-                            if($ckAcc['re_status']=="accept"){
-                                echo "
-                                    <div class='card-footer bg-success'>
-                                        <div class='text-center'>
-                                            <h4 class = 'text-center '>Job : {$ckAcc['j_name']}</h4><br>
-                                            <h2 class = 'text-center '>คุณได้รับการคัดเลือก</h2>
-                                            <h3 class = 'text-center'>กรุณาติดต่อ</h3>
-                                            <h5 class = 'fs-20'>คุณ{$ckAcc['st_name']}</h5>
-                                            <h5 class = 'fs-20'>เบอร์โทร : {$ckAcc['st_tel']}</h5>
-                                            <h5 class = 'fs-20'>email : {$ckAcc['st_email']}</h5>
-                                            <h5 class = 'fs-20'>line : {$ckAcc['st_line']}</h5>
+                            $job = $sqlObj->getJob($_GET['id']);
+                            $ckAcc = $sqlObj->getRegisByJidStu($_GET['id'],$_SESSION['stu_email']);
+                            // print_r($ckAcc);
+                            if(count($ckAcc)> 0){
+                                if($ckAcc[0]['re_status']=="accept"){
+                                    echo "
+                                        <div class='card-footer bg-success'>
+                                            <div class='text-center'>
+                                                <h4 class = 'text-center '>Job : {$job['j_name']}</h4><br>
+                                                <h2 class = 'text-center '>คุณได้รับการคัดเลือก</h2>
+                                                <h3 class = 'text-center'>กรุณาติดต่อ</h3>
+                                                <h5 class = 'fs-20'>คุณ{$ckAcc['st_name']}</h5>
+                                                <h5 class = 'fs-20'>เบอร์โทร : {$ckAcc['st_tel']}</h5>
+                                                <h5 class = 'fs-20'>email : {$ckAcc['st_email']}</h5>
+                                                <h5 class = 'fs-20'>line : {$ckAcc['st_line']}</h5>
+                                            </div>
                                         </div>
-                                    </div>
-                                ";
+                                    ";
+                                }else{
+                                    echo "
+                                        <div class='card-footer bg-danger'>
+                                            <div class='text-center'>
+                                                <h4 class = 'text-center '>Job : {$job['j_name']}</h4><br>
+                                                <h2 class = 'text-center '>คุณยังไม่ได้รับการคัดเลือก<br></h2>
+                                            </div>
+                                        </div>
+                                    ";
+                                }
                             }else{
                                 echo "
-                                    <div class='card-footer bg-danger'>
-                                        <div class='text-center'>
-                                            <h4 class = 'text-center '>Job : {$ckAcc['j_name']}</h4><br>
-                                            <h2 class = 'text-center '>คุณยังไม่ได้รับการคัดเลือก<br></h2>
-                                        </div>
+                                <div class='card-footer bg-danger'>
+                                    <div class='text-center'>
+                                        <h4 class = 'text-center '>Job : {$job['j_name']}</h4><br>
+                                        <h2 class = 'text-center '>คุณยังไม่ได้รับการคัดเลือก<br></h2>
                                     </div>
-                                ";
+                                </div>
+                            ";
                             }
+                           
                         ?>
                         <br>
                         <p class="text-center">

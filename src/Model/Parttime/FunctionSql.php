@@ -27,6 +27,8 @@ class FunctionSql extends DbScience {
                 regis_s_date,
                 regis_e_date,
                 interview_date,
+                in_location,
+                in_time,
                 announcement_date,
                 pay_id,
                 count_student,
@@ -34,6 +36,7 @@ class FunctionSql extends DbScience {
                 st_tel,
                 st_email,
                 st_line,
+                st_location,
                 m_email,
                 js_id,
                 date_add,
@@ -48,6 +51,8 @@ class FunctionSql extends DbScience {
                 :regis_s_date,
                 :regis_e_date,
                 :interview_date,
+                :in_location,
+                :in_time,
                 :announcement_date,
                 :pay_id,
                 :count_student,
@@ -55,6 +60,7 @@ class FunctionSql extends DbScience {
                 :st_tel,
                 :st_email,
                 :st_line,
+                :st_location,
                 :m_email,
                 :js_id,
                 :date_add,
@@ -210,6 +216,16 @@ class FunctionSql extends DbScience {
         $data = $stmt->fetchAll();
         return $data[0];
     }
+    public function getJob($j_id){
+        $sql ="
+            SELECT * 
+            FROM tb_job 
+            WHERE j_id = {$j_id}
+        ";
+        $stmt = $this->pdo->query($sql);
+        $data = $stmt->fetchAll();
+        return $data[0];
+    }
     //LEFT JOIN tb_department_route as dr ON dr.ro_num = j.js_id
     // WHERE j.m_email = '{$m_email}' AND dr.m_email = '{$m_email}'
     public function getJobByEmail($m_email){
@@ -278,6 +294,18 @@ class FunctionSql extends DbScience {
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute($data);
         return $this->pdo->lastInsertId();
+    }
+    public function delRouteByEmail($email){
+        $sql = "
+            DELETE FROM tb_department_route
+            WHERE m_email = '{$email}'
+        ";
+        $stmt = $this->pdo->query($sql);
+        if($stmt){
+            return true;
+        }else{
+            return false;
+        }
     }
     public function delDeRouteById($id){
         $sql = "
@@ -562,6 +590,7 @@ class FunctionSql extends DbScience {
             SELECT *
             FROM tb_register
             WHERE j_id = {$j_id}
+            ORDER BY re_status,re_date
         ";
         $stmt = $this->pdo->query($sql);
         $data = $stmt->fetchAll();
@@ -572,6 +601,7 @@ class FunctionSql extends DbScience {
             SELECT *
             FROM tb_register
             WHERE j_id = {$j_id} AND re_status = 'accept'
+            ORDER BY stu_id
         ";
         $stmt = $this->pdo->query($sql);
         $data = $stmt->fetchAll();
@@ -583,6 +613,7 @@ class FunctionSql extends DbScience {
             FROM tb_register as re
             LEFT JOIN tb_job as j ON j.j_id = re.j_id
             WHERE re.stu_email = '{$stu_email}' AND j.j_id = {$j_id}
+            ORDER BY j.j_s_date
         ";
         $stmt = $this->pdo->query($sql);
         $data = $stmt->fetchAll();
