@@ -5,8 +5,8 @@ use PDO;
 
 class DbScience{
     private $host = "localhost";
-	private $user = "usersci";
-	private $password = "sciencepwd";
+	private $user = "root";
+	private $password = "";
 	private $dbName = "db_science_user";
 	protected $pdo;
 

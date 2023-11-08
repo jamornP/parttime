@@ -52,9 +52,9 @@
                 $_POST['js_id'] = 1;
                 $_POST['status'] = "ส่งเรื่อง";
                 $_POST['date_add']=date("Y-m-d H:i:s");
-                echo "<pre>";
-                print_r($_POST); 
-                echo"</pre>";
+                // echo "<pre>";
+                // print_r($_POST); 
+                // echo"</pre>";
                 $job_id = $sqlObj->addJob($_POST);
                 if ($job_id) {
                     $dataJ['num']=1;
@@ -77,7 +77,7 @@
                     echo "alertError('{$msg}','index.php')";
                     echo "</script>";
                   }
-                // echo $job_id;
+                echo $job_id;
             }
             ?>
             <section class="content">
@@ -117,6 +117,9 @@
                                     <tbody>
                                         <?PHP 
                                             $dataJob = $sqlObj->getJobByEmail($_SESSION['m_email']);
+                                            // echo "<pre>";
+                                            // print_r($dataJob);
+                                            // echo "</pre>";
                                             // $dataJob = $sqlObj->getJobByEmail('akarit.ta@kmitl.ac.th');
                                             $i = 0;
                                             foreach($dataJob as $j){
@@ -306,8 +309,8 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="st_locatiom">สถานที่ :</label>
-                                                <input type="text" class="form-control" id="st_locatiom" placeholder="สถานที่" name="st_locatiom">
+                                                <label for="st_location">สถานที่ :</label>
+                                                <input type="text" class="form-control" id="st_location" placeholder="สถานที่" name="st_location">
                                             </div>
                                         </div>
                                     </div>
@@ -320,152 +323,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- edit -->
-                <div class="modal fade" id="modal-edit">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title">แก้ไขข้อมูลงาน</h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <form action="" method="post" enctype="multipart/form-data" id="from-post">
-                                <div class="modal-body">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label for="j_name">ชื่องาน :<b class="text-danger">*</b></label>
-                                                <input type="text" class="form-control" id="j_name" placeholder="ชื่องาน" name="j_name" required value="<?php echo $j['j_name'];?>">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label for="summernote">รายละเอียดงาน :<b class="text-danger">*</b></label>
-                                                <textarea id="summernote" name="j_detail" required>
-                                                <p>
-                                                    <h5 class=""><b><font color="#0000ff">รายละเอียดงาน&nbsp;</font></b></h5>
-                                                    <span style="font-size: 18px;">1.ช่วยงานลงทะเบียน พัสดุไปรษณีย์</span>
-                                                    <br style="font-size: 18px;">
-                                                    <span style="font-size: 18px;">2.สนับสนุนตอบคำถาม เกี่ยวกับหอพักนักศึกษา</span>
-                                                    <br style="font-size: 18px;">
-                                                    <span style="font-size: 18px;">3.สนับสนุนการพิมพ์เอกสาร</span>
-                                                </p>
-                                                <p>
-                                                    <h5 class=""><b><font color="#0000ff">คุณสมบัติของผู้สมัคร&nbsp;</font></b></h5>
-                                                    <span style="font-size: 18px;">- รับนักศึกษา ทุกคณะ/ทุกชั้นปี</span>
-                                                </p>
-                                                </textarea>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="datepicker">วันที่เริ่มงาน :<b class="text-danger">*</b></label>
-                                                <input type="text" id="datepicker" class="form-control" name="j_s_date" required autocomplete="off" value="<?php echo date("Y-m-d");?>" min="<?php echo date("Y-m-d");?>">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="datepicker2">วันที่สิ้นสุด :<b class="text-danger">*</b></label>
-                                                <input type="text" id="datepicker2" class="form-control" name="j_e_date" required autocomplete="off" value="" min="">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="time">ช่วงเวลา :<b class="text-danger">*</b></label>
-                                                <input type="text" id="time" class="form-control" name="j_time_work" required  placeholder="12:00 - 16:00" >
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label for="position">สถานที่ทำงาน เช่น อาคาร ชั้น ห้อง :<b class="text-danger">*</b></label>
-                                                <textarea class="form-control" rows="3" placeholder="Enter ..." id="position"  name="j_location" required></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="datepicker3">วันที่เปิดรับสมัคร :<b class="text-danger">*</b></label>
-                                                <input type="text" id="datepicker3" class="form-control" name="regis_s_date" required autocomplete="off" value="" min="">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="datepicker4">วันที่ปิดรับสมัคร :<b class="text-danger">*</b></label>
-                                                <input type="text" id="datepicker4" class="form-control" name="regis_e_date" required autocomplete="off" value="" min="">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="datepicker5">วันที่สอบสัมภาษณ์(ใช้เวลา 1 วัน) :<b class="text-danger">*</b></label>
-                                                <input type="text" id="datepicker5" class="form-control" name="interview_date" required autocomplete="off" value="" min="">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="datepicker6">วันที่ประกาศผล(หลังวันสัมภาษณ์ 2 วัน) :<b class="text-danger">*</b></label>
-                                                <input type="text" id="datepicker6" class="form-control" name="announcement_date" required autocomplete="off" value="" min="">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="j_pay">รายละเอียดค่าตอบแทน :<b class="text-danger">*</b></label>
-                                                <select class="form-control select2" style="width: 100%;" name="pay_id">
-                                                    <?php 
-                                                        $dataPay = $sqlObj->getPayAll();
-                                                        foreach($dataPay as $p){
-                                                            echo "
-                                                                <option value='{$p['pay_id']}'>{$p['pay_name']}</option>
-                                                            ";
-                                                        }
-                                                    ?>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="count_student">จำนวน นักศึกษาที่รับ :<b class="text-danger">*</b></label>
-                                                <input type="number" class="form-control" id="count_student" placeholder="2" name="count_student" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                        <hr>
-                                        <b><p>รายละเอียดผู้รับผิดชอบ / ผู้ติดต่อ</p></b>
-                                        </div>
-                                        
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="st_name">ชื่อ - นามสกุล :<b class="text-danger">*</b></label>
-                                                <input type="text" class="form-control" id="st_name" placeholder="ชื่อ - นามสกุล" name="st_name" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="st_tel">เบอร์โทร :<b class="text-danger">*</b></label>
-                                                <input type="text" class="form-control" id="st_tel" placeholder="เบอร์โทร" name="st_tel" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="st_email">email :<b class="text-danger">*</b></label>
-                                                <input type="text" class="form-control" id="st_email" placeholder="email" name="st_email" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="st_line">line ID :</label>
-                                                <input type="text" class="form-control" id="st_line" placeholder="lind ID" name="st_line">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal-footer justify-content-between">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary" name="add">เพิ่ม</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+               
             </section>
            
 

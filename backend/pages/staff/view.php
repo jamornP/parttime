@@ -95,6 +95,7 @@
                             // print_r($_POST);
                             // echo "</pre>";
                             $ck =$sqlObj->updateJob($_POST);
+                            // echo $ck;
                             if ($ck) {
                                 $udata['j_id'] = $j_id;
                                 $udata['num'] = 1;
@@ -339,6 +340,8 @@
                                                     if(count($dataRegis)>0){
                                                     ?>
                                                         
+                                                            <a href="excel.php?action=select&id=<?php echo $j_id;?>" class="btn btn-info mr-2" ><i class="far fa-sticky-note"></i> คนที่ถูกเลือก</a>
+                                                            <a href="excel.php?action=all&id=<?php echo $j_id;?>" class="btn btn-info mr-2" ><i class="far fa-sticky-note"></i> ผู้สมัครทั้งหมด</a>
                                                             <button type="submit" class="btn btn-success" name="select">Submit</button>
                                                         
                                                     <?php  
