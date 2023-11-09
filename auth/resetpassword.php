@@ -125,7 +125,7 @@ $sqlObj = new FunctionSql;
   <!-- /.login-box -->
 
   <!-- script -->
-  <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/app-certificate/backend/component/script.php");   ?>
+  <?php require $_SERVER['DOCUMENT_ROOT'] . "/parttime/backend/components/script.php"; ?>
 </body>
 
 </html>

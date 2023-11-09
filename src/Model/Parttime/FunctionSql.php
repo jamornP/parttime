@@ -145,6 +145,8 @@ class FunctionSql extends DbScience {
             regis_s_date=:regis_s_date,
             regis_e_date=:regis_e_date,
             interview_date=:interview_date,
+            in_location=:in_location,
+            in_time=:in_time,
             announcement_date=:announcement_date,
             pay_id=:pay_id,
             count_student=:count_student,
@@ -152,6 +154,7 @@ class FunctionSql extends DbScience {
             st_tel=:st_tel,
             st_email=:st_email,
             st_line=:st_line,
+            st_location=:st_location,
             m_email=:m_email,
             js_id=:js_id,
             date_add=:date_add,
@@ -253,12 +256,13 @@ class FunctionSql extends DbScience {
         return $data;
     }
     public function getJobAccept(){
+        $dateN = date("Y-m-d");
         $sql = "
             SELECT j.*,p.pay_name as pay
             FROM tb_data_job_status as djs
             LEFT join tb_job as j on j.j_id = djs.j_id 
             LEFT JOIN tb_pay as p ON p.pay_id = j.pay_id
-            WHERE djs.sta_name = 'อนุมัติ'
+            WHERE djs.sta_name = 'อนุมัติ' AND j.regis_e_date >= '{$dateN}'
         ";
         $stmt = $this->pdo->query($sql);
         $data = $stmt->fetchAll();
@@ -662,6 +666,28 @@ class FunctionSql extends DbScience {
         $stmt = $this->pdo->query($sql);
         $data = $stmt->fetchAll();
         return count($data);
+    }
+    public function getRegisByJidAllExcel($j_id){
+        $sql = "
+            SELECT *
+            FROM tb_register
+            WHERE j_id = {$j_id} 
+            ORDER BY stu_id,stu_class,stu_sub_department,stu_department
+        ";
+        $stmt = $this->pdo->query($sql);
+        $data = $stmt->fetchAll();
+        return $data;
+    }
+    public function getRegisByJidStExcel($j_id){
+        $sql = "
+            SELECT *
+            FROM tb_register
+            WHERE j_id = {$j_id} AND re_status = 'accept'
+            ORDER BY stu_id,stu_class,stu_sub_department,stu_department
+        ";
+        $stmt = $this->pdo->query($sql);
+        $data = $stmt->fetchAll();
+        return $data;
     }
 // tb_student
     public function getSudentAll(){
