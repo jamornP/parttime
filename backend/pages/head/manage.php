@@ -173,7 +173,7 @@
                                     </p>
                                     <p>
                                         <h5 class="text-danger"><b><font>วันที่สอบสัมภาษณ์&nbsp;</font></b></h5>
-                                        <span style="font-size: 18px;">วันที่ <?php echo datethai($data['announcement_date']);?></span>
+                                        <span style="font-size: 18px;">วันที่ <?php echo datethai($data['interview_date']);?></span>
                                     </p>
                                     <hr>
                                     <p>
