@@ -74,12 +74,12 @@
                                 $ckU = $sqlObj->updateJobStatus($dataU);
                                 if($ckU){
                                     if($_POST['sta_name']=="อนุมัติ"){
-                                        $msgParttime = "คุณ".$data['name']." ".$data['surname']."\nเรื่อง{$data['j_name']}\nอนุมัติแล้ว\nและระบบดำเนินการ เปิดรับสมัครให้แล้ว\n";
+                                        $msgParttime = $data['title'].$data['name']." ".$data['surname']."\nเรื่อง{$data['j_name']}\nอนุมัติแล้ว\nและระบบดำเนินการ เปิดรับสมัครให้แล้ว\n";
                                         $ckUstatus = $sqlObj->updateStatus($j_id,"อนุมัติ");
                                         $ckLine = SentLineBasic("3BeWp4Y3w1xVjRVuQFu3pJAVrws6nBcxSgMgjfq8E3R",$msgParttime);
                                     }else{
                                         $dataName = $sqlObj->getEmailByMEmailRo($data['m_email'],$dataU['js_id']);
-                                        $msgParttime = "คุณ".$dataName['name']." ".$dataName['surname']."\nเรื่อง{$data['j_name']}\n";
+                                        $msgParttime = $data['title'].$dataName['name']." ".$dataName['surname']."\nเรื่อง{$data['j_name']}\n";
                                         $ckLine = SentLineBasic("TguOefB2TCfmfcvmBjySvAQHoQw4FHCzgb1NbuSUvpp",$msgParttime);
                                     }
                                     $msg = "บันทึกข้อมูลเรียบร้อย";
@@ -118,7 +118,7 @@
                                 $ckU = $sqlObj->updateJobStatus($dataU);
                                 if($ckU){
                                     $ckUstatus = $sqlObj->updateStatus($j_idD,"ตีกลับ");
-                                    $msgParttime = "คุณ".$data['name']." ".$data['surname']."\nเรื่อง{$data['j_name']}\nถูกตีกลับ \nเนื่องจาก :".$dataA['remark']."\n";
+                                    $msgParttime = $data['title'].$data['name']." ".$data['surname']."\nเรื่อง{$data['j_name']}\nถูกตีกลับ \nเนื่องจาก :".$dataA['remark']."\n";
                                     $ckLine = SentLineBasic("3BeWp4Y3w1xVjRVuQFu3pJAVrws6nBcxSgMgjfq8E3R",$msgParttime);
                                     
                                     $msg = "บันทึกข้อมูลเรียบร้อย";
