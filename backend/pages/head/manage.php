@@ -79,7 +79,7 @@
                                         $ckLine = SentLineBasic("3BeWp4Y3w1xVjRVuQFu3pJAVrws6nBcxSgMgjfq8E3R",$msgParttime);
                                     }else{
                                         $dataName = $sqlObj->getEmailByMEmailRo($data['m_email'],$dataU['js_id']);
-                                        $msgParttime = $data['title'].$dataName['name']." ".$dataName['surname']."\nเรื่อง{$data['j_name']}\n";
+                                        $msgParttime = $dataName['title'].$dataName['name']." ".$dataName['surname']."\nเรื่อง{$data['j_name']}\n";
                                         $ckLine = SentLineBasic("TguOefB2TCfmfcvmBjySvAQHoQw4FHCzgb1NbuSUvpp",$msgParttime);
                                     }
                                     $msg = "บันทึกข้อมูลเรียบร้อย";
