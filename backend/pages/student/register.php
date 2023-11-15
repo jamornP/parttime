@@ -130,11 +130,11 @@
                                     </p>
                                     <p>
                                         <h5 class="text-danger"><b><font>สถานที่สอบสัมภาษณ์&nbsp;</font><font color="#ED2939"></font></b></h5>
-                                        <span style="font-size: 18px;"><b><?php $data['in_location'];?></b></span>
+                                        <span style="font-size: 18px;"><b><?php echo $data['in_location'];?></b></span>
                                     </p>
                                     <p>
                                         <h5 class="text-danger"><b><font>เวลาสอบสัมภาษณ์&nbsp;</font><font color="#ED2939"></font></b></h5>
-                                        <span style="font-size: 18px;"><b><?php $data['in_time'];?></b></span>
+                                        <span style="font-size: 18px;"><b><?php echo $data['in_time'];?></b></span>
                                     </p>
                                     <hr>
                                     <p>

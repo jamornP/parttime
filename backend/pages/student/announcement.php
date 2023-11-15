@@ -70,10 +70,10 @@
                                                 <h4 class = 'text-center '>Job : {$job['j_name']}</h4><br>
                                                 <h2 class = 'text-center '>คุณได้รับการคัดเลือก</h2>
                                                 <h3 class = 'text-center'>กรุณาติดต่อ</h3>
-                                                <h5 class = 'fs-20'>คุณ{$ckAcc['st_name']}</h5>
-                                                <h5 class = 'fs-20'>เบอร์โทร : {$ckAcc['st_tel']}</h5>
-                                                <h5 class = 'fs-20'>email : {$ckAcc['st_email']}</h5>
-                                                <h5 class = 'fs-20'>line : {$ckAcc['st_line']}</h5>
+                                                <h5 class = 'fs-20'>คุณ{$ckAcc[0]['st_name']}</h5>
+                                                <h5 class = 'fs-20'>เบอร์โทร : {$ckAcc[0]['st_tel']}</h5>
+                                                <h5 class = 'fs-20'>email : {$ckAcc[0]['st_email']}</h5>
+                                                <h5 class = 'fs-20'>line : {$ckAcc[0]['st_line']}</h5>
                                             </div>
                                         </div>
                                     ";

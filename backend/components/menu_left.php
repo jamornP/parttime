@@ -254,7 +254,7 @@ if(isset($_SESSION['m_email'])){
                         <li class='nav-item'>
                           <a href='/parttime/backend/pages/student' class='nav-link'>
                             <i class='nav-icon far fa-clipboard'></i>
-                            <p> งานทั้งหมด </p>
+                            <p> งานที่เปิดรับสมัครอยู่ </p>
                           </a>
                         </li>
                       ";

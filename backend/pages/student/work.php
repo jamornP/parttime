@@ -63,38 +63,40 @@
                         </thead>
                         <tbody>
                             <?PHP 
-                                $dataJob = $sqlObj->getJobAccept();
+                                $dataJob = $sqlObj->getJobAccept2();
                                 $i = 0;
                                 foreach($dataJob as $j){
-                                    $stu = $sqlObj->countStuRegisByJId($j['j_id']);
-                                    $i++;
-                                    $dateWork = datethai($j['j_s_date'])." - ".datethai($j['j_e_date']); 
-                                    $dateRegister = datethai($j['regis_s_date'])." - ".datethai($j['regis_e_date']); 
-                                    $dateInterview = datethai($j['interview_date']); 
-                                    
-                                    $dateN = date("Y-m-d");
-                                    if($dateN > $j['announcement_date']){
-                                        $dateAnnouncement = "<a href='announcement.php?id={$j['j_id']}'><i class='fas fa-bell text-danger'></i> ประกาศผล</a>";
-                                        $color ="";
-                                    }else{
-                                        $dateAnnouncement = datethai($j['announcement_date']); 
-                                        $color ="text-warning";
+                                    $stu = $sqlObj->countStuRegisByJIdEmail($j['j_id'],$_SESSION['stu_email']);
+                                    if($stu>0){
+                                        $i++;
+                                        $dateWork = datethai($j['j_s_date'])." - ".datethai($j['j_e_date']); 
+                                        $dateRegister = datethai($j['regis_s_date'])." - ".datethai($j['regis_e_date']); 
+                                        $dateInterview = datethai($j['interview_date']); 
+                                        
+                                        $dateN = date("Y-m-d");
+                                        if($dateN >= $j['announcement_date']){
+                                            $dateAnnouncement = "<a href='announcement.php?id={$j['j_id']}'><i class='fas fa-bell text-danger'></i> ประกาศผล</a>";
+                                            $color ="";
+                                        }else{
+                                            $dateAnnouncement = datethai($j['announcement_date']); 
+                                            $color ="text-warning";
+                                        }
+                                        echo "
+                                            <tr class='fs-14'>
+                                                <td>{$i}</td>
+                                                <td><a href='register.php?id={$j['j_id']}'>{$j['j_name']}</a></td>
+                                                <td class='text-center'>{$dateWork}</td>
+                                                <td class='text-center text-success'>{$dateRegister}</td>
+                                                <td class='text-center text-danger'>{$dateInterview}</td>
+                                                <td>{$j['pay']}</td>
+                                                <td class='text-center'>{$j['count_student']}/{$stu}</td>
+                                                <td class='text-center'>{$j['st_name']}</td>
+                                                <td class='text-center'>{$j['st_tel']}</td>
+                                                <td class='text-center {$color}'><b>{$dateAnnouncement}</b></td>
+                                                
+                                            </tr>
+                                        ";
                                     }
-                                    echo "
-                                        <tr class='fs-14'>
-                                            <td>{$i}</td>
-                                            <td><a href='register.php?id={$j['j_id']}'>{$j['j_name']}</a></td>
-                                            <td class='text-center'>{$dateWork}</td>
-                                            <td class='text-center text-success'>{$dateRegister}</td>
-                                            <td class='text-center text-danger'>{$dateInterview}</td>
-                                            <td>{$j['pay']}</td>
-                                            <td class='text-center'>{$j['count_student']}/{$stu}</td>
-                                            <td class='text-center'>{$j['st_name']}</td>
-                                            <td class='text-center'>{$j['st_tel']}</td>
-                                            <td class='text-center {$color}'><b>{$dateAnnouncement}</b></td>
-                                            
-                                        </tr>
-                                    ";
                                 }
                             ?>
                         </tbody>

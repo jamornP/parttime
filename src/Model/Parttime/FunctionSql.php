@@ -2,7 +2,7 @@
 namespace App\Model\Parttime;
 use App\Database\DbScience;
 use PDOException;
-
+date_default_timezone_set('Asia/Bangkok');
 class FunctionSql extends DbScience {
 // tb_pay
     public function getPayAll(){
@@ -263,6 +263,19 @@ class FunctionSql extends DbScience {
             LEFT join tb_job as j on j.j_id = djs.j_id 
             LEFT JOIN tb_pay as p ON p.pay_id = j.pay_id
             WHERE djs.sta_name = 'อนุมัติ' AND j.regis_e_date >= '{$dateN}'
+        ";
+        $stmt = $this->pdo->query($sql);
+        $data = $stmt->fetchAll();
+        return $data;
+    }
+    public function getJobAccept2(){
+        
+        $sql = "
+            SELECT j.*,p.pay_name as pay
+            FROM tb_data_job_status as djs
+            LEFT join tb_job as j on j.j_id = djs.j_id 
+            LEFT JOIN tb_pay as p ON p.pay_id = j.pay_id
+            WHERE djs.sta_name = 'อนุมัติ'
         ";
         $stmt = $this->pdo->query($sql);
         $data = $stmt->fetchAll();
@@ -568,7 +581,21 @@ class FunctionSql extends DbScience {
         ";
         $stmt = $this->pdo->query($sql);
         $data = $stmt->fetchAll();
-        if($data){
+        if(count($data)>0){
+            return count($data);
+        }else{
+            return 0;
+        }
+    }
+    public function countStuRegisByJIdEmail($j_id,$email){
+        $sql = "
+            SELECT * 
+            FROM tb_register
+            WHERE j_id = '{$j_id}' AND stu_email = '{$email}'
+        ";
+        $stmt = $this->pdo->query($sql);
+        $data = $stmt->fetchAll();
+        if(count($data)>0){
             return count($data);
         }else{
             return 0;
