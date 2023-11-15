@@ -207,7 +207,7 @@ class FunctionSql extends DbScience {
     }
     public function getJobById($j_id){
         $sql ="
-            SELECT j.*,p.pay_name as pay, dr.h_email,s.name,s.surname 
+            SELECT j.*,p.pay_name as pay, dr.h_email,s.name,s.surname
             FROM tb_job as j
             LEFT JOIN  tb_staff as s ON s.email = j.m_email
             LEFT JOIN tb_pay as p ON p.pay_id = j.pay_id
@@ -353,10 +353,10 @@ class FunctionSql extends DbScience {
     }
     public function getEmailByMEmailRo($m_email,$ro_num){
         $sql ="
-            SELECT dr.*,s.name,s.surname 
+            SELECT dr.*,s.name,s.surname,s.title 
             FROM tb_department_route as dr
             LEFT JOIN tb_staff as s ON s.email = dr.h_email
-            WHERE m_email = '{$m_email}' AND ro_num = {$ro_num}
+            WHERE dr.m_email = '{$m_email}' AND dr.ro_num = {$ro_num}
         ";
         $stmt = $this->pdo->query($sql);
         $data = $stmt->fetchAll();
