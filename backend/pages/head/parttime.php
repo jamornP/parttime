@@ -73,16 +73,22 @@
                                             // $dataJob = $sqlObj->getJobByEmail('akarit.ta@kmitl.ac.th');
                                             $i = 0;
                                             foreach($dataJob as $j){
+                                                
                                                 $stu = $sqlObj->countStuRegisByJId($j['j_id']);
                                                 $i++;
                                                 $dateWork = datethai($j['j_s_date'])." - ".datethai($j['j_e_date']); 
+                                                if($_SESSION['role']=="head" OR $_SESSION['role']=="admin" OR $_SESSION['role']=="superadmin"){
+                                                    $btStu = "<td class='text-center'><a href='view_register.php?id={$j['j_id']}' target='_blank'>{$j['count_student']}/{$stu}</a></td>";
+                                                }else{
+                                                    $btStu = "<td class='text-center'>{$j['count_student']}/{$stu}</td>";
+                                                }
                                                 echo "
                                                     <tr class='fs-14'>
                                                         <td>{$i}</td>
                                                         <td><a href='view.php?id={$j['j_id']}' target='_blank'>{$j['j_name']}</a></td>
                                                         <td class='text-center'>{$dateWork}</td>
                                                         <td>{$j['pay']}</td>
-                                                        <td class='text-center'>{$j['count_student']}/{$stu}</td>
+                                                        {$btStu}
                                                         <td class='text-center'>{$j['st_name']}</td>
                                                         <td class='text-center'>{$j['st_tel']}</td>
                                                         <td class='text-center'>{$j['status']}</td>

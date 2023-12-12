@@ -92,6 +92,16 @@ $sqlObj = new FunctionSql;
                                         <span style="font-size: 18px;"><?php echo $data['pay'];?></span>
                                     </p>
                                     <p>
+                                        <h5 class="text-success"><b><font>วันที่รับสมัคร&nbsp;</font><font color="#ED2939">*</font></b></h5>
+                                        <span style="font-size: 18px;"><b>วันที่ 
+                                            <?php
+                                                $dateRegister = datethai($data['regis_s_date'])." - ".datethai($data['regis_e_date']); 
+                                                echo $dateRegister;
+                                            ?>
+                                            </b>
+                                        </span>
+                                    </p>
+                                    <p>
                                         <h5 class="text-danger"><b><font>วันที่สอบสัมภาษณ์&nbsp;</font></b></h5>
                                         <span style="font-size: 18px;">วันที่ <?php echo datethai($data['interview_date']);?></span>
                                     </p>
@@ -171,6 +181,57 @@ $sqlObj = new FunctionSql;
                                                              foreach($dataRegis as $re){
                                                                  $i++;
                                                                  $checked = ($re['re_status']=="accept" ? "checked" :"" );
+                                                                 echo "
+                                                                     <tr>
+                                                                         <td>{$i}</td>
+                                                                         <td>{$re['stu_id']}</td>
+                                                                         <td>{$re['stu_fullname']}</td>
+                                                                         <td>{$re['stu_email']}</td>
+                                                                         <td>{$re['stu_class']}</td>
+                                                                         <td>{$re['stu_sub_department']}</td>
+                                                                         <td>{$re['stu_department']}</td>
+                                                                         <td>{$re['stu_tel']}</td>
+                                                                         <td>{$re['stu_line']}</td>
+                                                                         
+                                                                     </tr>
+                                                                 ";
+                                                             }
+                                                         ?>      
+                                                     
+                                                 </tbody>
+                                             </table>
+                                         </div>
+                                         <?php
+                                        ?>
+                                    </P>
+                                    <hr>
+                                    <p>
+                                        <h5 class=""><b><font color="#0000ff">รายชื่อนักศึกษาที่สมัคร&nbsp;</font></b></h5>
+                                       
+                                             <div class="row table-responsive">
+                                                
+                                             <table class="table table-hover text-nowrap fs-14">
+                                                 
+                                                 <thead>
+                                                     <tr>
+                                                         <th>ที่</th>
+                                                         <th>รหัสนักศึกษา</th>
+                                                         <th>ชื่อ นามสกุล</th>
+                                                         <th>Email</th>
+                                                         <th>ปี</th>
+                                                         <th>สาขา</th>
+                                                         <th>ภาควิชา</th>
+                                                         <th>เบอร์โทร</th>
+                                                         <th>Line</th>
+                                                     </tr>
+                                                 </thead>
+                                                 <tbody>
+                                                         <?php
+                                                             $dataRegis = $sqlObj->getRegisByJid($j_id);
+                                                             $i = 0;
+                                                             foreach($dataRegis as $re){
+                                                                 $i++;
+                                                                
                                                                  echo "
                                                                      <tr>
                                                                          <td>{$i}</td>
