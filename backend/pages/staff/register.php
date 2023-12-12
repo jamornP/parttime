@@ -70,6 +70,7 @@
                     $dataHemail = $sqlObj->getEmailByMEmailRo($dataJ['m_email'],$dataJ['num']);
                     $msgParttime = $dataHemail['name']." ".$dataHemail['surname']."\nเรื่อง{$_POST['j_name']}\n " ;
                     $ckLine = SentLineBasic("TguOefB2TCfmfcvmBjySvAQHoQw4FHCzgb1NbuSUvpp",$msgParttime);
+                    // $ckLine = SentLineBasic("NEBJNOEsOZKaHi0CtH5DxutkPV9HNGinPgxZTEsrY1W",$msgParttime); // test
                     $msg = "บันทึกข้อมูลเรียบร้อย";
                     echo "<script>";
                     echo "alertSuccess('{$msg}','index.php')";
