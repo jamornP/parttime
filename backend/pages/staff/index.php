@@ -52,6 +52,9 @@
                 $_POST['js_id'] = 1;
                 $_POST['status'] = "ส่งเรื่อง";
                 $_POST['date_add']=date("Y-m-d H:i:s");
+                if($_POST['interview_date']==""){
+                    $_POST['interview_date']="0000-00-00";
+                }
                 // echo "<pre>";
                 // print_r($_POST); 
                 // echo"</pre>";
@@ -236,20 +239,20 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="datepicker5">วันที่สอบสัมภาษณ์(ใช้เวลา 1 วัน) :<b class="text-danger">*</b></label>
-                                                <input type="text" id="datepicker5" class="form-control" name="interview_date" required autocomplete="off" value="" min="">
+                                                <label for="datepicker5">วันที่สอบสัมภาษณ์(ใช้เวลา 1 วัน) :<b class="text-danger"></b></label>
+                                                <input type="text" id="datepicker5" class="form-control" name="interview_date"  autocomplete="off" value="" min="">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="in_location">สถานที่สัมภาษณ์ :<b class="text-danger">*</b></label>
-                                                <input type="text" id="in_location" class="form-control" name="in_location" required >
+                                                <label for="in_location">สถานที่สัมภาษณ์ :<b class="text-danger"></b></label>
+                                                <input type="text" id="in_location" class="form-control" name="in_location"  >
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="in_time">เวลาสัมภาษณ์ :<b class="text-danger">*</b></label>
-                                                <input type="text" id="in_time" class="form-control" name="in_time" required >
+                                                <label for="in_time">เวลาสัมภาษณ์ :<b class="text-danger"></b></label>
+                                                <input type="text" id="in_time" class="form-control" name="in_time"  >
                                             </div>
                                         </div>
                                         <div class="col-md-6">
