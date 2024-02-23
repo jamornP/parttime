@@ -126,7 +126,15 @@
                                     </p>
                                     <p>
                                         <h5 class="text-danger"><b><font>วันที่สอบสัมภาษณ์&nbsp;</font><font color="#ED2939">*</font></b></h5>
-                                        <span style="font-size: 18px;"><b>วันที่ <?php echo datethai($data['interview_date']);?></b></span>
+                                        <span style="font-size: 18px;"><b>
+                                        <?php 
+                                            if($data['interview_date']!='0000-00-00'){
+                                                echo 'วันที่ '.datethai($data['interview_date']);
+                                            }else{
+                                                echo "-";
+                                            }
+                                        ?>        
+                                        </b></span>
                                     </p>
                                     <p>
                                         <h5 class="text-danger"><b><font>สถานที่สอบสัมภาษณ์&nbsp;</font><font color="#ED2939"></font></b></h5>

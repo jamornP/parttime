@@ -71,14 +71,18 @@ date_default_timezone_set('Asia/Bangkok');
                                 $i++;
                                 $dateWork = datethai($j['j_s_date'])." - ".datethai($j['j_e_date']); 
                                 $dateRegister = datethai($j['regis_s_date'])." - ".datethai($j['regis_e_date']); 
-                                $dateAnnouncement = datethai($j['announcement_date']); 
+                                if($j['interview_date']!='0000-00-00'){
+                                    $dateInterview = datethai($j['interview_date']);
+                                }else{
+                                    $dateInterview = "-";
+                                }
                                 echo "
                                     <tr class='fs-14'>
                                         <td>{$i}</td>
                                         <td><a href='register.php?id={$j['j_id']}'>{$j['j_name']}</a></td>
                                         <td class='text-center'>{$dateWork}</td>
                                         <td class='text-center text-success'>{$dateRegister}</td>
-                                        <td class='text-center text-danger'>{$dateAnnouncement}</td>
+                                        <td class='text-center text-danger'>{$dateInterview}</td>
                                         <td>{$j['pay']}</td>
                                         <td class='text-center'>{$j['count_student']}/{$stu}</td>
                                         <td class='text-center'>{$j['st_name']}</td>
