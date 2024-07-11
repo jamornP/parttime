@@ -199,7 +199,7 @@ class FunctionSql extends DbScience {
             FROM tb_job as j
             LEFT JOIN tb_pay as p ON p.pay_id = j.pay_id
             LEFT JOIN tb_department_route as dr ON (dr.ro_num = j.js_id AND dr.m_email = j.m_email)
-            ORDER BY j.date_add
+            ORDER BY j.regis_s_date DESC
         ";
         $stmt = $this->pdo->query($sql);
         $data = $stmt->fetchAll();
@@ -263,6 +263,7 @@ class FunctionSql extends DbScience {
             LEFT join tb_job as j on j.j_id = djs.j_id 
             LEFT JOIN tb_pay as p ON p.pay_id = j.pay_id
             WHERE djs.sta_name = 'อนุมัติ' AND j.regis_e_date >= '{$dateN}'
+            ORDER BY j.regis_s_date 
         ";
         $stmt = $this->pdo->query($sql);
         $data = $stmt->fetchAll();

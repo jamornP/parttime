@@ -121,6 +121,18 @@ $sqlObj = new FunctionSql;
                                         <h5 class="text-danger"><b><font>เวลาสอบสัมภาษณ์&nbsp;</font></b></h5>
                                         <span style="font-size: 18px;"><?php echo$data['in_time'];?></span>
                                     </p>
+                                    <p>
+                                        <h5 class="text-danger"><b><font>วันที่ประกาศผล&nbsp;</font></b></h5>
+                                        <span style="font-size: 18px;">
+                                        <?php 
+                                            if($data['announcement_date']!='0000-00-00'){
+                                                echo 'วันที่ '.datethai($data['announcement_date']);
+                                            }else{
+                                                echo "-";
+                                            }
+                                        ?>
+                                        </span>
+                                    </p>
                                     <hr>
                                     <p>
                                         <h5 class=""><b><font color="#0000ff">ติดต่อสอบถามรายละเอียด&nbsp;</font></b></h5>
