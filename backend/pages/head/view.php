@@ -78,6 +78,11 @@ $sqlObj = new FunctionSql;
                                     </p>
                                     <?php echo $data['j_detail'];?>
                                     <p>
+                                        <h5 class=""><b><font color="#0000ff">สถานที่ทำงาน&nbsp;</font></b></h5>
+                                        <span style="font-size: 18px;"><?php echo $data['j_location'];?></span>
+                                        <br style="font-size: 18px;">
+                                    </p>
+                                    <p>
                                         <h5 class=""><b><font color="#0000ff">วันทำงาน&nbsp;</font></b></h5>
                                         <span style="font-size: 18px;">วันที่ <?php echo datethai($data['j_s_date'])." ถึง ".datethai($data['j_e_date']);?></span>
                                         <br style="font-size: 18px;">
